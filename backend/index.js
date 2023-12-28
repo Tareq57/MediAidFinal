@@ -5,6 +5,8 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 
 import authRoutes from "./Routes/auth.js"
+import userRoutes from "./Routes/user.js"
+import doctorRoutes from "./Routes/doctor.js"
 
 dotenv.config()
 
@@ -34,6 +36,8 @@ app.use(cookieParser())
 app.use(cors(corsOptions))
 
 app.use("/api/auth", authRoutes)
+app.use("/api/user", userRoutes)
+app.use("/api/doctor", doctorRoutes)
 
 app.listen(port, () => {
     connectDB();
