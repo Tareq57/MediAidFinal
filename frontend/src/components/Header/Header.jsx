@@ -3,10 +3,10 @@ import logo from "../../assets/images/logo.svg";
 // import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
+// 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08)
 const Header = () => {
   return (
-    <header className="header flex items-center shadow-lg z-10">
+    <header className="header flex items-center relative z-1010" style={{boxShadow : "0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08)"}}>
       <div className="container px-[100px] py-[5px] ">
         <div className="flex items-center justify-between">
           <div className="w-[650px] flex items-center justify-between">
@@ -40,7 +40,7 @@ const Header = () => {
                   <NavLink
                     to="/doctors"
                     className={(navClass) =>
-                      navClass.isActive ? "font-bold" : ""
+                      navClass.isActive ? "font-bold text-orange-500" : ""
                     }
                   >
                     Find a Doctor
@@ -48,9 +48,9 @@ const Header = () => {
                 </li>
                 <li className="menu-item p-[10px] hover:underline hover:underline-offset-[15px]">
                   <NavLink
-                    to="/doctors"
+                    to="/none"
                     className={(navClass) =>
-                      navClass.isActive ? "font-bold" : ""
+                      navClass.isActive ? "font-bold text-orange-500" : ""
                     }
                   >
                     MediShop
@@ -58,9 +58,9 @@ const Header = () => {
                 </li>
                 <li className="menu-item p-[10px] hover:underline hover:underline-offset-[15px]">
                   <NavLink
-                    to="/doctors"
+                    to="/none"
                     className={(navClass) =>
-                      navClass.isActive ? "font-bold" : ""
+                      navClass.isActive ? "font-bold text-orange-500" : ""
                     }
                   >
                     MediLab
