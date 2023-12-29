@@ -6,7 +6,12 @@ import { Button } from "@/components/ui/button";
 // 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08)
 const Header = () => {
   return (
-    <header className="header flex items-center relative z-1010" style={{boxShadow : "0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08)"}}>
+    <header
+      className="header flex items-center relative z-1010"
+      style={{
+        boxShadow: "0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08)",
+      }}
+    >
       <div className="container px-[100px] py-[5px] ">
         <div className="flex items-center justify-between">
           <div className="w-[650px] flex items-center justify-between">
@@ -74,12 +79,15 @@ const Header = () => {
             {/* <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-[3px] px-4 rounded-full">
               Login/SignUp
             </button> */}
-            <Button
-              size="sm"
-              className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full"
-            >
-              Login/Sign Up
-            </Button>
+
+            <NavLink to="/Login">
+              <Button
+                size="sm"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full"
+              >
+                Login/Sign Up
+              </Button>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div className="mx-[150px]">
       <div
-        className="h-[500px] shadow-lg"
+        className="h-[500px] shadow-lg border-3 border-gray-200"
         style={{
           backgroundImage: `url(${heroBanner})`,
           backgroundSize: "cover",
