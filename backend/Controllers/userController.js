@@ -1,3 +1,5 @@
+import Booking from '../models/BookingSchema.js'
+import Doctor from '../models/DoctorSchema.js'
 import User from '../models/UserSchema.js'
 
 export const updateUser = async(req, res) => {
@@ -42,5 +44,17 @@ export const getAllUsers = async(req, res) => {
         res.status(200).json({success: true, msg: "Users found", data: users})
     } catch(err) {
         res.status(500).json({success: false, msg: "Users not found", error: err})
+    }
+}
+
+export const getAppointments = async(req, res) => {
+    try {
+        const bookings = await Booking.find( {user: req.userId} )
+        const doctorIds = bookings.map(booking => booking.doctor)
+        const doctors = await Doctor.find( {_id: {$in: doctorIds}} ).select('-password')
+        res.status(200).json({success: true, msg: "Appointments found", data: doctors})
+    } catch(error) {
+        console.log(error)
+        res.status(500).json({success: false, msg: "Appointments not found"})
     }
 }

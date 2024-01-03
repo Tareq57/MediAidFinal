@@ -1,4 +1,5 @@
 import Doctor from '../models/DoctorSchema.js'
+import { ObjectId } from "mongodb"
 
 export const updateDoctor = async(req, res) => {
     const id = req.params.id
@@ -57,5 +58,38 @@ export const getAllDoctors = async(req, res) => {
         res.status(200).json({success: true, msg: "Doctors found", data: doctors})
     } catch(err) {
         res.status(500).json({success: false, msg: "Doctors not found", error: err})
+    }
+}
+
+export const addTimeSlot = async(req, res) => {
+    const id = req.userId
+    const timeSlot = req.body
+    console.log(timeSlot)
+
+    try {
+        await Doctor.updateOne(
+            {_id: new ObjectId(id)},
+            {$push: {timeSlots: timeSlot}}
+        )
+        console.log("Time slot added successfully")
+        const result = await Doctor.findById(id).select('timeSlots')
+        res.status(200).json({success: true, msg: "Time slot added successfully", timeslots: result.timeSlots})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Time slot addition failed", error: err})
+    }
+}
+
+export const deleteTimeSlot = async(req, res) => {
+    const remId = req.params.id
+
+    try {
+        const doctor = await Doctor.findById(req.userId)
+        await doctor.timeSlots.pull({_id: remId})
+        await doctor.save()
+        res.status(200).json({success: true, msg: "Time slot deleted successfully"})
+    } catch(error) {
+        console.log(error)
+        res.status(500).json({success: false, msg: "Time slot deletion failed"})
     }
 }
