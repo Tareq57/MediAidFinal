@@ -5,14 +5,17 @@ const reviewSchema = new mongoose.Schema(
     doctor: {
       type: mongoose.Types.ObjectId,
       ref: "Doctor",
+      required: true,
     },
     user: {
       type: mongoose.Types.ObjectId,
       ref: "User",
+      required: true,
     },
     reviewText: {
       type: String,
-      required: true,
+      // required: true,
+      default: null,
     },
     rating: {
       type: Number,

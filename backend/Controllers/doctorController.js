@@ -32,7 +32,7 @@ export const getSingleDoctor = async(req, res) => {
         else
             res.status(404).json({success:false, msg: "Doctor not found", data: null})
     } catch(err) {
-        res.status(500).json({success: false, msg: "Doctor update failed", error: err})
+        res.status(500).json({success: false, msg: "Doctor not found", error: err})
     }
 }
 
@@ -43,7 +43,7 @@ export const getAllDoctors = async(req, res) => {
 
         if(query) {
             doctors = await Doctor.find({
-                isApproved: "approved",
+                // isApproved: "approved",
                 $or: [
                     { name: { $regex: query, $options: "i" } },
                     { specialization: { $regex: query, $options: "i" } },

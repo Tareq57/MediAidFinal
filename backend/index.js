@@ -7,6 +7,7 @@ import dotenv from "dotenv"
 import authRoutes from "./Routes/auth.js"
 import userRoutes from "./Routes/user.js"
 import doctorRoutes from "./Routes/doctor.js"
+import reviewRoutes from "./Routes/review.js"
 
 dotenv.config()
 
@@ -28,6 +29,7 @@ const connectDB = async () => {
         console.log("MongoDB connected")
     } catch (err) {
         console.log("Failed to connect to MongoDB")
+        console.log(err)
     }
 }
 
@@ -38,6 +40,7 @@ app.use(cors(corsOptions))
 app.use("/api/auth", authRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/doctor", doctorRoutes)
+app.use("/api/review", reviewRoutes)
 
 app.listen(port, () => {
     connectDB();

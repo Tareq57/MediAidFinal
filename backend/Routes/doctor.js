@@ -3,10 +3,15 @@ import express from 'express'
 
 import { authenticate, restrict } from '../auth/verifyToken.js'
 
-const router = express.Router()
-router.get('/:id', authenticate, restrict(['doctor']), getSingleDoctor)
-router.get('/', authenticate, restrict(['admin']), getAllDoctors)
-router.put('/:id', authenticate, restrict(['doctor']), updateDoctor)
-router.delete('/:id', authenticate, restrict(['doctor']), deleteDoctor)
+// import reviewRouter from './review.js'
+
+const router = express.Router({mergeParams: true})
+
+// router.use("/:doctorId/review", reviewRouter)
+
+router.get('/:id', authenticate, getSingleDoctor)
+router.get('/', authenticate, getAllDoctors)
+router.put('/:id', authenticate, restrict(['doctor', 'admin']), updateDoctor)
+router.delete('/:id', authenticate, restrict(['doctor', 'admin']), deleteDoctor)
 
 export default router

@@ -32,7 +32,7 @@ export const getSingleUser = async(req, res) => {
         else
             res.status(404).json({success:false, msg: "User not found", data: null})
     } catch(err) {
-        res.status(500).json({success: false, msg: "User update failed", error: err})
+        res.status(500).json({success: false, msg: "User not found", error: err})
     }
 }
 

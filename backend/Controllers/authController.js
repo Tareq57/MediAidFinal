@@ -14,7 +14,7 @@ export const register = async(req, res) => {
         else if(role === 'doctor')
             user = await Doctor.findOne({email})
         if(user)
-            return res.status(400).json({msg: "User already exists"})
+            return res.status(400).json({success: false, msg: "User already exists"})
 
         const salt = await bcrypt.genSalt(10)
         const hashPassword = await bcrypt.hash(password, salt)
@@ -56,16 +56,16 @@ export const login = async(req, res) => {
     try {
         let user = null
         const patient = await User.findOne({email})
-        const doctor = await User.findOne({email})
+        const doctor = await Doctor.findOne({email})
 
         if(patient) user = patient
         else if(doctor) user = doctor
         else
-            res.status(404).json({success:false, msg: "User not found"})
+            return res.status(404).json({success:false, msg: "User not found"})
 
         const isMatch = await bcrypt.compare(req.body.password, user.password)
         if(!isMatch)
-            res.status(404).json({success:false, msg: "Wrong password"})
+            return res.status(404).json({success:false, msg: "Wrong password"})
 
         const token = jwt.sign({id:user._id, role:user.role}, process.env.JWT_SECRET, {expiresIn: "15d"})
         const {password, role, appointments, ...rest} = user._doc
