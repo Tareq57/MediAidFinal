@@ -24,14 +24,7 @@ const DoctorSchema = new mongoose.Schema({
 
   bio: { type: String, maxLength: 50 },
   about: { type: String },
-  timeSlots: [{starthr: Number, endhr: Number, startmin: Number, endmin: Number, day: Number, month: Number, year: Number}],
-  // timeSlots: {
-  //   type: Array,
-  // },
-  averageRating: {
-    type: Number,
-    default: 0,
-  },
+  
   isApproved: {
     type: String,
     enum: ["pending", "approved", "cancelled"],
@@ -39,4 +32,4 @@ const DoctorSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Doctor", DoctorSchema);
+export default mongoose.model("Doctor", DoctorSchema)

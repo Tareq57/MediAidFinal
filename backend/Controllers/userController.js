@@ -1,4 +1,4 @@
-import Booking from '../models/BookingSchema.js'
+import Booking from '../models/AppointmentSchema.js'
 import Doctor from '../models/DoctorSchema.js'
 import User from '../models/UserSchema.js'
 

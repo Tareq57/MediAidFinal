@@ -8,6 +8,7 @@ import authRoutes from "./Routes/auth.js"
 import userRoutes from "./Routes/user.js"
 import doctorRoutes from "./Routes/doctor.js"
 import reviewRoutes from "./Routes/review.js"
+import appointmentRoutes from "./Routes/appointment.js"
 
 dotenv.config()
 
@@ -41,6 +42,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/doctor", doctorRoutes)
 app.use("/api/review", reviewRoutes)
+app.use("/api/appointment", appointmentRoutes)
 
 app.listen(port, () => {
     connectDB();

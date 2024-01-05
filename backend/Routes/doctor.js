@@ -3,7 +3,9 @@ import {updateDoctor,
     getAllDoctors, 
     getSingleDoctor, 
     addTimeSlot, 
-    deleteTimeSlot
+    deleteTimeSlot,
+    updateTimeSlot,
+    getTimeSlotsById
 } from '../Controllers/doctorController.js'
 import express from 'express'
 
@@ -18,5 +20,7 @@ router.delete('/:id', authenticate, restrict(['doctor', 'admin']), deleteDoctor)
 
 router.post('/timeslots', authenticate, restrict(['doctor']), addTimeSlot)
 router.delete('/timeslots/:id', authenticate, restrict(['doctor']), deleteTimeSlot)
+router.patch('/timeslots/:id', authenticate, restrict(['doctor']), updateTimeSlot)
+router.get('/timeslots/:id', authenticate, getTimeSlotsById)
 
 export default router

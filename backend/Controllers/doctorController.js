@@ -1,4 +1,5 @@
 import Doctor from '../models/DoctorSchema.js'
+import Slot from '../models/SlotSchema.js'
 import { ObjectId } from "mongodb"
 
 export const updateDoctor = async(req, res) => {
@@ -63,17 +64,22 @@ export const getAllDoctors = async(req, res) => {
 
 export const addTimeSlot = async(req, res) => {
     const id = req.userId
-    const timeSlot = req.body
-    console.log(timeSlot)
+    const {starthr, endhr, startmin, endmin, day, month, year, patientCount} = req.body
 
     try {
-        await Doctor.updateOne(
-            {_id: new ObjectId(id)},
-            {$push: {timeSlots: timeSlot}}
-        )
-        console.log("Time slot added successfully")
-        const result = await Doctor.findById(id).select('timeSlots')
-        res.status(200).json({success: true, msg: "Time slot added successfully", timeslots: result.timeSlots})
+        const newSlot = new Slot({
+            doctor: id,
+            starthr, 
+            endhr, 
+            startmin, 
+            endmin, 
+            day, 
+            month, 
+            year,
+            patientCount
+        })
+        newSlot.save()
+        res.status(200).json({success: true, msg: "Time slot added successfully", data: newSlot})
     } catch(err) {
         console.log(err)
         res.status(500).json({success: false, msg: "Time slot addition failed", error: err})
@@ -84,12 +90,33 @@ export const deleteTimeSlot = async(req, res) => {
     const remId = req.params.id
 
     try {
-        const doctor = await Doctor.findById(req.userId)
-        await doctor.timeSlots.pull({_id: remId})
-        await doctor.save()
+        Slot.findByIdAndDelete(remId)
         res.status(200).json({success: true, msg: "Time slot deleted successfully"})
     } catch(error) {
         console.log(error)
         res.status(500).json({success: false, msg: "Time slot deletion failed"})
+    }
+}
+
+export const updateTimeSlot = async(req, res) => {
+    const id = req.params.id
+    try {
+        const updatedSlot = Slot.findByIdAndUpdate(id, {$set: req.body}, {new: true})
+        res.status(200).json({success: true, msg: "Time slot updated successfully", data: updatedSlot})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Time slot update failed"})
+    }
+}
+
+export const getTimeSlotsById = async(req, res) => {
+    let id = req.params.id
+    id = new ObjectId(id)
+    try {
+        const slots = await Slot.find({doctor: id})
+        res.status(200).json({success: true, msg: "Time slots fetched successfully", data: slots})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Time slot fetch failed"})
     }
 }

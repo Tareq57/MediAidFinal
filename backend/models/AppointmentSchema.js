@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
-const bookingSchema = new mongoose.Schema(
+const appointmentSchema = new mongoose.Schema(
   {
     doctor: {
       type: mongoose.Types.ObjectId,
@@ -12,11 +12,19 @@ const bookingSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    ticketPrice: { type: String, required: true },
-    appointmentDate: {
-      type: Date,
+    ticketPrice: { type: Number, required: true },
+
+    slot: {
+      type: mongoose.Types.ObjectId,
+      ref: "Slot",
       required: true,
     },
+    serial: {
+      type: Number,
+      required: true,
+      default: -1,
+    },
+
     status: {
       type: String,
       enum: ["pending", "approved", "cancelled"],
@@ -24,10 +32,10 @@ const bookingSchema = new mongoose.Schema(
     },
     isPaid: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Booking", bookingSchema);
+export default mongoose.model("Appointment", appointmentSchema);
