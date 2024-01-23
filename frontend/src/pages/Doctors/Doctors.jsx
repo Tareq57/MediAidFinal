@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { PiClockCountdownFill } from "react-icons/pi";
@@ -20,60 +20,40 @@ import {
 
 import doctorCardImage from "@/assets/images/doctor_card_img.jpg";
 
-const doctors = [
-  {
-    name: "Dr. Usman Yusuf",
-    specialty: "Eye Specialist (MBBS, FCPS)",
-    patients: 150,
-    days: "Sat-Mon",
-    slots: "20 slot available",
-  },
-  {
-    name: "Dr. Usman Yusuf",
-    specialty: "Eye Specialist (MBBS, FCPS)",
-    patients: 150,
-    days: "Sat-Mon",
-    slots: "20 slot available",
-  },
-  {
-    name: "Dr. Usman Yusuf",
-    specialty: "Eye Specialist (MBBS, FCPS)",
-    patients: 150,
-    days: "Sat-Mon",
-    slots: "20 slot available",
-  },
-  {
-    name: "Dr. Usman Yusuf",
-    specialty: "Eye Specialist (MBBS, FCPS)",
-    patients: 150,
-    days: "Sat-Mon",
-    slots: "20 slot available",
-  },
-  {
-    name: "Dr. Usman Yusuf",
-    specialty: "Eye Specialist (MBBS, FCPS)",
-    patients: 150,
-    days: "Sat-Mon",
-    slots: "20 slot available",
-  },
-  {
-    name: "Dr. Usman Yusuf",
-    specialty: "Eye Specialist (MBBS, FCPS)",
-    patients: 150,
-    days: "Sat-Mon",
-    slots: "20 slot available",
-  },
-  {
-    name: "Dr. Usman Yusuf",
-    specialty: "Eye Specialist (MBBS, FCPS)",
-    patients: 150,
-    days: "Sat-Mon",
-    slots: "20 slot available",
-  },
-  // Add more doctors here...
-];
+import AuthContext from "@/context/AuthContext";
+import { useContext } from "react";
+import { BASE_URL } from "@/config";
 
 const Doctors = () => {
+  const { state, setState } = useContext(AuthContext);
+  // console.log(state);
+
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      const res = await fetch(`${BASE_URL}/doctor`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${state.token}`,
+        },
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message);
+      }
+
+      console.log(result.data);
+
+      setDoctors(result.data);
+    };
+
+    if(state.user) { fetchDoctors(); }
+  }, []);
+
   return (
     <div className="mx-[180px] mt-[40px] flex">
       <div className="flex flex-col w-2/3">
@@ -101,7 +81,7 @@ const Doctors = () => {
           >
             <div className="w-1/3 h-full">
               <img
-                src={doctorCardImage}
+                src={doctor.photo}
                 alt="Doctor"
                 className="top-0 left-0 w-full h-full object-cover"
               />
@@ -134,7 +114,7 @@ const Doctors = () => {
           </div>
         ))}
 
-        <div className="my-[10px]">
+        {/* <div className="my-[10px]">
           <Pagination>
             <PaginationContent>
               <PaginationItem>
@@ -170,7 +150,7 @@ const Doctors = () => {
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-        </div>
+        </div> */}
       </div>
 
       <div className="flex flex-col w-1/3 container space-y-4">

@@ -9,8 +9,8 @@ const Layout = () => {
     <div>
         <Header />
         <main>
-            {/* <Routers /> */}
-            <UserProfile/>
+            <Routers />
+            {/* <UserProfile/> */}
         </main>
         <Footer />
     </div>
