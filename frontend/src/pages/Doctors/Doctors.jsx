@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { PiClockCountdownFill } from "react-icons/pi";
-
 import { TbCalendarStats } from "react-icons/tb";
 import { TbDeviceWatchStats2 } from "react-icons/tb";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,6 +22,7 @@ import doctorCardImage from "@/assets/images/doctor_card_img.jpg";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import { BASE_URL } from "@/config";
+import { Link } from "react-router-dom";
 
 const Doctors = () => {
   const { state, setState } = useContext(AuthContext);
@@ -36,22 +36,23 @@ const Doctors = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${state.token}`,
+          Authorization: `Bearer ${state.token}`,
         },
       });
-
-      const result = await res.json();
 
       if (!res.ok) {
         throw new Error(result.message);
       }
+      const result = await res.json();
 
       console.log(result.data);
 
       setDoctors(result.data);
     };
 
-    if(state.user) { fetchDoctors(); }
+    if (state.user) {
+      fetchDoctors();
+    }
   }, []);
 
   return (
@@ -107,7 +108,7 @@ const Doctors = () => {
               <div className="flex justify-between my-[10px]">
                 <h1 className="text-red-500 font-extrabold ">Fee : 500 Taka</h1>
                 <h1 className="font-bold hover:scale-110 transition-transform">
-                  view more
+                  <Link to={`/doctors/${doctor._id}`}>view more</Link>
                 </h1>
               </div>
             </div>
