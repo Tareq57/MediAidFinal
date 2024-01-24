@@ -1,6 +1,6 @@
 import {updateDoctor,
     deleteDoctor, 
-    getAllDoctors, 
+    searchDoctors, 
     getSingleDoctor, 
     addTimeSlot, 
     deleteTimeSlot,
@@ -13,8 +13,8 @@ import { authenticate, restrict } from '../auth/verifyToken.js'
 
 const router = express.Router({mergeParams: true})
 
-router.get('/:id', authenticate, getSingleDoctor)
-router.get('/', authenticate, getAllDoctors)
+router.get('/fetch/:id', authenticate, getSingleDoctor)
+router.get('/search', authenticate, searchDoctors)
 router.put('/:id', authenticate, restrict(['doctor', 'admin']), updateDoctor)
 router.delete('/:id', authenticate, restrict(['doctor', 'admin']), deleteDoctor)
 

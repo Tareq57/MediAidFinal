@@ -13,8 +13,14 @@ const DoctorSchema = new mongoose.Schema({
   gender: { type: String, enum: ["male", "female", "other"] },
 
   // Fields for doctors only
-  specialization: { type: String },
+  specialization: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Specialization",
+  },
   qualifications: {
+    type: Array,
+  },
+  certificates: {
     type: Array,
   },
 
@@ -28,7 +34,7 @@ const DoctorSchema = new mongoose.Schema({
   isApproved: {
     type: String,
     enum: ["pending", "approved", "cancelled"],
-    default: "pending",
+    default: "approved", //TODO: Change to pending
   },
 });
 

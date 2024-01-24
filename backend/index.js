@@ -7,6 +7,7 @@ import dotenv from "dotenv"
 import authRoutes from "./Routes/auth.js"
 import userRoutes from "./Routes/user.js"
 import doctorRoutes from "./Routes/doctor.js"
+import specializationRoutes from "./Routes/specialization.js"
 import reviewRoutes from "./Routes/review.js"
 import appointmentRoutes from "./Routes/appointment.js"
 
@@ -43,6 +44,7 @@ app.use(cors(corsOptions))
 app.use("/api/auth", authRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/doctor", doctorRoutes)
+app.use("/api/specialization", specializationRoutes)
 app.use("/api/review", reviewRoutes)
 app.use("/api/appointment", appointmentRoutes)
 
