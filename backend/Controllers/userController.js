@@ -1,4 +1,4 @@
-import Booking from '../models/AppointmentSchema.js'
+import Appointment from '../models/AppointmentSchema.js'
 import Doctor from '../models/DoctorSchema.js'
 import User from '../models/UserSchema.js'
 
@@ -49,12 +49,24 @@ export const getAllUsers = async(req, res) => {
 
 export const getAppointments = async(req, res) => {
     try {
-        const bookings = await Booking.find( {user: req.userId} )
+        const bookings = await Appointment.find( {user: req.userId} )
         const doctorIds = bookings.map(booking => booking.doctor)
         const doctors = await Doctor.find( {_id: {$in: doctorIds}} ).select('-password')
         res.status(200).json({success: true, msg: "Appointments found", data: doctors})
     } catch(error) {
         console.log(error)
         res.status(500).json({success: false, msg: "Appointments not found"})
+    }
+}
+
+export const getMyDoctors = async(req, res) => {
+    try {
+        const id = req.userId
+        const appointments = await Appointment.find({user: id}).populate('doctor', '-password').populate('slot')
+        const doctors = appointments.map(appointment => appointment.doctor)
+        res.status(200).json({success: true, msg: "Doctors found", data: doctors})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Couldn't fetch doctors"})
     }
 }

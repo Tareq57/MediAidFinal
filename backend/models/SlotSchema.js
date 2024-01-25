@@ -15,6 +15,14 @@ const SlotSchema = new mongoose.Schema({
         type: Number,
         default: 1
     },
+    occupied: {
+        type: Number,
+        default: 0
+    },
+    done: {
+        type: Number,
+        default: 0
+    }
 },
 { timestamps: true }
 )

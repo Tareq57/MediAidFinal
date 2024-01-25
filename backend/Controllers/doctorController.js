@@ -1,6 +1,7 @@
 import Doctor from '../models/DoctorSchema.js'
 import Review from '../models/ReviewSchema.js'
 import Slot from '../models/SlotSchema.js'
+import Appointment from '../models/AppointmentSchema.js'
 import { Int32, ObjectId } from "mongodb"
 import { addDays } from '../helpers/datehelper.js'
 
@@ -53,7 +54,6 @@ export const getSingleDoctor = async(req, res) => {
 export const searchDoctors = async(req, res) => {
     try {
         const query = req.query
-        console.log(query)
         let doctors
 
         if(query.name != undefined && query.name != null) {
@@ -82,7 +82,6 @@ export const searchDoctors = async(req, res) => {
 
         for(let i = 0; i < doctors.length; i++) {
             const doctorReviews = await Review.find({doctor: doctors[i]._id}).populate('user')
-            // console.log(doctorReviews)
             let avgStars = 0
             for (let i = 0; i < doctorReviews.length; i++)
                 avgStars += doctorReviews[i].rating
@@ -94,7 +93,6 @@ export const searchDoctors = async(req, res) => {
 
         if(query.rating != undefined && query.rating != null) {
             const rating = 1.00 * query.rating
-            console.log(rating)
             doctors = doctors.filter(doctor => doctor.averageStars >= rating)
         }
 
@@ -109,15 +107,11 @@ export const searchDoctors = async(req, res) => {
             else if(query.timerange == "week")
                 finalDate = addDays(currDate, 8)
 
-            console.log(currDate)
-            console.log(finalDate)
-
             for(let i = 0; i < doctors.length; i++) {
                 const doctorSlots = await Slot.find({
                     doctor: doctors[i]._id,
                     date: {$gte: currDate, $lt: finalDate}
                 })
-                console.log(doctorSlots)
                 if(doctorSlots.length > 0)
                     newDoctors.push(doctors[i])
             }
@@ -183,8 +177,18 @@ export const getTimeSlotsById = async(req, res) => {
         const currDate = new Date()
         const slots = await Slot.find({
             doctor: id,
-            date: {$gte: currDate}
-        })
+            // date: {$gte: currDate}
+        }).sort({date: -1})
+
+        for(let i=0; i<slots.length; i++) {
+            const appointments = await Appointment.find({
+                slot: slots[i]._id,
+                status: "approved"
+            })
+            slots[i] = slots[i].toObject()
+            slots[i] = {...slots[i], appointments}
+        }
+
         res.status(200).json({success: true, msg: "Time slots fetched successfully", data: slots})
     } catch(err) {
         console.log(err)
