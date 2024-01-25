@@ -30,6 +30,7 @@ const DoctorSchema = new mongoose.Schema({
 
   bio: { type: String, maxLength: 50 },
   about: { type: String },
+  fee: {type: Number},
   
   isApproved: {
     type: String,

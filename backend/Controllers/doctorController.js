@@ -1,6 +1,7 @@
 import Doctor from '../models/DoctorSchema.js'
+import Review from '../models/ReviewSchema.js'
 import Slot from '../models/SlotSchema.js'
-import { ObjectId } from "mongodb"
+import { Int32, ObjectId } from "mongodb"
 
 export const updateDoctor = async(req, res) => {
     const id = req.params.id
@@ -28,9 +29,19 @@ export const getSingleDoctor = async(req, res) => {
     const id = req.params.id
     
     try {
-        const doctor = await Doctor.findById(id).select('-password').populate('specialization')
-        if(doctor != null)
+        let doctor = await Doctor.findById(id).select('-password').populate('specialization')
+        const doctorReviews = await Review.find({doctor: id}).populate('user')
+        
+        let avgStars = 0
+        for (let i = 0; i < doctorReviews.length; i++)
+            avgStars += doctorReviews[i].rating
+        avgStars /= doctorReviews.length
+
+        if(doctor != null) {
+            doctor = doctor.toObject()
+            doctor = {...doctor, reviews: doctorReviews, averageStars: avgStars}
             res.status(200).json({success: true, msg: "Doctor found", data: doctor})
+        }
         else
             res.status(404).json({success:false, msg: "Doctor not found", data: null})
     } catch(err) {
@@ -40,21 +51,52 @@ export const getSingleDoctor = async(req, res) => {
 
 export const searchDoctors = async(req, res) => {
     try {
-        const {query} = req.query
+        const query = req.query
+        console.log(query)
         let doctors
 
-        if(query) {
+        if(query.name != undefined && query.name != null) {
             doctors = await Doctor.find({
-                // isApproved: "approved",
-                $or: [
-                    { name: { $regex: query, $options: "i" } },
-                    { specialization: { $regex: query, $options: "i" } },
-                ]
+                isApproved: "approved",
+                name: { $regex: query.name, $options: "i" }
             }).select('-password').populate('specialization')
         }
-        else {
-            // doctors = await Doctor.find({isApproved: "approved"}).select('-password')
-            doctors = await Doctor.find().select('-password').populate('specialization')
+        else
+            doctors = await Doctor.find({isApproved: "approved"}).select('-password').populate('specialization')
+
+        if(query.specialization != undefined && query.specialization != null) {
+            const specId = new ObjectId(query.specialization)
+            doctors = doctors.filter(doctor => doctor.specialization._id.equals(specId))
+        }
+
+        if(query.feeLower != undefined && query.feeLower != null) {
+            const feeLower = query.feeLower
+            doctors = doctors.filter(doctor => doctor.fee >= feeLower)
+        }
+
+        if(query.feeUpper != undefined && query.feeUpper != null) {
+            const feeUpper = query.feeUpper
+            doctors = doctors.filter(doctor => doctor.fee <= feeUpper)
+        }
+
+        for(let i = 0; i < doctors.length; i++) {
+            const doctorReviews = await Review.find({doctor: doctors[i]._id}).populate('user')
+            // console.log(doctorReviews)
+            let avgStars = 0
+            for (let i = 0; i < doctorReviews.length; i++)
+                avgStars += doctorReviews[i].rating
+            avgStars /= doctorReviews.length
+
+            doctors[i] = doctors[i].toObject()
+            doctors[i] = {...doctors[i], reviews: doctorReviews, averageStars: avgStars}
+        }
+
+        console.log(doctors)
+
+        if(query.rating != undefined && query.rating != null) {
+            const rating = 1.00 * query.rating
+            console.log(rating)
+            doctors = doctors.filter(doctor => doctor.averageStars >= rating)
         }
 
         res.status(200).json({success: true, msg: "Doctors found", data: doctors})
