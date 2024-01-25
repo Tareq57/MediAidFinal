@@ -573,7 +573,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/user/:id",
+							"raw": "localhost:5000/api/user/info/:id",
 							"host": [
 								"localhost"
 							],
@@ -581,12 +581,13 @@
 							"path": [
 								"api",
 								"user",
+								"info",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "6592be88b1aef3ddd02c71db"
+									"value": ""
 								}
 							]
 						}
@@ -598,7 +599,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:5000/api/user/6592be88b1aef3ddd02c71db",
+									"raw": "localhost:5000/api/user/info/6592be88b1aef3ddd02c71db",
 									"host": [
 										"localhost"
 									],
@@ -606,6 +607,7 @@
 									"path": [
 										"api",
 										"user",
+										"info",
 										"6592be88b1aef3ddd02c71db"
 									]
 								}
@@ -656,7 +658,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:5000/api/user/6592be88b1aef3ddd02c71db",
+									"raw": "localhost:5000/api/user/info/6592be88b1aef3ddd02c71db",
 									"host": [
 										"localhost"
 									],
@@ -664,6 +666,7 @@
 									"path": [
 										"api",
 										"user",
+										"info",
 										"6592be88b1aef3ddd02c71db"
 									]
 								}
@@ -714,7 +717,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:5000/api/user/6592be88b1aef3ddd02c71db",
+									"raw": "localhost:5000/api/user/info/6592be88b1aef3ddd02c71db",
 									"host": [
 										"localhost"
 									],
@@ -722,6 +725,7 @@
 									"path": [
 										"api",
 										"user",
+										"info",
 										"6592be88b1aef3ddd02c71db"
 									]
 								}
@@ -774,7 +778,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/user/",
+							"raw": "localhost:5000/api/user/info",
 							"host": [
 								"localhost"
 							],
@@ -782,7 +786,7 @@
 							"path": [
 								"api",
 								"user",
-								""
+								"info"
 							]
 						}
 					},
@@ -793,7 +797,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:5000/api/user/",
+									"raw": "localhost:5000/api/user/info",
 									"host": [
 										"localhost"
 									],
@@ -801,7 +805,7 @@
 									"path": [
 										"api",
 										"user",
-										""
+										"info"
 									]
 								}
 							},
@@ -851,7 +855,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:5000/api/user/",
+									"raw": "localhost:5000/api/user/info",
 									"host": [
 										"localhost"
 									],
@@ -859,7 +863,7 @@
 									"path": [
 										"api",
 										"user",
-										""
+										"info"
 									]
 								}
 							},
@@ -909,7 +913,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:5000/api/user/",
+									"raw": "localhost:5000/api/user/info",
 									"host": [
 										"localhost"
 									],
@@ -917,7 +921,7 @@
 									"path": [
 										"api",
 										"user",
-										""
+										"info"
 									]
 								}
 							},
@@ -1413,6 +1417,85 @@
 							"body": "{\n    \"success\": false,\n    \"msg\": \"User deletion failed\"\n}"
 						}
 					]
+				},
+				{
+					"name": "My doctors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/user/mydoctors",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"mydoctors"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/user/mydoctors",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"mydoctors"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "372"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"174-1arNZh4C+8zvGZEPIo0jHCGOq3M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Jan 2024 08:49:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Doctors found\",\n    \"data\": [\n        {\n            \"certificates\": [],\n            \"_id\": \"65955c510d5db82f28dae508\",\n            \"email\": \"d1@gmail.com\",\n            \"name\": \"doctor 1\",\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n            \"role\": \"doctor\",\n            \"gender\": \"male\",\n            \"qualifications\": [],\n            \"experiences\": [],\n            \"isApproved\": \"approved\",\n            \"__v\": 2,\n            \"specialization\": \"65b108223e5243718ce85b5e\",\n            \"fee\": 500\n        }\n    ]\n}"
+						}
+					]
 				}
 			],
 			"description": "The /api/user endpoint handles fetching and updating user information.",
@@ -1421,7 +1504,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY1ZGE0ZTZiM2VkZGJjNzU2NDVlZCIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzA2MTcyMjAwLCJleHAiOjE3MDc0NjgyMDB9.MQQVU4vLIHlGyaOTYO0NX4AQkLYH8zyw5XGdlJdIWbY",
 						"type": "string"
 					}
 				]
@@ -2451,7 +2534,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:5000/api/doctor/timeslots/65955c510d5db82f28dae508",
+									"raw": "localhost:5000/api/doctor/timeslots/:doctorId",
 									"host": [
 										"localhost"
 									],
@@ -2460,7 +2543,13 @@
 										"api",
 										"doctor",
 										"timeslots",
-										"65955c510d5db82f28dae508"
+										":doctorId"
+									],
+									"variable": [
+										{
+											"key": "doctorId",
+											"value": "65955c510d5db82f28dae508"
+										}
 									]
 								}
 							},
@@ -2482,15 +2571,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "309"
+									"value": "941"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"135-aXvalS+CtHuatqW4wBc2Dp3sZcU\""
+									"value": "W/\"3ad-5zYMiHHJCPhLReS8R2HvYNq14C0\""
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 05 Jan 2024 04:17:38 GMT"
+									"value": "Thu, 25 Jan 2024 09:14:55 GMT"
 								},
 								{
 									"key": "Connection",
@@ -2502,7 +2591,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"Time slots fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6597802cffa0bb636d37435e\",\n            \"doctor\": \"65955c510d5db82f28dae508\",\n            \"starthr\": 18,\n            \"endhr\": 22,\n            \"startmin\": 0,\n            \"endmin\": 0,\n            \"day\": 30,\n            \"year\": 2023,\n            \"patientCount\": 10,\n            \"seen\": 0,\n            \"createdAt\": \"2024-01-05T04:06:04.467Z\",\n            \"updatedAt\": \"2024-01-05T04:06:04.467Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Time slots fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"65b20dfb8fac4094d9f8ac6a\",\n            \"doctor\": \"65955c510d5db82f28dae508\",\n            \"starthr\": 18,\n            \"startmin\": 0,\n            \"endhr\": 21,\n            \"endmin\": 0,\n            \"date\": \"2024-01-28T00:00:00.000Z\",\n            \"patientCount\": 10,\n            \"createdAt\": \"2024-01-25T07:30:03.027Z\",\n            \"updatedAt\": \"2024-01-25T07:30:03.027Z\",\n            \"__v\": 0,\n            \"occupied\": 0,\n            \"done\": 0,\n            \"appointments\": [\n                {\n                    \"_id\": \"65b21fd7409d4cb353007796\",\n                    \"doctor\": \"65955c510d5db82f28dae508\",\n                    \"user\": \"65965da4e6b3eddbc75645ed\",\n                    \"ticketPrice\": 1000,\n                    \"slot\": \"65b20dfb8fac4094d9f8ac6a\",\n                    \"serial\": 1,\n                    \"status\": \"approved\",\n                    \"isPaid\": false,\n                    \"createdAt\": \"2024-01-25T08:46:15.506Z\",\n                    \"updatedAt\": \"2024-01-25T08:46:15.506Z\",\n                    \"__v\": 0\n                },\n                {\n                    \"_id\": \"65b22079409d4cb3530077a2\",\n                    \"doctor\": \"65955c510d5db82f28dae508\",\n                    \"user\": \"65b2159697898a8611a6beba\",\n                    \"ticketPrice\": 1000,\n                    \"slot\": \"65b20dfb8fac4094d9f8ac6a\",\n                    \"serial\": 2,\n                    \"status\": \"approved\",\n                    \"isPaid\": false,\n                    \"createdAt\": \"2024-01-25T08:48:57.893Z\",\n                    \"updatedAt\": \"2024-01-25T08:48:57.893Z\",\n                    \"__v\": 0\n                }\n            ]\n        }\n    ]\n}"
 						}
 					]
 				}
@@ -3045,11 +3134,21 @@
 				{
 					"name": "Add appointment (patient only)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY1ZGE0ZTZiM2VkZGJjNzU2NDVlZCIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzA2MTcyMjAwLCJleHAiOjE3MDc0NjgyMDB9.MQQVU4vLIHlGyaOTYO0NX4AQkLYH8zyw5XGdlJdIWbY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"doctor\": \"65955c510d5db82f28dae508\",\n    \"ticketPrice\": 1000,\n    \"timeSlot\": \"6597802cffa0bb636d37435e\"\n}",
+							"raw": "{\n    \"doctor\": \"65955c510d5db82f28dae508\",\n    \"ticketPrice\": 1000,\n    \"timeSlot\": \"65b20dfb8fac4094d9f8ac6a\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3076,7 +3175,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"doctor\": \"65955c510d5db82f28dae508\",\n    \"ticketPrice\": 1000,\n    \"timeSlot\": \"6597802cffa0bb636d37435e\"\n}",
+									"raw": "{\n    \"doctor\": \"65955c510d5db82f28dae508\",\n    \"ticketPrice\": 1000,\n    \"timeSlot\": \"65b20dfb8fac4094d9f8ac6a\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3117,11 +3216,11 @@
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"166-P9dnOIa5cZF6lD5CtSwPqp7t2mQ\""
+									"value": "W/\"166-aWLZdRWdY5OH18nQfrvwGYsQg1s\""
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 05 Jan 2024 05:03:34 GMT"
+									"value": "Thu, 25 Jan 2024 08:46:15 GMT"
 								},
 								{
 									"key": "Connection",
@@ -3133,13 +3232,89 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"Appointment added succesfully\",\n    \"appointment\": {\n        \"doctor\": \"65955c510d5db82f28dae508\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"ticketPrice\": 1000,\n        \"slot\": \"6597802cffa0bb636d37435e\",\n        \"serial\": -1,\n        \"status\": \"pending\",\n        \"isPaid\": false,\n        \"_id\": \"65978da6e9ec8987184c7ccf\",\n        \"createdAt\": \"2024-01-05T05:03:34.046Z\",\n        \"updatedAt\": \"2024-01-05T05:03:34.046Z\",\n        \"__v\": 0\n    }\n}"
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Appointment added succesfully\",\n    \"appointment\": {\n        \"doctor\": \"65955c510d5db82f28dae508\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"ticketPrice\": 1000,\n        \"slot\": \"65b20dfb8fac4094d9f8ac6a\",\n        \"serial\": 1,\n        \"status\": \"approved\",\n        \"isPaid\": false,\n        \"_id\": \"65b21fd7409d4cb353007796\",\n        \"createdAt\": \"2024-01-25T08:46:15.506Z\",\n        \"updatedAt\": \"2024-01-25T08:46:15.506Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "Serial increment",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"doctor\": \"65955c510d5db82f28dae508\",\n    \"ticketPrice\": 1000,\n    \"timeSlot\": \"65b20dfb8fac4094d9f8ac6a\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/api/appointment",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"appointment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "358"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"166-DoWmtGPt+9SPceBLba0LIgXFkPM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Jan 2024 08:48:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Appointment added succesfully\",\n    \"appointment\": {\n        \"doctor\": \"65955c510d5db82f28dae508\",\n        \"user\": \"65b2159697898a8611a6beba\",\n        \"ticketPrice\": 1000,\n        \"slot\": \"65b20dfb8fac4094d9f8ac6a\",\n        \"serial\": 2,\n        \"status\": \"approved\",\n        \"isPaid\": false,\n        \"_id\": \"65b22079409d4cb3530077a2\",\n        \"createdAt\": \"2024-01-25T08:48:57.893Z\",\n        \"updatedAt\": \"2024-01-25T08:48:57.893Z\",\n        \"__v\": 0\n    }\n}"
 						}
 					]
 				},
 				{
 					"name": "Get all appointments for patient or doctor",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY1ZGE0ZTZiM2VkZGJjNzU2NDVlZCIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzA2MTcyMjAwLCJleHAiOjE3MDc0NjgyMDB9.MQQVU4vLIHlGyaOTYO0NX4AQkLYH8zyw5XGdlJdIWbY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -3192,15 +3367,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "765"
+									"value": "924"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"2fd-jnXbnUQrgnJw+05FL2xFU36gObE\""
+									"value": "W/\"39c-Huwf8c7la3ZQ/2n+IHVURnFHvb8\""
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 05 Jan 2024 05:03:54 GMT"
+									"value": "Thu, 25 Jan 2024 09:25:57 GMT"
 								},
 								{
 									"key": "Connection",
@@ -3212,7 +3387,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"appointments\": [\n        {\n            \"_id\": \"65978da6e9ec8987184c7ccf\",\n            \"doctor\": {\n                \"_id\": \"65955c510d5db82f28dae508\",\n                \"email\": \"d1@gmail.com\",\n                \"name\": \"doctor 1\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"doctor\",\n                \"gender\": \"male\",\n                \"qualifications\": [],\n                \"experiences\": [],\n                \"isApproved\": \"pending\",\n                \"__v\": 2\n            },\n            \"user\": \"65965da4e6b3eddbc75645ed\",\n            \"ticketPrice\": 1000,\n            \"slot\": {\n                \"_id\": \"6597802cffa0bb636d37435e\",\n                \"doctor\": \"65955c510d5db82f28dae508\",\n                \"starthr\": 18,\n                \"endhr\": 22,\n                \"startmin\": 0,\n                \"endmin\": 0,\n                \"day\": 30,\n                \"year\": 2023,\n                \"patientCount\": 10,\n                \"createdAt\": \"2024-01-05T04:06:04.467Z\",\n                \"updatedAt\": \"2024-01-05T04:06:04.467Z\",\n                \"__v\": 0\n            },\n            \"serial\": -1,\n            \"status\": \"pending\",\n            \"isPaid\": false,\n            \"createdAt\": \"2024-01-05T05:03:34.046Z\",\n            \"updatedAt\": \"2024-01-05T05:03:34.046Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+							"body": "{\n    \"success\": true,\n    \"appointments\": [\n        {\n            \"prescription\": {\n                \"symptoms\": [],\n                \"prescribedMeds\": []\n            },\n            \"_id\": \"65b21fd7409d4cb353007796\",\n            \"doctor\": {\n                \"certificates\": [],\n                \"_id\": \"65955c510d5db82f28dae508\",\n                \"email\": \"d1@gmail.com\",\n                \"name\": \"doctor 1\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"doctor\",\n                \"gender\": \"male\",\n                \"qualifications\": [],\n                \"experiences\": [],\n                \"isApproved\": \"approved\",\n                \"__v\": 2,\n                \"specialization\": \"65b108223e5243718ce85b5e\",\n                \"fee\": 500\n            },\n            \"user\": \"65965da4e6b3eddbc75645ed\",\n            \"ticketPrice\": 1000,\n            \"slot\": {\n                \"_id\": \"65b20dfb8fac4094d9f8ac6a\",\n                \"doctor\": \"65955c510d5db82f28dae508\",\n                \"starthr\": 18,\n                \"startmin\": 0,\n                \"endhr\": 21,\n                \"endmin\": 0,\n                \"date\": \"2024-01-28T00:00:00.000Z\",\n                \"patientCount\": 10,\n                \"createdAt\": \"2024-01-25T07:30:03.027Z\",\n                \"updatedAt\": \"2024-01-25T07:30:03.027Z\",\n                \"__v\": 0,\n                \"occupied\": 0,\n                \"done\": 0\n            },\n            \"serial\": 1,\n            \"status\": \"approved\",\n            \"isPaid\": false,\n            \"createdAt\": \"2024-01-25T08:46:15.506Z\",\n            \"updatedAt\": \"2024-01-25T08:46:15.506Z\",\n            \"__v\": 0\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -3300,6 +3475,142 @@
 							"body": "{\n    \"success\": true,\n    \"msg\": \"Appointment approved successfully\",\n    \"data\": {\n        \"_id\": \"65978da6e9ec8987184c7ccf\",\n        \"doctor\": \"65955c510d5db82f28dae508\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"ticketPrice\": 1000,\n        \"slot\": \"6597802cffa0bb636d37435e\",\n        \"serial\": 1,\n        \"status\": \"approved\",\n        \"isPaid\": false,\n        \"createdAt\": \"2024-01-05T05:03:34.046Z\",\n        \"updatedAt\": \"2024-01-05T10:08:04.896Z\",\n        \"__v\": 0\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "Get all appointments for a doctor-patient combo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YjIxNTk2OTc4OThhODYxMWE2YmViYSIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzA2MTcyNDk1LCJleHAiOjE3MDc0Njg0OTV9.d-cOtjZcWRksf0z7E7uQqTmUiq4fwngX4xmcP4Ir0RQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/appointment/combo?doctorId=65955c510d5db82f28dae508&patientId=65965da4e6b3eddbc75645ed",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"appointment",
+								"combo"
+							],
+							"query": [
+								{
+									"key": "doctorId",
+									"value": "65955c510d5db82f28dae508"
+								},
+								{
+									"key": "patientId",
+									"value": "65965da4e6b3eddbc75645ed"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/appointment/combo?doctorId=65955c510d5db82f28dae508&patientId=65965da4e6b3eddbc75645ed",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"appointment",
+										"combo"
+									],
+									"query": [
+										{
+											"key": "doctorId",
+											"value": "65955c510d5db82f28dae508"
+										},
+										{
+											"key": "patientId",
+											"value": "65965da4e6b3eddbc75645ed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "645"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"285-K3TvD3nLOW4Qqg6WB4n/nZaHJcM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Jan 2024 09:26:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Appointments found\",\n    \"data\": [\n        {\n            \"prescription\": {\n                \"symptoms\": [],\n                \"prescribedMeds\": []\n            },\n            \"_id\": \"65b21fd7409d4cb353007796\",\n            \"doctor\": \"65955c510d5db82f28dae508\",\n            \"user\": \"65965da4e6b3eddbc75645ed\",\n            \"ticketPrice\": 1000,\n            \"slot\": {\n                \"_id\": \"65b20dfb8fac4094d9f8ac6a\",\n                \"doctor\": \"65955c510d5db82f28dae508\",\n                \"starthr\": 18,\n                \"startmin\": 0,\n                \"endhr\": 21,\n                \"endmin\": 0,\n                \"date\": \"2024-01-28T00:00:00.000Z\",\n                \"patientCount\": 10,\n                \"createdAt\": \"2024-01-25T07:30:03.027Z\",\n                \"updatedAt\": \"2024-01-25T07:30:03.027Z\",\n                \"__v\": 0,\n                \"occupied\": 0,\n                \"done\": 0\n            },\n            \"serial\": 1,\n            \"status\": \"approved\",\n            \"isPaid\": false,\n            \"createdAt\": \"2024-01-25T08:46:15.506Z\",\n            \"updatedAt\": \"2024-01-25T08:46:15.506Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Finish appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/appointment/finish/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"appointment",
+								"finish",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "The /api/appointment endpoint is used to create and modify appointments.",
@@ -3338,119 +3649,35 @@
 			"name": "Prescription",
 			"item": [
 				{
-					"name": "Get all prescriptions for a patient or doctor",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/presciption/all/:id",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"presciption",
-								"all",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:5000/api/presciption/all/:id",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"api",
-										"presciption",
-										"all",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'none'"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json",
-									"name": "Content-Type",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "Content-Length",
-									"value": "162"
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 06 Jan 2024 07:10:13 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"prescriptions fetched succesfully\",\n    \"data\": [\n        {\n            \"prescribedmeds\": [\n                {\n                    \"medicineName\": \"Napa\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"Consume after eating\"\n                },\n                {\n                    \"medicineName\": \"Seclo\",\n                    \"dosage\": \"0+0+1\",\n                    \"details\": \"Consume after eating\"\n                }\n            ],\n            \"appointment\": \"65978da6e9ec8987184c7ccf\",\n            \"Symptoms\": \"Fever, Gas, Indigestion\"\n        },\n        {\n            \"prescribedmeds\": [\n                {\n                    \"medicineName\": \"Napa\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"Consume after eating\"\n                },\n                {\n                    \"medicineName\": \"Seclo\",\n                    \"dosage\": \"0+0+1\",\n                    \"details\": \"Consume after eating\"\n                }\n            ],\n            \"appointment\": \"65978da6e9ec8987184c7ccf\",\n            \"Symptoms\": \"Fever, Gas, Indigestion\"\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Create new prescription (doctor only)",
+					"name": "Add prescription",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prescribedMeds\": [\n        {\n            \"medicineName\": \"Napa\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        },\n        {\n            \"medicineName\": \"Entacyd Plus\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        }\n    ],\n    \"symptoms\": [\"fever\", \"gas\"],\n    \"diagnosis\": \"Viral fever\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:5000/api/prescription",
+							"raw": "localhost:5000/api/prescription/:appointmentId",
 							"host": [
 								"localhost"
 							],
 							"port": "5000",
 							"path": [
 								"api",
-								"prescription"
+								"prescription",
+								":appointmentId"
+							],
+							"variable": [
+								{
+									"key": "appointmentId",
+									"value": "65b21fd7409d4cb353007796"
+								}
 							]
 						}
 					},
@@ -3459,17 +3686,10 @@
 							"name": "Success",
 							"originalRequest": {
 								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"prescribedmeds\": [\n        {\n            \"medicineName\": \"Napa\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"Consume after eating\"\n        },\n        {\n            \"medicineName\": \"Seclo\",\n            \"dosage\": \"0+0+1\",\n            \"details\": \"Consume after eating\"\n        }\n    ],\n    \"appointment\": \"65978da6e9ec8987184c7ccf\",\n    \"Symptoms\": \"Fever, Gas, Indigestion\"\n}",
+									"raw": "{\n    \"prescribedMeds\": [\n        {\n            \"medicineName\": \"Napa\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        },\n        {\n            \"medicineName\": \"Entacyd Plus\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        }\n    ],\n    \"symptoms\": [\"fever\", \"gas\"],\n    \"diagnosis\": \"Viral fever\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3477,114 +3697,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:5000/api/prescription",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"api",
-										"prescription"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'none'"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json",
-									"name": "Content-Type",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "Content-Length",
-									"value": "156"
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 06 Jan 2024 06:57:06 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"presciption added succesfully\",\n    \"data\": {\n        \"prescribedmeds\": [\n            {\n                \"medicineName\": \"Napa\",\n                \"dosage\": \"1+0+1\",\n                \"details\": \"Consume after eating\"\n            },\n            {\n                \"medicineName\": \"Seclo\",\n                \"dosage\": \"0+0+1\",\n                \"details\": \"Consume after eating\"\n            }\n        ],\n        \"appointment\": \"65978da6e9ec8987184c7ccf\",\n        \"Symptoms\": \"Fever, Gas, Indigestion\"\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "Add medicine to prescription (doctor only)",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/prescription/:prescId",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"prescription",
-								":prescId"
-							],
-							"variable": [
-								{
-									"key": "prescId",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"medicineName\": \"Entacyd Plus\",\n    \"dosage\": \"1+0+1\",\n    \"details\": \"Consume before eating\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:5000/api/prescription/:prescId",
+									"raw": "localhost:5000/api/prescription/:appointmentId",
 									"host": [
 										"localhost"
 									],
@@ -3592,12 +3705,12 @@
 									"path": [
 										"api",
 										"prescription",
-										":prescId"
+										":appointmentId"
 									],
 									"variable": [
 										{
-											"key": "prescId",
-											"value": ""
+											"key": "appointmentId",
+											"value": "65b21fd7409d4cb353007796"
 										}
 									]
 								}
@@ -3615,27 +3728,20 @@
 									"value": "Origin"
 								},
 								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'none'"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
 									"key": "Content-Type",
-									"value": "application/json",
-									"name": "Content-Type",
-									"description": "",
-									"type": "text"
+									"value": "application/json; charset=utf-8"
 								},
 								{
 									"key": "Content-Length",
-									"value": "166"
+									"value": "658"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"292-QXxJgAkstLBTG1//G0Uzq1PIiI4\""
 								},
 								{
 									"key": "Date",
-									"value": "Sat, 06 Jan 2024 07:01:36 GMT"
+									"value": "Thu, 25 Jan 2024 09:51:19 GMT"
 								},
 								{
 									"key": "Connection",
@@ -3647,7 +3753,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"presciption updated\",\n    \"data\": {\n        \"prescribedmeds\": [\n            {\n                \"medicineName\": \"Napa\",\n                \"dosage\": \"1+0+1\",\n                \"details\": \"Consume after eating\"\n            },\n            {\n                \"medicineName\": \"Seclo\",\n                \"dosage\": \"0+0+1\",\n                \"details\": \"Consume after eating\"\n            },\n            {\n                \"medicineName\": \"Entacyd Plus\",\n                \"dosage\": \"1+0+1\",\n                \"details\": \"Consume before eating\"\n            }\n        ],\n        \"appointment\": \"65978da6e9ec8987184c7ccf\",\n        \"Symptoms\": \"Fever, Gas, Indigestion\"\n    }\n}"
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Prescription added successfully\",\n    \"data\": {\n        \"prescription\": {\n            \"prescribedMeds\": [\n                {\n                    \"medicineName\": \"Napa\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"take after eating\",\n                    \"_id\": \"65b22f1758603ba107c859c9\"\n                },\n                {\n                    \"medicineName\": \"Entacyd Plus\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"take after eating\",\n                    \"_id\": \"65b22f1758603ba107c859ca\"\n                }\n            ],\n            \"symptoms\": [\n                \"fever\",\n                \"gas\"\n            ],\n            \"diagnosis\": \"Viral fever\"\n        },\n        \"_id\": \"65b21fd7409d4cb353007796\",\n        \"doctor\": \"65955c510d5db82f28dae508\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"ticketPrice\": 1000,\n        \"slot\": \"65b20dfb8fac4094d9f8ac6a\",\n        \"serial\": 1,\n        \"status\": \"approved\",\n        \"isPaid\": false,\n        \"createdAt\": \"2024-01-25T08:46:15.506Z\",\n        \"updatedAt\": \"2024-01-25T09:51:19.738Z\",\n        \"__v\": 0\n    }\n}"
 						}
 					]
 				},
@@ -3657,7 +3763,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/prescription/:id",
+							"raw": "localhost:5000/api/prescription/:appointmentId",
 							"host": [
 								"localhost"
 							],
@@ -3665,12 +3771,12 @@
 							"path": [
 								"api",
 								"prescription",
-								":id"
+								":appointmentId"
 							],
 							"variable": [
 								{
-									"key": "id",
-									"value": ""
+									"key": "appointmentId",
+									"value": "65b21fd7409d4cb353007796"
 								}
 							]
 						}
@@ -3682,7 +3788,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:5000/api/prescription/:id",
+									"raw": "localhost:5000/api/prescription/:appointmentId",
 									"host": [
 										"localhost"
 									],
@@ -3690,12 +3796,12 @@
 									"path": [
 										"api",
 										"prescription",
-										":id"
+										":appointmentId"
 									],
 									"variable": [
 										{
-											"key": "id",
-											"value": ""
+											"key": "appointmentId",
+											"value": "65b21fd7409d4cb353007796"
 										}
 									]
 								}
@@ -3713,27 +3819,20 @@
 									"value": "Origin"
 								},
 								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'none'"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
 									"key": "Content-Type",
-									"value": "application/json",
-									"name": "Content-Type",
-									"description": "",
-									"type": "text"
+									"value": "application/json; charset=utf-8"
 								},
 								{
 									"key": "Content-Length",
-									"value": "168"
+									"value": "375"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"177-9ji7QN56jwi/QCJbjkLTqU4Yk04\""
 								},
 								{
 									"key": "Date",
-									"value": "Sat, 06 Jan 2024 07:08:18 GMT"
+									"value": "Thu, 25 Jan 2024 09:51:40 GMT"
 								},
 								{
 									"key": "Connection",
@@ -3745,118 +3844,42 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"prescription deleted succesfully\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Get presciptions for a doctor-patient combination",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:5000/api/presciption/combo?doctorId=123&pateintId=456",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"presciption",
-								"combo"
-							],
-							"query": [
-								{
-									"key": "doctorId",
-									"value": "123"
-								},
-								{
-									"key": "pateintId",
-									"value": "456"
-								}
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:5000/api/presciption/combo?doctorId=123&pateintId=456",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"api",
-										"presciption",
-										"combo"
-									],
-									"query": [
-										{
-											"key": "doctorId",
-											"value": "123"
-										},
-										{
-											"key": "pateintId",
-											"value": "456"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'none'"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json",
-									"name": "Content-Type",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "Content-Length",
-									"value": "161"
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 06 Jan 2024 07:15:05 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"prescriptions fetched succesfully\",\n    \"data\": [\n        {\n            \"prescribedmeds\": [\n                {\n                    \"medicineName\": \"Napa\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"Consume after eating\"\n                },\n                {\n                    \"medicineName\": \"Seclo\",\n                    \"dosage\": \"0+0+1\",\n                    \"details\": \"Consume after eating\"\n                }\n            ],\n            \"appointment\": \"65978da6e9ec8987184c7ccf\",\n            \"Symptoms\": \"Fever, Gas, Indigestion\"\n        },\n        {\n            \"prescribedmeds\": [\n                {\n                    \"medicineName\": \"Napa\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"Consume after eating\"\n                },\n                {\n                    \"medicineName\": \"Seclo\",\n                    \"dosage\": \"0+0+1\",\n                    \"details\": \"Consume after eating\"\n                }\n            ],\n            \"appointment\": \"65978da6e9ec8987184c7ccf\",\n            \"Symptoms\": \"Fever, Gas, Indigestion\"\n        }\n    ]\n}"
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Prescription deleted successfully\",\n    \"data\": {\n        \"prescription\": null,\n        \"_id\": \"65b21fd7409d4cb353007796\",\n        \"doctor\": \"65955c510d5db82f28dae508\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"ticketPrice\": 1000,\n        \"slot\": \"65b20dfb8fac4094d9f8ac6a\",\n        \"serial\": 1,\n        \"status\": \"approved\",\n        \"isPaid\": false,\n        \"createdAt\": \"2024-01-25T08:46:15.506Z\",\n        \"updatedAt\": \"2024-01-25T09:51:39.925Z\",\n        \"__v\": 0\n    }\n}"
 						}
 					]
 				}
 			],
-			"description": "The /api/prescription endpoint is used to create, modify and remove prescriptions related to an appointment."
+			"description": "The /api/prescription endpoint is used to create, modify and remove prescriptions related to an appointment.",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTU1YzUxMGQ1ZGI4MmYyOGRhZTUwOCIsInJvbGUiOiJkb2N0b3IiLCJpYXQiOjE3MDYxMDE1NDgsImV4cCI6MTcwNzM5NzU0OH0.riLeKqGo6sSMWDE5k1feFg3x4q6G9RPk-jyniX734_0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "Test",
