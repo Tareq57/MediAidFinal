@@ -10,9 +10,7 @@ const SlotSchema = new mongoose.Schema({
     startmin: Number, 
     endhr: Number, 
     endmin: Number, 
-    day: Number, 
-    month: Number, 
-    year: Number,
+    date: Date,
     patientCount: {
         type: Number,
         default: 1

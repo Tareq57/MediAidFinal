@@ -2,6 +2,7 @@ import Doctor from '../models/DoctorSchema.js'
 import Review from '../models/ReviewSchema.js'
 import Slot from '../models/SlotSchema.js'
 import { Int32, ObjectId } from "mongodb"
+import { addDays } from '../helpers/datehelper.js'
 
 export const updateDoctor = async(req, res) => {
     const id = req.params.id
@@ -91,12 +92,35 @@ export const searchDoctors = async(req, res) => {
             doctors[i] = {...doctors[i], reviews: doctorReviews, averageStars: avgStars}
         }
 
-        console.log(doctors)
-
         if(query.rating != undefined && query.rating != null) {
             const rating = 1.00 * query.rating
             console.log(rating)
             doctors = doctors.filter(doctor => doctor.averageStars >= rating)
+        }
+
+        if(query.timerange != undefined && query.timerange != null) {
+            let newDoctors = []
+            const currDate = new Date()
+            let finalDate
+            if(query.timerange == "today")
+                finalDate = addDays(currDate, 1)
+            else if(query.timerange == "week")
+                finalDate = addDays(currDate, 8)
+
+            console.log(currDate)
+            console.log(finalDate)
+
+            for(let i = 0; i < doctors.length; i++) {
+                const doctorSlots = await Slot.find({
+                    doctor: doctors[i]._id,
+                    date: {$gte: currDate, $lt: finalDate}
+                })
+                console.log(doctorSlots)
+                if(doctorSlots.length > 0)
+                    newDoctors.push(doctors[i])
+            }
+
+            doctors = newDoctors
         }
 
         res.status(200).json({success: true, msg: "Doctors found", data: doctors})
@@ -107,7 +131,7 @@ export const searchDoctors = async(req, res) => {
 
 export const addTimeSlot = async(req, res) => {
     const id = req.userId
-    const {starthr, endhr, startmin, endmin, day, month, year, patientCount} = req.body
+    const {starthr, endhr, startmin, endmin, slotDate, patientCount} = req.body
 
     try {
         const newSlot = new Slot({
@@ -116,9 +140,7 @@ export const addTimeSlot = async(req, res) => {
             endhr, 
             startmin, 
             endmin, 
-            day, 
-            month, 
-            year,
+            date: new Date(slotDate),
             patientCount
         })
         newSlot.save()
@@ -156,7 +178,11 @@ export const getTimeSlotsById = async(req, res) => {
     let id = req.params.id
     id = new ObjectId(id)
     try {
-        const slots = await Slot.find({doctor: id})
+        const currDate = new Date()
+        const slots = await Slot.find({
+            doctor: id,
+            date: {$gte: currDate}
+        })
         res.status(200).json({success: true, msg: "Time slots fetched successfully", data: slots})
     } catch(err) {
         console.log(err)
