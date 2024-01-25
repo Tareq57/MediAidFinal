@@ -26,7 +26,7 @@ const DoctorDetails = () => {
 
   useEffect(() => {
     const fetchDoctor = async () => {
-      const res = await fetch(`${BASE_URL}/doctor/${id}`, {
+      const res = await fetch(`${BASE_URL}/doctor/fetch/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -34,9 +34,9 @@ const DoctorDetails = () => {
         },
       });
 
-      // if (!res.ok) {
-      //   throw new Error(result.message);
-      // }
+      if (!res.ok) {
+        throw new Error(result.message);
+      }
 
       const result = await res.json();
 
@@ -64,7 +64,7 @@ const DoctorDetails = () => {
               <p className="text-xs"> {doctor.slots}</p>
             </div>
           </div>
-          <div className="border border-black rounded-xl overflow-hidden justify-center flex">
+          <div className="border border-black rounded-xl overflow-hidden justify-center flex bg-slate-100">
             <img src={doctor.photo} alt="" />
           </div>
           <div className="navigation">

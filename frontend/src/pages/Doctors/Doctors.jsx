@@ -32,7 +32,7 @@ const Doctors = () => {
 
   useEffect(() => {
     const fetchDoctors = async () => {
-      const res = await fetch(`${BASE_URL}/doctor`, {
+      const res = await fetch(`${BASE_URL}/doctor/search`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
