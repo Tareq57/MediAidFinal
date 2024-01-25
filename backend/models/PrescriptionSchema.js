@@ -9,7 +9,7 @@ const prescriptionSchema = new mongoose.Schema(
                 details: { type: String },
             }
         ],
-        appointment: { type: mongoose.Schema.Types.ObjectId, ref: "Appointment", required: true },
+        // appointment: { type: mongoose.Schema.Types.ObjectId, ref: "Appointment", required: true },
         symptoms: [{ type: Array }],
         diagnosis: { type: String },
     },

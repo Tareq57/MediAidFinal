@@ -10,6 +10,7 @@ import doctorRoutes from "./Routes/doctor.js"
 import specializationRoutes from "./Routes/specialization.js"
 import reviewRoutes from "./Routes/review.js"
 import appointmentRoutes from "./Routes/appointment.js"
+import prescriptionRoutes from "./Routes/prescription.js"
 
 dotenv.config()
 
@@ -47,6 +48,7 @@ app.use("/api/doctor", doctorRoutes)
 app.use("/api/specialization", specializationRoutes)
 app.use("/api/review", reviewRoutes)
 app.use("/api/appointment", appointmentRoutes)
+app.use("/api/prescription", prescriptionRoutes)
 
 app.listen(port, () => {
     connectDB();

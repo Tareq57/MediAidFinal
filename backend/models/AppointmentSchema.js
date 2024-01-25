@@ -34,6 +34,19 @@ const appointmentSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
+    prescription: {
+      prescribedMeds: [
+        {
+          medicineName: { type: String, required: true },
+          dosage: { type: String },
+          details: { type: String },
+        }
+      ],
+      // appointment: { type: mongoose.Schema.Types.ObjectId, ref: "Appointment", required: true },
+      symptoms: [{ type: String }],
+      diagnosis: { type: String },
+    },
   },
   { timestamps: true }
 );
