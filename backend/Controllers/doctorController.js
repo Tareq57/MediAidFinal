@@ -100,7 +100,9 @@ export const searchDoctors = async(req, res) => {
 
         if(query.timerange != undefined && query.timerange != null) {
             let newDoctors = []
-            const currDate = new Date()
+            let currDate = new Date()
+            currDate.setHours(0, 0, 0, 0)
+            
             let finalDate
             if(query.timerange == "today")
                 finalDate = addDays(currDate, 1)
