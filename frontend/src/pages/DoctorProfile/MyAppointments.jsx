@@ -5,10 +5,16 @@ import { BASE_URL } from "@/config";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const { state } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const handleAppointment = async (app) => {
+    navigate("/prescription", { state: { app: app } });
+  };
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -57,9 +63,11 @@ const MyAppointments = () => {
                 end time : {app.slot.endhr}:{app.slot.endmin}
               </p>
             </div>
-            <Link to={`/prescription`}>
-              <Button>Start Appointment</Button>
-            </Link>
+            <Button onClick={
+              () => {
+                handleAppointment(app);
+              }
+            }>Start Appointment</Button>
           </div>
         ))}
       </div>

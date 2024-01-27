@@ -9,8 +9,7 @@ import { RiH1 } from "react-icons/ri";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import userDoctorProfile from "../../assets/images/userDoctorProfile.png";
-// 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08)
+
 const Header = () => {
   const { state, setState } = useContext(AuthContext);
 
