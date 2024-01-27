@@ -40,8 +40,10 @@ const appointmentSchema = new mongoose.Schema(
       prescribedMeds: [
         {
           medicineName: { type: String, required: true },
+          category: { type: String },
           dosage: { type: String },
           details: { type: String },
+          type: {type: String}
         }
       ],
       // appointment: { type: mongoose.Schema.Types.ObjectId, ref: "Appointment", required: true },
