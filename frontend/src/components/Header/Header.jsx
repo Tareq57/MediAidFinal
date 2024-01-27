@@ -8,6 +8,8 @@ import AuthContext from "@/context/AuthContext";
 import { RiH1 } from "react-icons/ri";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import userDoctorProfile from "../../assets/images/userDoctorProfile.png";
 // 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08)
 const Header = () => {
   const { state, setState } = useContext(AuthContext);
@@ -19,10 +21,10 @@ const Header = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("role");
 
-    setState({ token: null, user: null, role : null });
+    setState({ token: null, user: null, role: null });
 
     navigate("/");
-  }
+  };
   return (
     <header
       className="header flex items-center relative z-1010"
@@ -100,10 +102,12 @@ const Header = () => {
 
             {state.token && state.user ? (
               <div className="flex space-x-2">
-                <Avatar className="w-[40px] h-[40px]">
-                  <AvatarImage src={state.user?.photo} />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <Link to="/user">
+                  <Avatar className="w-[40px] h-[40px]">
+                    <AvatarImage src={state.user?.photo} />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </Link>
                 <Button
                   size="sm"
                   className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full"

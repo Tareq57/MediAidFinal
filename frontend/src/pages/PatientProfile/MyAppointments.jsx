@@ -18,21 +18,22 @@ const MyAppointments = () => {
         },
       });
 
+      const result = await res.json();
+
       if (!res.ok) {
         throw new Error(result.message);
       }
+      
+      console.log(result);
 
-      console.log(res);
-
-      const result = await res.json();
-
-      setAppointments(result.data);
+      setAppointments(result.appointments);
     };
 
-    fetchAppointments();
-  }, []);
+    if(state.user != null) {
+      fetchAppointments();
+    }
 
-  console.log(appointments);
+  }, []);
 
   return (
     <div className="flex-col space-y-5">

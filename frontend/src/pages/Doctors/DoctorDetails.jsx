@@ -9,6 +9,7 @@ import { TbDeviceWatchStats2 } from "react-icons/tb";
 import Qualification from "@/components/DoctorDetails/Qualification";
 import Reviews from "@/components/DoctorDetails/Reviews";
 import Appointment from "./Appointment";
+import { set } from "date-fns";
 
 const DoctorDetails = () => {
   const { id } = useParams();
@@ -16,6 +17,8 @@ const DoctorDetails = () => {
   const { state } = useContext(AuthContext);
 
   const [doctor, setDoctor] = useState(null);
+
+  const [appointments, setAppointments] = useState(null);
 
   const [navClass, setNavClass] = useState("Qualification");
 
@@ -34,13 +37,28 @@ const DoctorDetails = () => {
         },
       });
 
+      const res2 = await fetch(`${BASE_URL}/doctor/timeslots/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.token}`,
+        },
+      });
+
+
       if (!res.ok) {
         throw new Error(result.message);
       }
 
-      const result = await res.json();
+      if (!res2.ok) {
+        throw new Error(result.message);
+      }
 
-      setDoctor(result.data);
+      const result1 = await res.json();
+      const result2 = await res2.json();
+
+      setDoctor(result1.data);
+      setAppointments(result2.data);
     };
     fetchDoctor();
   }, []);
@@ -65,13 +83,13 @@ const DoctorDetails = () => {
             </div>
           </div>
           <div className="border border-black rounded-xl overflow-hidden justify-center flex bg-slate-100">
-            <img src={doctor.photo} alt="" />
+            <img src={doctor.photo} alt="" className="h-[400px]" />
           </div>
-          <div className="navigation">
+          <div className="navigation border rounded-lg overflow-hidden">
             <ul className="menu flex items-center">
               <li
                 id="Qual"
-                className={`menu-item p-[10px] rounded-t-lg hover:cursor-pointer ${
+                className={`menu-item p-[10px] hover:cursor-pointer font-bold text-xl ${
                   navClass == "Qualification" ? "bg-orange-300" : ""
                 }`}
                 onClick={handleclick}
@@ -80,7 +98,7 @@ const DoctorDetails = () => {
               </li>
               <li
                 id="Rev"
-                className={`menu-item p-[10px] rounded-t-lg hover:cursor-pointer ${
+                className={`menu-item p-[10px] hover:cursor-pointer font-bold text-xl ${
                   navClass == "Reviews" ? "bg-orange-300" : ""
                 }`}
                 onClick={handleclick}
@@ -89,18 +107,17 @@ const DoctorDetails = () => {
               </li>
             </ul>
             <hr className="border-black" />
-          </div>
-          <div>
-            {
-              navClass == "Qualification" && <Qualification qualifs = {doctor.qualifications}/>
-            }
-            {
-              navClass == "Reviews" && <Reviews revs = {doctor.reviews}/>
-            }
+
+            <div>
+              {navClass == "Qualification" && (
+                <Qualification qualifs={doctor.qualifications} />
+              )}
+              {navClass == "Reviews" && <Reviews revs={doctor.reviews} />}
+            </div>
           </div>
         </div>
         <div className="w-1/3 ">
-          <Appointment></Appointment>
+          <Appointment apps={appointments} doctor={doctor}></Appointment>
         </div>
       </div>
     )

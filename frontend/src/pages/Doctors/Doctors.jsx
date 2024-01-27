@@ -6,19 +6,6 @@ import { TbCalendarStats } from "react-icons/tb";
 import { TbDeviceWatchStats2 } from "react-icons/tb";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
-import { cn } from "@/lib/utils";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-
-import doctorCardImage from "@/assets/images/doctor_card_img.jpg";
-
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import { BASE_URL } from "@/config";
@@ -55,11 +42,13 @@ const Doctors = () => {
     }
   }, []);
 
+  console.log(state);
+
   return (
     <div className="mx-[180px] mt-[40px] flex">
       <div className="flex flex-col w-2/3">
         <div className="flex justify-between">
-          <h1 className="font-bold text-3xl">All Doctors</h1>
+          <h1 className="font-bold text-3xl text">All Doctors</h1>
           <div className="flex">
             <input
               type="text"

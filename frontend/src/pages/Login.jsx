@@ -27,8 +27,6 @@ import uploadImagetoCloudinary from "@/utils/uploadCloudinary";
 import { Navigate } from "react-router-dom";
 
 const Login = () => {
-  // const [selectedFile, setSelectedFile] = React.useState(null);
-
   const { state, setState } = useContext(AuthContext);
 
   const [loginData, setloginData] = React.useState({
@@ -46,14 +44,10 @@ const Login = () => {
   });
 
   const handleSelectChange = (name, value) => {
-    // console.log(value);
-    // console.log(name);
     setsignupData({ ...signupData, [name]: value });
   };
 
   const handleFileChange = async (e) => {
-    // console.log(e.target.files[0]);
-
     const file = e.target.files[0];
 
     const data = await uploadImagetoCloudinary(file);
@@ -88,8 +82,7 @@ const Login = () => {
     console.log(result.data);
 
     setState({ user: result.data, role: result.role, token: result.token });
-    // console.log(state);
-
+    
     navigate("/doctors");
   };
 
@@ -114,7 +107,6 @@ const Login = () => {
     console.log(result.data);
 
     setState({ user: result.data, role: result.role, token: result.token });
-    // console.log(state);
 
     navigate("/doctors");
 
@@ -122,11 +114,11 @@ const Login = () => {
   };
 
   return (
-    <div className="h-[600px] flex shadow-2xl rounded-2xl mx-[150px] my-[50px] bg-[url('@/assets/images/bg_image_blue.jpg')]">
+    <div className="h-[900px] flex shadow-2xl rounded-2xl mx-[150px] my-[50px] bg-[url('@/assets/images/bg_image_blue.jpg')]">
       <div className="w-1/2 shadow-2xl rounded-2xl flex items-center justify-center">
         <img src={LoginImage} alt="" className="w-3/4" />
       </div>
-      <div className="w-1/2 flex justify-center items-center ">
+      <div className="w-1/2 flex justify-center items-center">
         <Tabs
           defaultValue="Login"
           className="w-[400px] flex flex-col items-center justify-center"
@@ -136,7 +128,7 @@ const Login = () => {
             <TabsTrigger value="SignUp">SignUp</TabsTrigger>
           </TabsList>
           <TabsContent value="Login" className="w-full">
-            <Card>
+            <Card className="h-[550px]">
               <CardHeader>
                 <CardTitle>Login</CardTitle>
                 <CardDescription>
@@ -169,12 +161,12 @@ const Login = () => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button onClick={handleLogin}>Login</Button>
+                <Button onClick={handleLogin} className="w-full">Login</Button>
               </CardFooter>
             </Card>
           </TabsContent>
           <TabsContent value="SignUp" className="w-full">
-            <Card>
+            <Card className="h-[550px]">
               <CardHeader>
                 <CardTitle>SignUp</CardTitle>
                 <CardDescription>
@@ -254,7 +246,7 @@ const Login = () => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button onClick={handleSignup}>SignUp</Button>
+                <Button onClick={handleSignup} className="w-full">SignUp</Button>
               </CardFooter>
             </Card>
           </TabsContent>

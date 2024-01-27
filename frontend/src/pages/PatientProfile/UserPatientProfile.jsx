@@ -8,7 +8,7 @@ import MyReports from "./MyReports";
 import Settings from "./Settings";
 import MyAppointments from "./MyAppointments";
 import DoctorSideBar from "../DoctorProfile/DoctorSideBar";
-import PatientSideBar from "../PatientProfile/PatientSideBar";
+import PatientSideBar from "./PatientSideBar";
 
 const UserProfile = () => {
   const { state } = useContext(AuthContext);
@@ -16,11 +16,11 @@ const UserProfile = () => {
   const [navClass, setNavClass] = useState("DashBoard");
 
   const handleClick = (e) => {
-      if (e.currentTarget.id == "Dash") setNavClass("DashBoard");
-      else if (e.currentTarget.id == "Docs") setNavClass("Doctors");
-      else if (e.currentTarget.id == "Appoints") setNavClass("Appointments");
-      else if (e.currentTarget.id == "Reps") setNavClass("Reports");
-      else if (e.currentTarget.id == "Sets") setNavClass("Settings");
+    if (e.currentTarget.id == "Dash") setNavClass("DashBoard");
+    else if (e.currentTarget.id == "Docs") setNavClass("Doctors");
+    else if (e.currentTarget.id == "Appoints") setNavClass("Appointments");
+    else if (e.currentTarget.id == "Reps") setNavClass("Reports");
+    else if (e.currentTarget.id == "Sets") setNavClass("Settings");
   };
 
   console.log(state?.role);
@@ -42,12 +42,6 @@ const UserProfile = () => {
         {navClass == "Appointments" && <MyAppointments></MyAppointments>}
 
         {navClass == "Reports" && <MyReports></MyReports>}
-
-        {navClass == "Settings" && <Settings></Settings>}
-
-        {navClass == "Settings" && <Settings></Settings>}
-
-        {navClass == "Settings" && <Settings></Settings>}
 
         {navClass == "Settings" && <Settings></Settings>}
       </div>

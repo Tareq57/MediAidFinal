@@ -5,8 +5,8 @@ const AuthContext = createContext();
 export function AuthContextProvider({ children }) {
   const [state, setState] = useState({
     user : localStorage.getItem("user") != null ? JSON.parse(localStorage.getItem("user")) : null,
-    role : localStorage.getItem("role") || null,
-    token : localStorage.getItem("token") || null,
+    role : localStorage.getItem("role"),
+    token : localStorage.getItem("token")
   });
 
   useEffect(() => {

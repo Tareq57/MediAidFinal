@@ -22,11 +22,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import AuthContext from "@/context/AuthContext";
+import { useContext } from "react";
 
 const Prescription = () => {
+  const { state } = useContext(AuthContext);
+  
   return (
     <div className="flex mx-[180px] mt-[40px] space-x-10 ">
       <div className="w-1/4 flex-col space-y-5">
+        
         <Card>
           <CardHeader>
             <CardTitle>Symptoms</CardTitle>

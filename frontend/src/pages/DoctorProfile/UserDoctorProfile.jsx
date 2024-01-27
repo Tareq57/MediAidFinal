@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-
 import Dashboard from "./Dashboard";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
-import MyDoctors from "./MyDoctors";
-import MyReports from "./MyReports";
 import Settings from "./Settings";
-import MyAppointments from "./MyAppointments";
-import DoctorSideBar from "../DoctorProfile/DoctorSideBar";
+import DoctorSideBar from "./DoctorSideBar";
 import PatientSideBar from "../PatientProfile/PatientSideBar";
+import MySlots from "./MySlots";
+import MyPatients from "./MyPatients";
+import MyAppointments from "./MyAppointments";
 
 const UserProfile = () => {
   const { state } = useContext(AuthContext);
@@ -16,14 +15,12 @@ const UserProfile = () => {
   const [navClass, setNavClass] = useState("DashBoard");
 
   const handleClick = (e) => {
-      if (e.currentTarget.id == "Dash") setNavClass("DashBoard");
-      else if (e.currentTarget.id == "Docs") setNavClass("Doctors");
-      else if (e.currentTarget.id == "Appoints") setNavClass("Appointments");
-      else if (e.currentTarget.id == "Reps") setNavClass("Reports");
-      else if (e.currentTarget.id == "Sets") setNavClass("Settings");
+    if (e.currentTarget.id == "Dash") setNavClass("DashBoard");
+    else if (e.currentTarget.id == "Pats") setNavClass("Patients");
+    else if (e.currentTarget.id == "Appoints") setNavClass("Appointments");
+    else if (e.currentTarget.id == "Slots") setNavClass("Slots");
+    else if (e.currentTarget.id == "Sets") setNavClass("Settings");
   };
-
-  console.log(state?.role);
 
   return (
     <div className="mx-[180px] mt-[40px] min-h-[500px] flex justify-between">
@@ -37,17 +34,11 @@ const UserProfile = () => {
       <div className="w-3/4">
         {navClass == "DashBoard" && <Dashboard></Dashboard>}
 
-        {navClass == "Doctors" && <MyDoctors></MyDoctors>}
+        {navClass == "Patients" && <MyPatients></MyPatients>}
 
         {navClass == "Appointments" && <MyAppointments></MyAppointments>}
 
-        {navClass == "Reports" && <MyReports></MyReports>}
-
-        {navClass == "Settings" && <Settings></Settings>}
-
-        {navClass == "Settings" && <Settings></Settings>}
-
-        {navClass == "Settings" && <Settings></Settings>}
+        {navClass == "Slots" && <MySlots></MySlots>}
 
         {navClass == "Settings" && <Settings></Settings>}
       </div>

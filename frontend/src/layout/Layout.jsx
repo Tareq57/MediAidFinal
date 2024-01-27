@@ -10,9 +10,9 @@ const Layout = () => {
     <div>
         <Header />
         <main>
-            {/* <Routers /> */}
+            <Routers />
             {/* <UserProfile/> */}
-            <Prescription></Prescription>
+            {/* <Prescription></Prescription> */}
         </main>
         <Footer />
     </div>
