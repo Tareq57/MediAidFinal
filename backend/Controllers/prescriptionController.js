@@ -8,9 +8,12 @@ export const addPrescription = async (req, res) => {
         // console.log(appointment)
         const data = req.body
         appointment.prescription = {
+            weight: data.weight,
             prescribedMeds: data.prescribedMeds,
             symptoms: data.symptoms,
-            diagnosis: data.diagnosis
+            diagnosis: data.diagnosis,
+            advice: data.advice,
+            tests: data.tests
         }
         await appointment.save()
         res.status(200).json({success: true, msg: "Prescription added successfully", data: appointment})

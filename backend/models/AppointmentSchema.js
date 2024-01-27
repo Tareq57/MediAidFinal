@@ -36,6 +36,7 @@ const appointmentSchema = new mongoose.Schema(
     },
 
     prescription: {
+      weight: { type: Number },
       prescribedMeds: [
         {
           medicineName: { type: String, required: true },
@@ -45,7 +46,9 @@ const appointmentSchema = new mongoose.Schema(
       ],
       // appointment: { type: mongoose.Schema.Types.ObjectId, ref: "Appointment", required: true },
       symptoms: [{ type: String }],
-      diagnosis: { type: String },
+      diagnosis: [{ type: String }],
+      advice: [{ type: String }],
+      tests: [{ type: String }],
     },
   },
   { timestamps: true }
