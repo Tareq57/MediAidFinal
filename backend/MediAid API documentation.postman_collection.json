@@ -3597,7 +3597,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"prescribedMeds\": [\n        {\n            \"medicineName\": \"Napa\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        },\n        {\n            \"medicineName\": \"Entacyd Plus\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        }\n    ],\n    \"symptoms\": [\"fever\", \"gas\"],\n    \"diagnosis\": \"Viral fever\"\n}",
+							"raw": "{\n    \"weight\": 70,\n    \"prescribedMeds\": [\n        {\n            \"medicineName\": \"Napa\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        },\n        {\n            \"medicineName\": \"Entacyd Plus\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        }\n    ],\n    \"symptoms\": [\"fever\", \"gas\"],\n    \"diagnosis\": [\"Viral fever\"],\n    \"advice\": [\"eat less\", \"exercise more\"],\n    \"tests\": [\"CT Scan\", \"MRI\"]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3631,7 +3631,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"prescribedMeds\": [\n        {\n            \"medicineName\": \"Napa\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        },\n        {\n            \"medicineName\": \"Entacyd Plus\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        }\n    ],\n    \"symptoms\": [\"fever\", \"gas\"],\n    \"diagnosis\": \"Viral fever\"\n}",
+									"raw": "{\n    \"weight\": 70,\n    \"prescribedMeds\": [\n        {\n            \"medicineName\": \"Napa\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        },\n        {\n            \"medicineName\": \"Entacyd Plus\",\n            \"dosage\": \"1+0+1\",\n            \"details\": \"take after eating\"\n        }\n    ],\n    \"symptoms\": [\"fever\", \"gas\"],\n    \"diagnosis\": [\"Viral fever\"],\n    \"advice\": [\"eat less\", \"exercise more\"],\n    \"tests\": [\"CT Scan\", \"MRI\"]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3675,15 +3675,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "658"
+									"value": "736"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"292-QXxJgAkstLBTG1//G0Uzq1PIiI4\""
+									"value": "W/\"2e0-emBq0QnVjot/V4P4tQjm3iBciPU\""
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 25 Jan 2024 09:51:19 GMT"
+									"value": "Sat, 27 Jan 2024 16:33:25 GMT"
 								},
 								{
 									"key": "Connection",
@@ -3695,7 +3695,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"Prescription added successfully\",\n    \"data\": {\n        \"prescription\": {\n            \"prescribedMeds\": [\n                {\n                    \"medicineName\": \"Napa\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"take after eating\",\n                    \"_id\": \"65b22f1758603ba107c859c9\"\n                },\n                {\n                    \"medicineName\": \"Entacyd Plus\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"take after eating\",\n                    \"_id\": \"65b22f1758603ba107c859ca\"\n                }\n            ],\n            \"symptoms\": [\n                \"fever\",\n                \"gas\"\n            ],\n            \"diagnosis\": \"Viral fever\"\n        },\n        \"_id\": \"65b21fd7409d4cb353007796\",\n        \"doctor\": \"65955c510d5db82f28dae508\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"ticketPrice\": 1000,\n        \"slot\": \"65b20dfb8fac4094d9f8ac6a\",\n        \"serial\": 1,\n        \"status\": \"approved\",\n        \"isPaid\": false,\n        \"createdAt\": \"2024-01-25T08:46:15.506Z\",\n        \"updatedAt\": \"2024-01-25T09:51:19.738Z\",\n        \"__v\": 0\n    }\n}"
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Prescription added successfully\",\n    \"data\": {\n        \"prescription\": {\n            \"weight\": 70,\n            \"prescribedMeds\": [\n                {\n                    \"medicineName\": \"Napa\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"take after eating\",\n                    \"_id\": \"65b5305507aa96e9045ec2d2\"\n                },\n                {\n                    \"medicineName\": \"Entacyd Plus\",\n                    \"dosage\": \"1+0+1\",\n                    \"details\": \"take after eating\",\n                    \"_id\": \"65b5305507aa96e9045ec2d3\"\n                }\n            ],\n            \"symptoms\": [\n                \"fever\",\n                \"gas\"\n            ],\n            \"diagnosis\": [\n                \"Viral fever\"\n            ],\n            \"advice\": [\n                \"eat less\",\n                \"exercise more\"\n            ],\n            \"tests\": [\n                \"CT Scan\",\n                \"MRI\"\n            ]\n        },\n        \"_id\": \"65b21fd7409d4cb353007796\",\n        \"doctor\": \"65955c510d5db82f28dae508\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"ticketPrice\": 1000,\n        \"slot\": \"65b20dfb8fac4094d9f8ac6a\",\n        \"serial\": 1,\n        \"status\": \"approved\",\n        \"isPaid\": false,\n        \"createdAt\": \"2024-01-25T08:46:15.506Z\",\n        \"updatedAt\": \"2024-01-27T16:33:25.697Z\",\n        \"__v\": 0\n    }\n}"
 						}
 					]
 				},
