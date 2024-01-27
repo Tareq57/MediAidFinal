@@ -37,6 +37,8 @@ const DoctorSchema = new mongoose.Schema({
     enum: ["pending", "approved", "cancelled"],
     default: "approved", //TODO: Change to pending
   },
-});
+},
+{ timestamps: true }
+);
 
 export default mongoose.model("Doctor", DoctorSchema)

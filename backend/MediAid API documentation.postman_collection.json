@@ -1670,15 +1670,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "900"
+									"value": "529"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"384-v8cy2JpbiGJYZj6TtxXkdM9Cy0Y\""
+									"value": "W/\"211-lOzcQPsnYfAAlhTm9PDnW/7vC2c\""
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 24 Jan 2024 13:31:39 GMT"
+									"value": "Sat, 27 Jan 2024 16:05:57 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1690,7 +1690,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"Doctor found\",\n    \"data\": {\n        \"certificates\": [],\n        \"_id\": \"65955c510d5db82f28dae508\",\n        \"email\": \"d1@gmail.com\",\n        \"name\": \"doctor 1\",\n        \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n        \"role\": \"doctor\",\n        \"gender\": \"male\",\n        \"qualifications\": [],\n        \"experiences\": [],\n        \"isApproved\": \"pending\",\n        \"__v\": 2,\n        \"specialization\": {\n            \"_id\": \"65b108223e5243718ce85b5e\",\n            \"name\": \"Medicine\",\n            \"__v\": 0\n        },\n        \"reviews\": [\n            {\n                \"_id\": \"65b10e50d0798736b6f62192\",\n                \"doctor\": \"65955c510d5db82f28dae508\",\n                \"user\": {\n                    \"_id\": \"65965da4e6b3eddbc75645ed\",\n                    \"email\": \"p1@gmail.com\",\n                    \"password\": \"$2a$10$5UtJRUzKma2yo3yLRZkaLO6Kk1zL7YV8XBmlQ9o.TLI5A1gxJgFoi\",\n                    \"name\": \"patient 1\",\n                    \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                    \"role\": \"patient\",\n                    \"gender\": \"male\",\n                    \"__v\": 0\n                },\n                \"reviewText\": \"Placeholder review 1\",\n                \"rating\": 4,\n                \"createdAt\": \"2024-01-24T13:19:12.748Z\",\n                \"updatedAt\": \"2024-01-24T13:19:12.748Z\",\n                \"__v\": 0\n            }\n        ],\n        \"averageStars\": 4\n    }\n}"
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Doctor found\",\n    \"data\": {\n        \"certificates\": [],\n        \"_id\": \"65955c510d5db82f28dae508\",\n        \"email\": \"d1@gmail.com\",\n        \"name\": \"doctor 1\",\n        \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n        \"role\": \"doctor\",\n        \"gender\": \"male\",\n        \"qualifications\": [],\n        \"experiences\": [],\n        \"isApproved\": \"approved\",\n        \"__v\": 2,\n        \"specialization\": {\n            \"_id\": \"65b108223e5243718ce85b5e\",\n            \"name\": \"Medicine\",\n            \"__v\": 0\n        },\n        \"fee\": 500,\n        \"createdAt\": \"2024-01-01T07:40:32.986Z\",\n        \"updatedAt\": \"2024-01-01T07:40:32.986Z\",\n        \"averageStars\": 4,\n        \"slotCount\": 0,\n        \"patientCount\": 0\n    }\n}"
 						}
 					]
 				},
@@ -1737,65 +1737,7 @@
 					},
 					"response": [
 						{
-							"name": "Fetch all success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:5000/api/doctor/search",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"api",
-										"doctor",
-										"search"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "903"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"387-q0K8/hCYDFeFq4ovhR35oBzbrmc\""
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 24 Jan 2024 13:33:20 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"Doctors found\",\n    \"data\": [\n        {\n            \"certificates\": [],\n            \"_id\": \"65955c510d5db82f28dae508\",\n            \"email\": \"d1@gmail.com\",\n            \"name\": \"doctor 1\",\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n            \"role\": \"doctor\",\n            \"gender\": \"male\",\n            \"qualifications\": [],\n            \"experiences\": [],\n            \"isApproved\": \"pending\",\n            \"__v\": 2,\n            \"specialization\": {\n                \"_id\": \"65b108223e5243718ce85b5e\",\n                \"name\": \"Medicine\",\n                \"__v\": 0\n            },\n            \"reviews\": [\n                {\n                    \"_id\": \"65b10e50d0798736b6f62192\",\n                    \"doctor\": \"65955c510d5db82f28dae508\",\n                    \"user\": {\n                        \"_id\": \"65965da4e6b3eddbc75645ed\",\n                        \"email\": \"p1@gmail.com\",\n                        \"password\": \"$2a$10$5UtJRUzKma2yo3yLRZkaLO6Kk1zL7YV8XBmlQ9o.TLI5A1gxJgFoi\",\n                        \"name\": \"patient 1\",\n                        \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                        \"role\": \"patient\",\n                        \"gender\": \"male\",\n                        \"__v\": 0\n                    },\n                    \"reviewText\": \"Placeholder review 1\",\n                    \"rating\": 4,\n                    \"createdAt\": \"2024-01-24T13:19:12.748Z\",\n                    \"updatedAt\": \"2024-01-24T13:19:12.748Z\",\n                    \"__v\": 0\n                }\n            ],\n            \"averageStars\": 4\n        }\n    ]\n}"
-						},
-						{
-							"name": "Search success",
+							"name": "Success",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -1853,15 +1795,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "914"
+									"value": "532"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"392-EwvIoEGfw0OExBsyCOkgjpiGzvY\""
+									"value": "W/\"214-BE7ACqObJyKF09+2s5rgDUDaM3o\""
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 25 Jan 2024 07:30:25 GMT"
+									"value": "Sat, 27 Jan 2024 16:06:39 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1873,7 +1815,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"msg\": \"Doctors found\",\n    \"data\": [\n        {\n            \"certificates\": [],\n            \"_id\": \"65955c510d5db82f28dae508\",\n            \"email\": \"d1@gmail.com\",\n            \"name\": \"doctor 1\",\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n            \"role\": \"doctor\",\n            \"gender\": \"male\",\n            \"qualifications\": [],\n            \"experiences\": [],\n            \"isApproved\": \"approved\",\n            \"__v\": 2,\n            \"specialization\": {\n                \"_id\": \"65b108223e5243718ce85b5e\",\n                \"name\": \"Medicine\",\n                \"__v\": 0\n            },\n            \"fee\": 500,\n            \"reviews\": [\n                {\n                    \"_id\": \"65b10e50d0798736b6f62192\",\n                    \"doctor\": \"65955c510d5db82f28dae508\",\n                    \"user\": {\n                        \"_id\": \"65965da4e6b3eddbc75645ed\",\n                        \"email\": \"p1@gmail.com\",\n                        \"password\": \"$2a$10$5UtJRUzKma2yo3yLRZkaLO6Kk1zL7YV8XBmlQ9o.TLI5A1gxJgFoi\",\n                        \"name\": \"patient 1\",\n                        \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                        \"role\": \"patient\",\n                        \"gender\": \"male\",\n                        \"__v\": 0\n                    },\n                    \"reviewText\": \"Placeholder review 1\",\n                    \"rating\": 4,\n                    \"createdAt\": \"2024-01-24T13:19:12.748Z\",\n                    \"updatedAt\": \"2024-01-24T13:19:12.748Z\",\n                    \"__v\": 0\n                }\n            ],\n            \"averageStars\": 4\n        }\n    ]\n}"
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Doctors found\",\n    \"data\": [\n        {\n            \"certificates\": [],\n            \"_id\": \"65955c510d5db82f28dae508\",\n            \"email\": \"d1@gmail.com\",\n            \"name\": \"doctor 1\",\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n            \"role\": \"doctor\",\n            \"gender\": \"male\",\n            \"qualifications\": [],\n            \"experiences\": [],\n            \"isApproved\": \"approved\",\n            \"__v\": 2,\n            \"specialization\": {\n                \"_id\": \"65b108223e5243718ce85b5e\",\n                \"name\": \"Medicine\",\n                \"__v\": 0\n            },\n            \"fee\": 500,\n            \"createdAt\": \"2024-01-01T07:40:32.986Z\",\n            \"updatedAt\": \"2024-01-01T07:40:32.986Z\",\n            \"averageStars\": 4,\n            \"slotCount\": 1,\n            \"patientCount\": 2\n        }\n    ]\n}"
 						}
 					]
 				},

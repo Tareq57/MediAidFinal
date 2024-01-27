@@ -6,7 +6,7 @@ const getDoctorReviews = async (doctorId) => {
     try {
         const doctorObjId = new ObjectId(doctorId)
         const reviews = await Review.find({ doctor: doctorObjId })
-        console.log(reviews)
+        // console.log(reviews)
         return reviews
     } catch (err) {
         console.log(err)
@@ -28,8 +28,8 @@ const getPatientReviews = async(patientId) => {
 export const getAllReviews = async (req, res) => {
     const doctorId = req.query.doctorId
     const patientId = req.userId
-    console.log("Doctor id in review: " + doctorId)
-    console.log("User id in review: " + patientId)
+    // console.log("Doctor id in review: " + doctorId)
+    // console.log("User id in review: " + patientId)
     try {
         let reviews
         if(doctorId != undefined && doctorId != null)

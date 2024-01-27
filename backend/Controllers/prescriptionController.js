@@ -2,10 +2,10 @@ import Appointment from '../models/AppointmentSchema.js';
 
 export const addPrescription = async (req, res) => {
     const id = req.params.appointmentId
-    console.log(id)
+    // console.log(id)
     try {
         const appointment = await Appointment.findOne({_id: id})
-        console.log(appointment)
+        // console.log(appointment)
         const data = req.body
         appointment.prescription = {
             prescribedMeds: data.prescribedMeds,

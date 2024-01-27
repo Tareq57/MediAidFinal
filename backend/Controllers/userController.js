@@ -53,8 +53,8 @@ export const getAppointments = async(req, res) => {
         const doctorIds = bookings.map(booking => booking.doctor)
         const doctors = await Doctor.find( {_id: {$in: doctorIds}} ).select('-password')
         res.status(200).json({success: true, msg: "Appointments found", data: doctors})
-    } catch(error) {
-        console.log(error)
+    } catch(err) {
+        console.log(err)
         res.status(500).json({success: false, msg: "Appointments not found"})
     }
 }

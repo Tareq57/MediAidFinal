@@ -39,14 +39,26 @@ export const getSingleDoctor = async(req, res) => {
             avgStars += doctorReviews[i].rating
         avgStars /= doctorReviews.length
 
+        const currDate = new Date()
+        const scount = await Slot.find({
+            doctor: id,
+            date: {$gte: currDate},
+        }).count()
+        // const count = slots.length
+
+        const pcount = await Appointment.find({
+            doctor: id,
+        }).count()
+
         if(doctor != null) {
             doctor = doctor.toObject()
-            doctor = {...doctor, reviews: doctorReviews, averageStars: avgStars}
+            doctor = {...doctor, averageStars: avgStars, slotCount: scount, patientCount: pcount}
             res.status(200).json({success: true, msg: "Doctor found", data: doctor})
         }
         else
             res.status(404).json({success:false, msg: "Doctor not found", data: null})
     } catch(err) {
+        console.log(err)
         res.status(500).json({success: false, msg: "Doctor not found", error: err})
     }
 }
@@ -64,6 +76,7 @@ export const searchDoctors = async(req, res) => {
         }
         else
             doctors = await Doctor.find({isApproved: "approved"}).select('-password').populate('specialization')
+        // console.log(doctors)
 
         if(query.specialization != undefined && query.specialization != null) {
             const specId = new ObjectId(query.specialization)
@@ -87,8 +100,20 @@ export const searchDoctors = async(req, res) => {
                 avgStars += doctorReviews[i].rating
             avgStars /= doctorReviews.length
 
+            const currDate = new Date()
+            const id = doctors[i]._id
+            const scount = await Slot.find({
+                doctor: id,
+                date: {$gte: currDate},
+            }).count()
+            // const count = slots.length
+
+            const pcount = await Appointment.find({
+                doctor: id,
+            }).count()
+
             doctors[i] = doctors[i].toObject()
-            doctors[i] = {...doctors[i], reviews: doctorReviews, averageStars: avgStars}
+            doctors[i] = {...doctors[i], averageStars: avgStars, slotCount: scount, patientCount: pcount}
         }
 
         if(query.rating != undefined && query.rating != null) {
@@ -121,6 +146,7 @@ export const searchDoctors = async(req, res) => {
 
         res.status(200).json({success: true, msg: "Doctors found", data: doctors})
     } catch(err) {
+        console.log(err)
         res.status(500).json({success: false, msg: "Doctors not found", error: err})
     }
 }
