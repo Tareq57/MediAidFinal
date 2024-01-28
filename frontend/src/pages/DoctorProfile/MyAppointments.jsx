@@ -41,6 +41,7 @@ const MyAppointments = () => {
     }
   }, []);
 
+
   return (
     <div className="flex-col space-y-5">
       <h1 className="font-bold text-3xl">Appointments</h1>
