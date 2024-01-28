@@ -46,26 +46,26 @@ const MyAppointments = () => {
       <h1 className="font-bold text-3xl">Appointments</h1>
       <hr className="border-black" />
 
-      <div className="flex space-x-10">
+      <div className="flex flex-row flex-wrap">
         {appointments.map((app, index) => (
-          <div className="flex-col my-[10px] w-[300px] rounded-lg border border-slate-400 overflow-hidden">
+          <div className="flex-col m-[20px] w-[250px] rounded-lg border border-slate-400 overflow-hidden">
             <div className="flex justify-center items-center">
               <img
                 src={app.doctor.photo}
-                className="h-[180px] w-[200px] aspect-square"
+                className="h-[100px] w-[100px] aspect-square"
                 alt=""
               />
             </div>
-            <div className="flex-col space-y-1 p-5">
-              <p className="font-bold text-xl">Doctor : {app.doctor.name}</p>
+            <div className="flex-col space-y-1 p-3">
+              <p className="font-bold text-base">Doctor : {app.doctor.name}</p>
               <div>
-                <p>Date : {app.slot.date.split("T")[0]}</p>
+                <p className="text-sm">Date : {app.slot.date.split("T")[0]}</p>
               </div>
               <div className="flex justify-between">
-                <p>
+                <p className="text-sm">
                   Start : {app.slot.starthr}:{app.slot.startmin}
                 </p>
-                <p>
+                <p className="text-sm">
                   End : {app.slot.endhr}:{app.slot.endmin}
                 </p>
               </div>
