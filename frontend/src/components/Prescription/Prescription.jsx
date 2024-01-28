@@ -23,46 +23,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import AuthContext from "@/context/AuthContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { set } from "date-fns";
+import { BASE_URL } from "@/config";
+import { useNavigate } from "react-router-dom";
 
 const Prescription = () => {
   const location = useLocation();
   const app = location.state.app;
 
-  const [prescription, setPrescription] = useState({
-    weight: 70,
-    prescribedMeds: [
-      {
-        medicineName: "Napa",
-        category: "Paracetamol",
-        dosage: "1+0+1",
-        details: "take after eating",
-        type: "Tablet",
-      },
-      {
-        medicineName: "Entacyd Plus",
-        category: "Antacid",
-        dosage: "1+0+1",
-        details: "take after eating",
-        type: "Tablet",
-      },
-    ],
-    symptoms: ["fever", "gas"],
-    diagnosis: ["Viral fever"],
-    advice: ["eat less", "exercise more"],
-    tests: ["CT Scan", "MRI"],
-  });
+  const { state } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const [newpres, setNewpres] = useState({
     weight: 70,
     prescribedMeds: {
       medicineName: "",
       category: "",
-      dosage1: "",
-      dosage2: "",
-      dosage3: "",
+      dosage: "",
       details: "",
       type: "",
     },
@@ -120,9 +99,7 @@ const Prescription = () => {
         prescribedMeds: {
           medicineName: "",
           category: "",
-          dosage1: "",
-          dosage2: "",
-          dosage3: "",
+          dosage: "",
           details: "",
           type: "",
         },
@@ -134,12 +111,36 @@ const Prescription = () => {
     console.log(newPresArrCopy);
   };
 
+  // useEffect(() => {
+  //   if(state.role == "patient") {
+  //     setNewpres(app.prescription);
+  //     console.log(app.prescription);
+  //     console.log(newPresArr);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    if (state.role == "patient") {
+      setNewpres(app.prescription);
+      setNewPresArr(app.prescription);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(newPresArr);
+  }, [newPresArr]);
+
+  // setNewPresArr(app.prescription);
+
+  // console.log(app);
+
+  console.log(app._id);
   const handleSubmitPrescription = async () => {
-    const res = await fetch(`${BASE_URL}/prescription`, {
+    const res = await fetch(`${BASE_URL}/prescription/${app._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${app.token}`,
+        Authorization: `Bearer ${state.token}`,
       },
       body: JSON.stringify(newPresArr),
     });
@@ -151,6 +152,7 @@ const Prescription = () => {
     }
 
     console.log(result.data);
+    navigate("/user");
   };
 
   return (
@@ -169,18 +171,23 @@ const Prescription = () => {
               </div>
             </CardContent>
           ))}
-          <CardFooter>
-            <div className="flex-col space-y-3">
-              <Input
-                value={newpres.symptoms}
-                onChange={(e) => handleChange("symptoms", e.target.value)}
-                className="w-[220px]"
-              ></Input>
-              <Button onClick={() => handleAdd("symptoms")} className="w-full">
-                Add Symptom
-              </Button>
-            </div>
-          </CardFooter>
+          {state.role === "doctor" ? (
+            <CardFooter>
+              <div className="flex-col space-y-3">
+                <Input
+                  value={newpres.symptoms}
+                  onChange={(e) => handleChange("symptoms", e.target.value)}
+                  className="w-[220px]"
+                ></Input>
+                <Button
+                  onClick={() => handleAdd("symptoms")}
+                  className="w-full"
+                >
+                  Add Symptom
+                </Button>
+              </div>
+            </CardFooter>
+          ) : null}
         </Card>
 
         <Card>
@@ -196,18 +203,20 @@ const Prescription = () => {
               </div>
             </CardContent>
           ))}
-          <CardFooter>
-            <div className="flex-col space-y-3">
-              <Input
-                value={newpres.tests}
-                onChange={(e) => handleChange("tests", e.target.value)}
-                className="w-[220px]"
-              ></Input>
-              <Button onClick={() => handleAdd("tests")} className="w-full">
-                Add Test
-              </Button>
-            </div>
-          </CardFooter>
+          {state.role === "doctor" ? (
+            <CardFooter>
+              <div className="flex-col space-y-3">
+                <Input
+                  value={newpres.tests}
+                  onChange={(e) => handleChange("tests", e.target.value)}
+                  className="w-[220px]"
+                ></Input>
+                <Button onClick={() => handleAdd("tests")} className="w-full">
+                  Add Test
+                </Button>
+              </div>
+            </CardFooter>
+          ) : null}
         </Card>
       </div>
       <div className="border-r border-gray-500 h-full min-h-[500px]"></div>
@@ -220,8 +229,14 @@ const Prescription = () => {
               </CardHeader>
               <CardContent className="flex-col space-y-1">
                 <div className="flex justify-between">
-                  <p>Name : {location.state.app.user.name}</p>
-                  <p>Weight : 20</p>
+                  {state.role === "doctor" && (
+                    <p>Name : {location.state.app.user.name}</p>
+                  )}
+                  {state.role === "patient" && <p>Name : {state.user.name}</p>}
+                  {state.role === "patient" && (
+                    <p>Name : {newPresArr.weight}</p>
+                  )}
+                  {state.role === "doctor" && <p>Weight : 20</p>}
                 </div>
                 <div className="flex justify-between">
                   <p>Age : 20</p>
@@ -251,7 +266,7 @@ const Prescription = () => {
                     <div className="flex space-x-3">
                       <img src={Doses} className="w-[20px] h-[20px] " />
                       <p className="text-red-700 text-base">
-                        Doses : {med.dosage1}+{med.dosage2}+{med.dosage3}
+                        Doses : {med.dosage}
                       </p>
                     </div>
                     <div className="flex space-x-3">
@@ -264,106 +279,88 @@ const Prescription = () => {
               <CardContent>
                 <hr className="border border-slate-200" />
               </CardContent>
-              <CardContent>
-                <div className="flex-col space-y-3">
-                  <div className="flex space-x-2 justify-between items-center">
-                    <p>Name:</p>
-                    <Input
-                      value={newpres.prescribedMeds.medicineName}
-                      onChange={(e) =>
-                        handleMedChange("medicineName", e.target.value)
-                      }
-                      placeholder="Enter name of the medicine"
-                      className="w-[270px]"
-                    ></Input>
-                  </div>
-                  <div className="flex space-x-2 justify-between items-center">
-                    <p>Category:</p>
-                    <Input
-                      value={newpres.prescribedMeds.category}
-                      onChange={(e) =>
-                        handleMedChange("category", e.target.value)
-                      }
-                      placeholder="Enter Medicine Category"
-                      className="w-[270px]"
-                    ></Input>
-                  </div>
-                  <div className="flex space-x-2 justify-between items-center">
-                    <p>Type:</p>
-                    <Select
-                      name="type"
-                      value={newpres.prescribedMeds.type}
-                      onValueChange={(value) => handleMedChange("type", value)}
-                    >
-                      <SelectTrigger className="border-black w-[270px]">
-                        <SelectValue placeholder="Select medicine type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Tablet">Tablet</SelectItem>
-                        <SelectItem value="Syrup">Syrup</SelectItem>
-                        <SelectItem value="Capsule">Capsule</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="flex space-x-2 justify-between items-center">
-                    <p>Doses:</p>
-                    <div className="flex items-center justify-between w-[270px]">
+              {state.role === "doctor" ? (
+                <CardFooter>
+                  <div className="flex-col space-y-3">
+                    <div className="flex space-x-2 justify-between items-center">
+                      <p>Name:</p>
                       <Input
-                        value={newpres.prescribedMeds.dosage1}
+                        value={newpres.prescribedMeds.medicineName}
                         onChange={(e) =>
-                          handleMedChange("dosage1", e.target.value)
+                          handleMedChange("medicineName", e.target.value)
                         }
-                        placeholder="Morning"
-                      ></Input>
-                      <p>+</p>
-                      <Input
-                        value={newpres.prescribedMeds.dosage2}
-                        onChange={(e) =>
-                          handleMedChange("dosage2", e.target.value)
-                        }
-                        placeholder="Noon"
-                      ></Input>
-                      <p>+</p>
-                      <Input
-                        value={newpres.prescribedMeds.dosage3}
-                        onChange={(e) =>
-                          handleMedChange("dosage3", e.target.value)
-                        }
-                        placeholder="Night"
+                        placeholder="Enter name of the medicine"
+                        className="w-[270px]"
                       ></Input>
                     </div>
+                    <div className="flex space-x-2 justify-between items-center">
+                      <p>Category:</p>
+                      <Input
+                        value={newpres.prescribedMeds.category}
+                        onChange={(e) =>
+                          handleMedChange("category", e.target.value)
+                        }
+                        placeholder="Enter Medicine Category"
+                        className="w-[270px]"
+                      ></Input>
+                    </div>
+                    <div className="flex space-x-2 justify-between items-center">
+                      <p>Type:</p>
+                      <Select
+                        name="type"
+                        value={newpres.prescribedMeds.type}
+                        onValueChange={(value) =>
+                          handleMedChange("type", value)
+                        }
+                      >
+                        <SelectTrigger className="border-black w-[270px]">
+                          <SelectValue placeholder="Select medicine type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Tablet">Tablet</SelectItem>
+                          <SelectItem value="Syrup">Syrup</SelectItem>
+                          <SelectItem value="Capsule">Capsule</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="flex space-x-2 justify-between items-center">
+                      <p>Doses:</p>
+                      <div className="flex items-center justify-between w-[270px]">
+                        <Input
+                          value={newpres.prescribedMeds.dosage}
+                          onChange={(e) =>
+                            handleMedChange("dosage", e.target.value)
+                          }
+                          placeholder="Morning"
+                        ></Input>
+                      </div>
+                    </div>
+                    <div className="flex space-x-2 justify-between items-center">
+                      <p>Details:</p>
+                      <Input
+                        value={newpres.prescribedMeds.details}
+                        onChange={(e) =>
+                          handleMedChange("details", e.target.value)
+                        }
+                        placeholder="Enter details of the medicine"
+                        className="w-[270px]"
+                      ></Input>
+                    </div>
+                    <Button
+                      onClick={() => handleAdd("prescribedMeds")}
+                      className="w-full"
+                    >
+                      Add Medicine
+                    </Button>
+                    <Button
+                      onClick={() => handleSubmitPrescription()}
+                      className="w-full"
+                    >
+                      Submit Prescription
+                    </Button>
                   </div>
-                  <div className="flex space-x-2 justify-between items-center">
-                    <p>Details:</p>
-                    <Input
-                      value={newpres.prescribedMeds.details}
-                      onChange={(e) =>
-                        handleMedChange("details", e.target.value)
-                      }
-                      placeholder="Enter details of the medicine"
-                      className="w-[270px]"
-                    ></Input>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  onClick={() => handleAdd("prescribedMeds")}
-                  className="w-full"
-                >
-                  Add Medicine
-                </Button>
-                
-              </CardFooter>
-              <CardFooter>
-                
-                <Button
-                  onClick={() => handleSubmitPrescription()}
-                  className="w-full"
-                >
-                  Submit Prescription
-                </Button>
-              </CardFooter>
+                </CardFooter>
+              ) : null}
             </Card>
           </CardContent>
         </Card>
@@ -383,18 +380,23 @@ const Prescription = () => {
               </div>
             </CardContent>
           ))}
-          <CardFooter>
-            <div className="flex-col space-y-3">
-              <Input
-                value={newpres.diagnosis}
-                onChange={(e) => handleChange("diagnosis", e.target.value)}
-                className="w-[220px]"
-              ></Input>
-              <Button onClick={() => handleAdd("diagnosis")} className="w-full">
-                Add Diagnosis
-              </Button>
-            </div>
-          </CardFooter>
+          {state.role === "doctor" ? (
+            <CardFooter>
+              <div className="flex-col space-y-3">
+                <Input
+                  value={newpres.diagnosis}
+                  onChange={(e) => handleChange("diagnosis", e.target.value)}
+                  className="w-[220px]"
+                ></Input>
+                <Button
+                  onClick={() => handleAdd("diagnosis")}
+                  className="w-full"
+                >
+                  Add Diagnosis
+                </Button>
+              </div>
+            </CardFooter>
+          ) : null}
         </Card>
         <Card>
           <CardHeader>
@@ -409,18 +411,20 @@ const Prescription = () => {
               </div>
             </CardContent>
           ))}
-          <CardFooter>
-            <div className="flex-col space-y-3">
-              <Input
-                value={newpres.advice}
-                onChange={(e) => handleChange("advice", e.target.value)}
-                className="w-[220px]"
-              ></Input>
-              <Button onClick={() => handleAdd("advice")} className="w-full">
-                Add Advice
-              </Button>
-            </div>
-          </CardFooter>
+          {state.role === "doctor" ? (
+            <CardFooter>
+              <div className="flex-col space-y-3">
+                <Input
+                  value={newpres.advice}
+                  onChange={(e) => handleChange("advice", e.target.value)}
+                  className="w-[220px]"
+                ></Input>
+                <Button onClick={() => handleAdd("advice")} className="w-full">
+                  Add Advice
+                </Button>
+              </div>
+            </CardFooter>
+          ) : null}
         </Card>
       </div>
     </div>

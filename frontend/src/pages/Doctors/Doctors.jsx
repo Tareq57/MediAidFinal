@@ -78,19 +78,19 @@ const Doctors = () => {
             </div>
             <div className="w-2/3 p-[20px]">
               <h1 className="font-bold text-gray-400">{doctor.name}</h1>
-              <h1 className="font-bold text-xl">{doctor.specialty}</h1>
+              <h1 className="font-bold text-xl">{doctor.specialization.name}</h1>
               <div className="flex my-[10px]">
                 <div className="flex mr-[10px]">
                   <PiClockCountdownFill className="text-orange-400 " />
-                  <p className="text-xs"> {doctor.patients} Patients</p>
+                  <p className="text-xs"> {doctor.patientCount} Patients</p>
                 </div>
                 <div className="flex mx-[10px]">
                   <TbCalendarStats className="text-orange-400 " />
-                  <p className="text-xs"> {doctor.days} </p>
+                  <p className="text-xs"> Joined on {doctor.createdAt.split("T")[0]} </p>
                 </div>
                 <div className="flex mx-[10px]">
                   <TbDeviceWatchStats2 className="text-orange-400 " />
-                  <p className="text-xs"> {doctor.slots}</p>
+                  <p className="text-xs"> {doctor.slotCount} slots available</p>
                 </div>
               </div>
               <hr className="border-gray-200" />

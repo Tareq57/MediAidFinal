@@ -69,17 +69,17 @@ const DoctorDetails = () => {
         <div className="w-2/3 flex-col space-y-5">
           <h1 className="text-3xl font-bold">{doctor.name}</h1>
           <div className="flex my-[10px]">
-            <div className="flex mr-[10px]">
+            <div className="flex mr-[10px] space-x-1">
               <PiClockCountdownFill className="text-orange-400 " />
-              <p className="text-xs"> {doctor.patients} Patients</p>
+              <p className="text-xs"> {doctor.patientCount} Patients</p>
             </div>
-            <div className="flex mx-[10px]">
+            <div className="flex mx-[10px] space-x-1">
               <TbCalendarStats className="text-orange-400 " />
-              <p className="text-xs"> {doctor.days} </p>
+              <p className="text-xs"> Joined on {doctor.createdAt.split("T")[0]} </p>
             </div>
             <div className="flex mx-[10px]">
-              <TbDeviceWatchStats2 className="text-orange-400 " />
-              <p className="text-xs"> {doctor.slots}</p>
+              <TbDeviceWatchStats2 className="text-orange-400 space-x-1" />
+              <p className="text-xs"> {doctor.slotCount} slots available</p>
             </div>
           </div>
           <div className="border border-black rounded-xl overflow-hidden justify-center flex bg-slate-100">
@@ -112,7 +112,7 @@ const DoctorDetails = () => {
               {navClass == "Qualification" && (
                 <Qualification qualifs={doctor.qualifications} />
               )}
-              {navClass == "Reviews" && <Reviews revs={doctor.reviews} />}
+              {navClass == "Reviews" && <Reviews doctor={doctor} />}
             </div>
           </div>
         </div>
