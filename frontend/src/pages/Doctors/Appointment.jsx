@@ -102,7 +102,7 @@ const Appointment = ({ apps , doctor}) => {
       </div>
       <div className="flex-col space-y-2">
         <h1 className="font-bold text-lg">Location : </h1>
-        <p>Bangladesh University of Engineering and Technology, Dhaka-1000</p>
+        <p>Popular Diagnostic Center, Shantinagar Mor, Dhaka</p>
       </div>
       <div className="flex-col space-y-2">
         <h1 className="font-bold text-lg">Select Slot : </h1>

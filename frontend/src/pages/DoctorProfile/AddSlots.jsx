@@ -33,7 +33,7 @@ const AddSlots = () => {
 
   const [slot, setSlot] = useState({
     doctor: id,
-    slotDate: new Date(),
+    slotDate: "",
     starthr: 0,
     startmin: 0,
     endhr: 0,
@@ -53,9 +53,13 @@ const AddSlots = () => {
   const handleAddSlot = async (e) => {
     e.preventDefault();
 
+
     for (var d = date.from; d <= date.to; d.setDate(d.getDate() + 1)) {
+
+      const dd = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+      console.log(dd);
         
-      const newSlot = ({ ...slot, slotDate: d });
+      const newSlot = ({ ...slot, slotDate: dd });
 
       console.log(newSlot);
 
