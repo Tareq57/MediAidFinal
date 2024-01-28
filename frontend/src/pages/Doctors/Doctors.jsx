@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { set } from "date-fns";
+import AvgStar from "@/assets/images/avgstar.png";
 
 const Doctors = () => {
   const { state, setState } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const Doctors = () => {
 
   const [search, setSearch] = useState({
     name: "",
-    rating: 1,
+    rating: 0,
     feeLower: 0,
     feeUpper: 1000,
     specialization: "all",
@@ -130,10 +131,18 @@ const Doctors = () => {
               />
             </div>
             <div className="w-2/3 p-[20px]">
-              <h1 className="font-bold text-gray-400">{doctor.name}</h1>
-              <h1 className="font-bold text-xl">
-                {doctor.specialization.name}
-              </h1>
+              <div className="flex justify-between">
+                <div>
+                  <h1 className="font-bold ">{doctor.name}</h1>
+                  <h1 className="font-bold text-xl">
+                    {doctor.specialization.name} Specialist
+                  </h1>
+                </div>
+                <div className="flex space-x-1 items-center justify-center">
+                  <img src={AvgStar} className="w-[30px] h-[30px]" alt="" />
+                  <p className="font-bold pt-2">{doctor.averageStars.toFixed(2)}</p>
+                </div>
+              </div>
               <div className="flex my-[10px]">
                 <div className="flex mr-[10px]">
                   <PiClockCountdownFill className="text-orange-400 " />
@@ -169,8 +178,13 @@ const Doctors = () => {
         <h1 className="font-bold text-lg">Specialization</h1>
         <RadioGroup
           defaultValue="comfortable"
+          value={search.specialization}
           onValueChange={(value) => handleChange("specialization", value)}
         >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value={"all"} id="r1" />
+            <Label htmlFor="r1">All</Label>
+          </div>
           {specialization.map((sp, index) => (
             <div key={index} className="flex items-center space-x-2">
               <RadioGroupItem value={sp._id} id="r1" />
@@ -183,6 +197,7 @@ const Doctors = () => {
 
         <RadioGroup
           defaultValue="comfortable"
+          value={search.timerange}
           onValueChange={(value) => handleChange("timerange", value)}
         >
           <div className="flex items-center space-x-2">
@@ -225,6 +240,7 @@ const Doctors = () => {
 
         <RadioGroup
           defaultValue="comfortable"
+          value={search.rating.toString()}
           onValueChange={(value) => handleChange("rating", value)}
         >
           <div className="flex items-center space-x-2">
@@ -246,6 +262,10 @@ const Doctors = () => {
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="1" id="r3" />
             <Label htmlFor="r3">1+ star</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="0" id="r3" />
+            <Label htmlFor="r3">None</Label>
           </div>
         </RadioGroup>
       </div>

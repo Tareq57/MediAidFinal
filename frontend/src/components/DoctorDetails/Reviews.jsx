@@ -42,7 +42,6 @@ const Reviews = ({ doctor }) => {
   }, []);
 
   const handleSubmitReview = async () => {
-    console.log(reviews);
     const res = await fetch(`${BASE_URL}/review`, {
       method: "POST",
       headers: {
@@ -51,14 +50,15 @@ const Reviews = ({ doctor }) => {
       },
       body: JSON.stringify(reviews),
     });
-
+    
     const result = await res.json();
-
+    
     if (!res.ok) {
       throw new Error(result.message);
     }
+    window.location.reload();
   };
-  console.log(reviewList);
+  // console.log(reviewList);
 
   return (
     <div className="bg-slate-100 p-5 flex-col space-y-3 border border-slate-200">
@@ -70,10 +70,10 @@ const Reviews = ({ doctor }) => {
             <div className="flex justify-between space-y-2">
               <div className="flex items-center space-x-5">
                 <Avatar className="w-[30px] h-[40px]">
-                  <AvatarImage src={review.photo} />
+                  <AvatarImage src={review.user.photo} />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <p className="font-bold">{review.name} </p>
+                <p className="font-bold">{review.user.name} </p>
               </div>
               <div>
                 <ReactStars2
@@ -123,7 +123,7 @@ const Reviews = ({ doctor }) => {
           </div>
         </div>
 
-        <Button onClick={() => handleSubmitReview()} className="w-full">
+        <Button onClick={(e) => handleSubmitReview(e)} className="w-full">
           Post Review
         </Button>
       </div>

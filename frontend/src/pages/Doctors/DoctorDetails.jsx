@@ -45,7 +45,6 @@ const DoctorDetails = () => {
         },
       });
 
-
       if (!res.ok) {
         throw new Error(result.message);
       }
@@ -63,11 +62,14 @@ const DoctorDetails = () => {
     fetchDoctor();
   }, []);
 
+  console.log(doctor);
+
   return (
     doctor != null && (
       <div className="flex mx-[180px] mt-[40px] space-x-10">
-        <div className="w-2/3 flex-col space-y-5">
+        <div className="w-2/3 flex-col space-y-3">
           <h1 className="text-3xl font-bold">{doctor.name}</h1>
+          <h1 className="text-xl font-bold">{doctor.specialization.name} Specialist</h1>
           <div className="flex my-[10px]">
             <div className="flex mr-[10px] space-x-1">
               <PiClockCountdownFill className="text-orange-400 " />
@@ -75,7 +77,10 @@ const DoctorDetails = () => {
             </div>
             <div className="flex mx-[10px] space-x-1">
               <TbCalendarStats className="text-orange-400 " />
-              <p className="text-xs"> Joined on {doctor.createdAt.split("T")[0]} </p>
+              <p className="text-xs">
+                {" "}
+                Joined on {doctor.createdAt.split("T")[0]}{" "}
+              </p>
             </div>
             <div className="flex mx-[10px]">
               <TbDeviceWatchStats2 className="text-orange-400 space-x-1" />
@@ -94,7 +99,7 @@ const DoctorDetails = () => {
                 }`}
                 onClick={handleclick}
               >
-                Qualification
+                Overview
               </li>
               <li
                 id="Rev"
@@ -110,7 +115,7 @@ const DoctorDetails = () => {
 
             <div>
               {navClass == "Qualification" && (
-                <Qualification qualifs={doctor.qualifications} />
+                <Qualification doctor={doctor} />
               )}
               {navClass == "Reviews" && <Reviews doctor={doctor} />}
             </div>
