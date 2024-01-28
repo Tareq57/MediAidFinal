@@ -40,14 +40,15 @@ export const getSingleDoctor = async(req, res) => {
         avgStars /= doctorReviews.length
 
         const currDate = new Date()
+        const oid = new ObjectId(id)
         const scount = await Slot.find({
-            doctor: id,
+            doctor: oid,
             date: {$gte: currDate},
         }).count()
         // const count = slots.length
 
         const pcount = await Appointment.find({
-            doctor: id,
+            doctor: oid,
         }).count()
 
         if(doctor != null) {
