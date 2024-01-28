@@ -1,11 +1,10 @@
 import Review from "../models/ReviewSchema.js"
-import Doctor from "../models/DoctorSchema.js"
 import { ObjectId } from "mongodb"
 
 const getDoctorReviews = async (doctorId) => {
     try {
         const doctorObjId = new ObjectId(doctorId)
-        const reviews = await Review.find({ doctor: doctorObjId })
+        const reviews = await Review.find({ doctor: doctorObjId }).populate('user', '-password')
         // console.log(reviews)
         return reviews
     } catch (err) {
@@ -17,7 +16,7 @@ const getDoctorReviews = async (doctorId) => {
 const getPatientReviews = async(patientId) => {
     try {
         const patientObjId = new ObjectId(patientId)
-        const reviews = await Review.find({user: patientObjId})
+        const reviews = await Review.find({user: patientObjId}).populate('user', '-password')
         return reviews
     } catch (err) {
         console.log(err)
