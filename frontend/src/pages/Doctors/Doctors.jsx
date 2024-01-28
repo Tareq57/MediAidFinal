@@ -10,16 +10,43 @@ import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import { BASE_URL } from "@/config";
 import { Link } from "react-router-dom";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { set } from "date-fns";
 
 const Doctors = () => {
   const { state, setState } = useContext(AuthContext);
   // console.log(state);
 
+  const [specialization, setSpecialization] = useState([]);
+
   const [doctors, setDoctors] = useState([]);
+
+  const [search, setSearch] = useState({
+    name: "",
+    rating: 1,
+    feeLower: 0,
+    feeUpper: 1000,
+    specialization: "all",
+    timerange: "all",
+  });
 
   useEffect(() => {
     const fetchDoctors = async () => {
-      const res = await fetch(`${BASE_URL}/doctor/search`, {
+      let params = {};
+
+      // Conditionally add parameters to the object
+      if (search.name != "") params.name = search.name;
+      if (search.rating) params.rating = search.rating;
+      if (search.feeLower > -1) params.feeLower = search.feeLower;
+      if (search.feeUpper) params.feeUpper = search.feeUpper;
+      if (search.specialization != "all")
+        params.specialization = search.specialization;
+      if (search.timerange != "all") params.timerange = search.timerange;
+
+      const queryString = new URLSearchParams(params).toString();
+
+      const res1 = await fetch(`${BASE_URL}/doctor/search?${queryString}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -27,22 +54,46 @@ const Doctors = () => {
         },
       });
 
-      if (!res.ok) {
+      console.log(queryString);
+
+      const res2 = await fetch(`${BASE_URL}/specialization`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.token}`,
+        },
+      });
+
+      if (!res1.ok) {
+        throw new Error(result1.message);
+      }
+      if (!res2.ok) {
         throw new Error(result.message);
       }
-      const result = await res.json();
 
-      console.log(result.data);
+      const result1 = await res1.json();
+      const result2 = await res2.json();
 
-      setDoctors(result.data);
+      console.log(result1.data);
+
+      setDoctors(result1.data);
+      setSpecialization(result2.data);
     };
 
     if (state.user) {
       fetchDoctors();
     }
-  }, []);
+  }, [search]);
 
-  console.log(state);
+  const handleChange = (name, value) => {
+    if (name == "feeUpper") {
+      setSearch({ ...search, feeLower: 0 });
+      setSearch({ ...search, [name]: value[0] });
+    } else setSearch({ ...search, [name]: value });
+  };
+  console.log(search);
+
+  // console.log(state);
 
   return (
     <div className="mx-[180px] mt-[40px] flex">
@@ -52,7 +103,9 @@ const Doctors = () => {
           <div className="flex">
             <input
               type="text"
-              placeholder="Search name, specialization"
+              placeholder="Search by name"
+              value={search.name}
+              onChange={(e) => handleChange("name", e.target.value)}
               className="border-b-2 border-black focus:outline-none w-[300px]"
             />
             <Button
@@ -78,7 +131,9 @@ const Doctors = () => {
             </div>
             <div className="w-2/3 p-[20px]">
               <h1 className="font-bold text-gray-400">{doctor.name}</h1>
-              <h1 className="font-bold text-xl">{doctor.specialization.name}</h1>
+              <h1 className="font-bold text-xl">
+                {doctor.specialization.name}
+              </h1>
               <div className="flex my-[10px]">
                 <div className="flex mr-[10px]">
                   <PiClockCountdownFill className="text-orange-400 " />
@@ -86,7 +141,10 @@ const Doctors = () => {
                 </div>
                 <div className="flex mx-[10px]">
                   <TbCalendarStats className="text-orange-400 " />
-                  <p className="text-xs"> Joined on {doctor.createdAt.split("T")[0]} </p>
+                  <p className="text-xs">
+                    {" "}
+                    Joined on {doctor.createdAt.split("T")[0]}{" "}
+                  </p>
                 </div>
                 <div className="flex mx-[10px]">
                   <TbDeviceWatchStats2 className="text-orange-400 " />
@@ -95,7 +153,9 @@ const Doctors = () => {
               </div>
               <hr className="border-gray-200" />
               <div className="flex justify-between my-[10px]">
-                <h1 className="text-red-500 font-extrabold ">Fee : 500 Taka</h1>
+                <h1 className="text-red-500 font-extrabold ">
+                  Fee : {doctor.fee} Taka
+                </h1>
                 <h1 className="font-bold hover:scale-110 transition-transform">
                   <Link to={`/doctors/${doctor._id}`}>view more</Link>
                 </h1>
@@ -103,209 +163,91 @@ const Doctors = () => {
             </div>
           </div>
         ))}
-
-        {/* <div className="my-[10px]">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  href="#"
-                  className="hover:bg-black hover:text-white"
-                />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink
-                  href="#"
-                  className="hover:bg-black hover:text-white"
-                >
-                  1
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink
-                  href="#"
-                  className="hover:bg-black hover:text-white"
-                >
-                  2
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext
-                  href="#"
-                  className="hover:bg-black hover:text-white"
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div> */}
       </div>
 
       <div className="flex flex-col w-1/3 container space-y-4">
-        <h1 className="font-bold text-lg">Doctor Catagory</h1>
-
-        <div className="flex flex-col space-y-2">
-          <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
-          </div>
-        </div>
+        <h1 className="font-bold text-lg">Specialization</h1>
+        <RadioGroup
+          defaultValue="comfortable"
+          onValueChange={(value) => handleChange("specialization", value)}
+        >
+          {specialization.map((sp, index) => (
+            <div key={index} className="flex items-center space-x-2">
+              <RadioGroupItem value={sp._id} id="r1" />
+              <Label htmlFor="r1">{sp.name}</Label>
+            </div>
+          ))}
+        </RadioGroup>
 
         <h1 className="font-bold text-lg">Slot Availability</h1>
 
-        <div className="flex flex-col space-y-2">
+        <RadioGroup
+          defaultValue="comfortable"
+          onValueChange={(value) => handleChange("timerange", value)}
+        >
           <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
+            <RadioGroupItem value="all" id="r1" />
+            <Label htmlFor="r1">All</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
+            <RadioGroupItem value="today" id="r2" />
+            <Label htmlFor="r2">Today</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
+            <RadioGroupItem value="week" id="r3" />
+            <Label htmlFor="r3">This week</Label>
           </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
-          </div>
-        </div>
+        </RadioGroup>
 
         <h1 className="font-bold text-lg">Fee</h1>
 
         <div className="flex flex-col space-y-2">
-          <h1 className="font-bold text-lg">100-500</h1>
+          <h1 className="font-bold text-lg">
+            {search.feeLower}-{search.feeUpper}
+          </h1>
 
           <Slider
-            defaultValue={[50]}
-            max={100}
-            step={1}
+            min={0}
+            max={1000}
+            value={[search.feeUpper]}
             className="w-[200px]"
+            step={100}
+            onValueChange={(value) => {
+              setSearch({
+                ...search,
+                feeUpper: value[0],
+              });
+            }}
           />
         </div>
 
         <h1 className="font-bold text-lg">Review</h1>
 
-        <div className="flex flex-col space-y-2">
+        <RadioGroup
+          defaultValue="comfortable"
+          onValueChange={(value) => handleChange("rating", value)}
+        >
           <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
+            <RadioGroupItem value="5" id="r1" />
+            <Label htmlFor="r1">5 star</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
+            <RadioGroupItem value="4" id="r2" />
+            <Label htmlFor="r2">4+ star</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
+            <RadioGroupItem value="3" id="r3" />
+            <Label htmlFor="r3">3+ star</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
+            <RadioGroupItem value="2" id="r3" />
+            <Label htmlFor="r3">2+ star</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms
-            </label>
+            <RadioGroupItem value="1" id="r3" />
+            <Label htmlFor="r3">1+ star</Label>
           </div>
-        </div>
+        </RadioGroup>
       </div>
     </div>
   );
