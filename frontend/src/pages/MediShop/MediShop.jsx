@@ -193,6 +193,49 @@ const MediShop = () => {
           ))}
         </RadioGroup>
 
+        <h1 className="font-bold text-lg">Slot Availability</h1>
+
+        <RadioGroup
+          defaultValue="comfortable"
+          value={search.timerange}
+          onValueChange={(value) => handleChange("timerange", value)}
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="all" id="r1" />
+            <Label htmlFor="r1">All</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="today" id="r2" />
+            <Label htmlFor="r2">Today</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="week" id="r3" />
+            <Label htmlFor="r3">This week</Label>
+          </div>
+        </RadioGroup>
+
+        <h1 className="font-bold text-lg">Fee</h1>
+
+        <div className="flex flex-col space-y-2">
+          <h1 className="font-bold text-lg">
+            {search.feeLower}-{search.feeUpper}
+          </h1>
+
+          <Slider
+            min={0}
+            max={1000}
+            value={[search.feeUpper]}
+            className="w-[200px]"
+            step={100}
+            onValueChange={(value) => {
+              setSearch({
+                ...search,
+                feeUpper: value[0],
+              });
+            }}
+          />
+        </div>
+
         
       </div>
     </div>
