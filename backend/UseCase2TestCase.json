@@ -61,5 +61,36 @@
            }
 
         ]
+    },
+    {
+        "usecase":{
+            "name":"login",
+            "scenario": "When a user wants to login to the website ",
+            "actors":"User",
+            "steps"  :[
+                "user have to give email , password and role"
+            ]
+        },
+        "testcases":[
+            {
+                "name":"Valid Log in",
+                "description":"varify that user successfully log in to the website ",
+                "input":{
+                    "Credentials":{
+                        "Email":"valid Email",
+                        "password":"valid Password",
+                        "Role":"Doctor, User, Admin"
+                    }
+                },
+                "expected":{
+                    "outcome":"Successful Log in",
+                    "status":"Log in approved"
+                }
+
+            },
+            {
+                
+            }
+        ]
     }
 ]
