@@ -167,27 +167,27 @@ const Home = () => {
         <div className="w-1/2">
           <Accordion type="single" collapsible>
             <AccordionItem className="hover:scale-105 transition-transform" value="item-1">
-              <AccordionTrigger >Is it accessible?</AccordionTrigger>
+              <AccordionTrigger >Is the platform free of charge?</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                Yes. you can use it for free currently as the platform in in developing phase
               </AccordionContent>
             </AccordionItem>
             <AccordionItem className="hover:scale-105 transition-transform" value="item-2">
-              <AccordionTrigger >Is it accessible?</AccordionTrigger>
+              <AccordionTrigger >What are the supported platforms for transaction?</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                Currently, it is free of charges. But, we are planning to use Bkash, Nagad as transaction agent
               </AccordionContent>
             </AccordionItem>
             <AccordionItem className="hover:scale-105 transition-transform" value="item-3">
-              <AccordionTrigger >Is it accessible?</AccordionTrigger>
+              <AccordionTrigger >What is the role for a medilab agent?</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                They can provide the tests available and customers can take appointment to take the test
               </AccordionContent>
             </AccordionItem>
             <AccordionItem className="hover:scale-105 transition-transform" value="item-4">
-              <AccordionTrigger >Is it accessible?</AccordionTrigger>
+              <AccordionTrigger >Is there any online delivery system on medicine purchase?</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                Currently, there is no option for delivery. But we will add the service hopefully.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
