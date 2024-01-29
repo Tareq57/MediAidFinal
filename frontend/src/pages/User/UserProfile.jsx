@@ -18,6 +18,7 @@ const UserProfile = () => {
   const handleClick = (e) => {
       if (e.currentTarget.id == "Dash") setNavClass("DashBoard");
       else if (e.currentTarget.id == "Docs") setNavClass("Doctors");
+      // else if (e.currentTarget.id == "Medis") setNavClass("MediShop");
       else if (e.currentTarget.id == "Appoints") setNavClass("Appointments");
       else if (e.currentTarget.id == "Reps") setNavClass("Reports");
       else if (e.currentTarget.id == "Sets") setNavClass("Settings");
