@@ -37,7 +37,8 @@ export const getSingleDoctor = async(req, res) => {
         let avgStars = 0
         for (let i = 0; i < doctorReviews.length; i++)
             avgStars += doctorReviews[i].rating
-        avgStars /= doctorReviews.length
+        if(doctorReviews.length > 0)    
+            avgStars /= doctorReviews.length
 
         const currDate = new Date()
         const oid = new ObjectId(id)
@@ -99,7 +100,8 @@ export const searchDoctors = async(req, res) => {
             let avgStars = 0
             for (let i = 0; i < doctorReviews.length; i++)
                 avgStars += doctorReviews[i].rating
-            avgStars /= doctorReviews.length
+            if(doctorReviews.length > 0)
+                avgStars /= doctorReviews.length
 
             const currDate = new Date()
             const id = doctors[i]._id
