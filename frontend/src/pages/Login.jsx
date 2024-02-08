@@ -26,10 +26,12 @@ import {
 import uploadImagetoCloudinary from "@/utils/uploadCloudinary";
 import { Navigate } from "react-router-dom";
 import Loader from "@/assets/gifs/loader.gif";
+import { useToast } from "@/components/ui/use-toast";
 
 const Login = () => {
   const { state, setState } = useContext(AuthContext);
-  const [ loading, setLoading ] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const {toast} = useToast();
 
   const [loginData, setloginData] = React.useState({
     email: "",
@@ -88,6 +90,11 @@ const Login = () => {
     setState({ user: result.data, role: result.role, token: result.token });
 
     navigate("/doctors");
+
+    toast({
+      title: "Logged in successfully",
+      description: "You have successfully logged in",
+    })
   };
 
   const handleSignup = async (e) => {
