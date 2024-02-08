@@ -89,6 +89,11 @@ const Login = () => {
     const data = await uploadImagetoCloudinary(file);
     setLoading(false);
 
+    toast({
+      title: "Image Uploaded Successfully",
+      description: "Image upload done, you can now sign up",
+    });
+
     console.log(data.url);
     setsignupData({ ...signupData, photo: data.url });
   };
@@ -179,7 +184,7 @@ const Login = () => {
             <TabsTrigger value="SignUp">SignUp</TabsTrigger>
           </TabsList>
           <TabsContent value="Login" className="w-full">
-            <Card className="h-[550px]">
+            <Card className="h-[750px]">
               <CardHeader>
                 <CardTitle>Login</CardTitle>
                 <CardDescription>
@@ -217,7 +222,7 @@ const Login = () => {
             </Card>
           </TabsContent>
           <TabsContent value="SignUp" className="w-full">
-            <Card className="h-[700px]">
+            <Card className="h-[750px]">
               <CardHeader>
                 <CardTitle>SignUp</CardTitle>
                 <CardDescription>
