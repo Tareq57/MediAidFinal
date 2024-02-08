@@ -27,11 +27,13 @@ import uploadImagetoCloudinary from "@/utils/uploadCloudinary";
 import { Navigate } from "react-router-dom";
 import Loader from "@/assets/gifs/loader.gif";
 import { useToast } from "@/components/ui/use-toast";
+import { useEffect } from "react";
+import { set } from "date-fns";
 
 const Login = () => {
   const { state, setState } = useContext(AuthContext);
   const [loading, setLoading] = React.useState(false);
-  const {toast} = useToast();
+  const { toast } = useToast();
 
   const [loginData, setloginData] = React.useState({
     email: "",
@@ -45,7 +47,36 @@ const Login = () => {
     photo: null,
     gender: "",
     role: "",
+    fee: "",
+    specialization: "",
   });
+
+  const [specialization, setSpecialization] = React.useState([]);
+
+  useEffect(() => {
+    const fectchSp = async () => {
+      const res1 = await fetch(`${BASE_URL}/specialization`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const result1 = await res1.json();
+
+      console.log(result1);
+
+      setSpecialization(result1.data);
+    };
+
+    fectchSp();
+  }, []);
+
+  useEffect(() => {
+    if(signupData.role == "patient"){
+      setsignupData({...signupData, fee: ""})
+    }
+  }, [signupData.role]);
 
   const handleSelectChange = (name, value) => {
     setsignupData({ ...signupData, [name]: value });
@@ -61,6 +92,8 @@ const Login = () => {
     console.log(data.url);
     setsignupData({ ...signupData, photo: data.url });
   };
+
+  console.log(signupData);
 
   const navigate = useNavigate();
 
@@ -94,7 +127,7 @@ const Login = () => {
     toast({
       title: "Logged in successfully",
       description: "You have successfully logged in",
-    })
+    });
   };
 
   const handleSignup = async (e) => {
@@ -171,7 +204,7 @@ const Login = () => {
             </Card>
           </TabsContent>
           <TabsContent value="SignUp" className="w-full">
-            <Card className="h-[600px]">
+            <Card className="h-[700px]">
               <CardHeader>
                 <CardTitle>SignUp</CardTitle>
                 <CardDescription>
@@ -242,6 +275,76 @@ const Login = () => {
                     <SelectContent>
                       <SelectItem value="male">Male</SelectItem>
                       <SelectItem value="female">Female</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="new"
+                    className={`${
+                      signupData.role != "doctor"
+                        ? "text-gray-400"
+                        : "text-black"
+                    }`}
+                  >
+                    Fee
+                  </Label>
+                  <Input
+                    type="text"
+                    value={signupData.fee}
+                    onChange={(e) =>
+                      setsignupData({ ...signupData, fee: e.target.value })
+                    }
+                    placeholder={
+                      signupData.role != "doctor" ? "" : "Enter fee in taka"
+                    }
+                    readOnly={signupData.role != "doctor"}
+                    className={`border ${
+                      signupData.role != "doctor"
+                        ? "border-gray"
+                        : "border-black"
+                    }`}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="new"
+                    className={`${
+                      signupData.role != "doctor"
+                        ? "text-gray-400"
+                        : "text-black"
+                    }`}
+                  >
+                    Specialization
+                  </Label>
+                  <Select
+                    name="specialization"
+                    
+                    onValueChange={(value) =>
+                      setsignupData({ ...signupData, sp_id: value._id })
+                    }
+                    className={`border ${
+                      signupData.role != "doctor"
+                        ? "border-gray-400"
+                        : "border-black"
+                    }`}
+                  >
+                    <SelectTrigger>
+                      <SelectValue
+                        placeholder={
+                          signupData.role != "doctor"
+                            ? ""
+                            : "Select a Specialization"
+                        }
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {signupData.role == "doctor" &&
+                        specialization.map((sp, index) => (
+                          <SelectItem key={index} value={sp}>
+                            {sp.name}
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                 </div>
