@@ -73,8 +73,8 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
-    if(signupData.role == "patient"){
-      setsignupData({...signupData, fee: ""})
+    if (signupData.role == "patient") {
+      setsignupData({ ...signupData, fee: "" });
     }
   }, [signupData.role]);
 
@@ -115,7 +115,16 @@ const Login = () => {
     const result = await res.json();
 
     if (!res.ok) {
+      toast({
+        title: "Login Unsuccessful",
+        description: "Enter correct email and password to login",
+      });
       throw new Error(result.message);
+    } else {
+      toast({
+        title: "Logged in successfully",
+        description: "You have successfully logged in",
+      });
     }
 
     console.log(result);
@@ -123,11 +132,6 @@ const Login = () => {
     setState({ user: result.data, role: result.role, token: result.token });
 
     navigate("/doctors");
-
-    toast({
-      title: "Logged in successfully",
-      description: "You have successfully logged in",
-    });
   };
 
   const handleSignup = async (e) => {
@@ -145,7 +149,16 @@ const Login = () => {
     const result = await res.json();
 
     if (!res.ok) {
+      toast({
+        title: "Some Error Occured",
+        description: "Please fill up all fields correctly and try again",
+      });
       throw new Error(result.message);
+    } else {
+      toast({
+        title: "Signed up successfully",
+        description: "Signup successfull, please login to continue",
+      });
     }
 
     console.log(result);
@@ -319,7 +332,6 @@ const Login = () => {
                   </Label>
                   <Select
                     name="specialization"
-                    
                     onValueChange={(value) =>
                       setsignupData({ ...signupData, sp_id: value._id })
                     }

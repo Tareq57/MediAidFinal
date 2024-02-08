@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import Prescription from "@/components/Prescription/Prescription";
+import MediShop from "@/pages/MediShop/MediShop";
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -30,6 +31,7 @@ const Routers = () => {
         <Route path="/user" element={<UserDoctorProfile />} />
       )}
       <Route path="/prescription" element={<Prescription />} />
+      <Route path="/medishop" element={<MediShop />} />
     </Routes>
   );
 };
