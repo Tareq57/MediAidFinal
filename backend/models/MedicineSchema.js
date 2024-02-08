@@ -7,7 +7,14 @@ const medicineSchema = new mongoose.Schema(
         category: { type: String, required: true},
         manufacturer: {type: String, required: true},
         image: {type: String},
-        overview: {type: String}
+        overview: {type: String},
+        review: [
+            {
+                user: {type: mongoose.Types.ObjectId, ref: "User"},
+                rating: {type: Number, required: true},
+                review: {type: String, required: true}
+            }
+        ]
     }
 )
 

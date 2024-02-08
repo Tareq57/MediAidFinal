@@ -209,12 +209,16 @@ export const updateTimeSlot = async(req, res) => {
 export const getTimeSlotsById = async(req, res) => {
     let id = req.params.id
     id = new ObjectId(id)
+    let date = new Date(req.query.date)
+    date.setDate(date.getDate() + 1)
+    // console.log(date)
     try {
-        const currDate = new Date()
-        const slots = await Slot.find({
-            doctor: id,
-            // date: {$gte: currDate}
-        }).sort({date: -1})
+        let obj = {
+            doctor: id
+        }
+        if(req.query.date != undefined && req.query.date != null)
+            obj.date = date
+        const slots = await Slot.find(obj).sort({date: -1})
 
         for(let i=0; i<slots.length; i++) {
             const appointments = await Appointment.find({

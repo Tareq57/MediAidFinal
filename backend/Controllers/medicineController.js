@@ -26,7 +26,9 @@ export const searchMedicine = async (req, res) => {
         if (type) obj.push({type: {$regex: type, $options: "i"}})
         if (manufacturer) obj.push({manufacturer: {$regex: manufacturer, $options: "i"}})
 
-        const medicine = await Medicine.find({ $and: obj })
+        let medicine = null
+        if (obj.length == 0) medicine = await Medicine.find()
+        else medicine = await Medicine.find({ $and: obj })
         res.status(200).json({success: true, data: medicine})
     } catch (err) {
         console.log(err)
@@ -41,7 +43,7 @@ export const prescriptionSearch = async (req, res) => {
         const meds = appt.prescription.prescribedMeds
         const results = []
         for( let i = 0; i < meds.length; i++) {
-            let curr = await Medicine.findOne({name: meds[i].medicineName}).select('-overview')
+            let curr = await Medicine.findOne({name: meds[i].medicineName})
             results.push(curr)
         }
         console.log(results)
