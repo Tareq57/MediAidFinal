@@ -1,5 +1,6 @@
 import Medicine from "../models/MedicineSchema.js"
 import Appointment from "../models/AppointmentSchema.js"
+import MedReview from "../models/MedReviewSchema.js"
 
 export const createNewMedicine = async (req, res) => {
     const newMedicine = new Medicine(req.body)
@@ -48,6 +49,87 @@ export const prescriptionSearch = async (req, res) => {
         }
         console.log(results)
         res.status(200).json({success: true, data: results})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Internal Server Error"})
+    }
+}
+
+export const createReview = async (req, res) => {
+    const medid = req.params.medid
+    const user = req.userId
+    const reviewText = req.body.reviewText
+    const rating = req.body.rating
+    console.log(medid)
+    console.log(user)
+    console.log(reviewText)
+    console.log(rating)
+
+    try {
+        const newReview = new MedReview({
+            medicine: medid,
+            user: user,
+            reviewText: reviewText,
+            rating: rating
+        })
+        await newReview.save()
+        console.log(newReview)
+
+        const medicine = await Medicine.findOne({_id: medid})
+        let avg = medicine.avgStars
+        let count = medicine.reviewCount
+        let newAvg = (avg * count + rating) / (count + 1)
+        count += 1
+        medicine.avgStars = newAvg
+        medicine.reviewCount = count
+        await medicine.save()
+
+        res.status(200).json({success: true, data: newReview})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Internal Server Error"})
+    }
+}
+
+export const deleteReview = async (req, res) => {
+    const revid = req.params.revid
+    try {
+        const review = await MedReview.findOne({_id: revid})
+        const medid = review.medicine
+        const rating = review.rating
+
+        const medicine = await Medicine.findOne({_id: medid})
+        let avg = medicine.avgStars
+        let count = medicine.reviewCount
+        
+        let newAvg = 0
+        if(count > 1) newAvg = (avg * count - rating) / (count - 1)
+        else newAvg = 0
+        count -= 1
+        
+        medicine.avgStars = newAvg
+        medicine.reviewCount = count
+        await medicine.save()
+        await MedReview.deleteOne({_id: revid})
+        res.status(200).json({success: true, msg: "Review Deleted"})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Internal Server Error"})
+    }
+}
+
+export const fetchReviews = async (req, res) => {
+    const medid = req.query.medid
+    const user = req.query.user
+    let obj = []
+    if(medid) obj.push({medicine: medid})
+    if(user) obj.push({user: user})
+
+    try {
+        let reviews = null
+        if(obj.length == 0) reviews = await MedReview.find()
+        else reviews = await MedReview.find({$and: obj})
+        res.status(200).json({success: true, data: reviews})
     } catch(err) {
         console.log(err)
         res.status(500).json({success: false, msg: "Internal Server Error"})

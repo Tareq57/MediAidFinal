@@ -8,13 +8,8 @@ const medicineSchema = new mongoose.Schema(
         manufacturer: {type: String, required: true},
         image: {type: String},
         overview: {type: String},
-        review: [
-            {
-                user: {type: mongoose.Types.ObjectId, ref: "User"},
-                rating: {type: Number, required: true},
-                review: {type: String, required: true}
-            }
-        ]
+        avgStars: {type: Number, default: 0},
+        reviewCount: {type: Number, default: 0},
     }
 )
 
