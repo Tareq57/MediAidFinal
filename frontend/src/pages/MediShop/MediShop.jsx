@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { PiClockCountdownFill } from "react-icons/pi";
-import { TbCalendarStats } from "react-icons/tb";
-import { TbDeviceWatchStats2 } from "react-icons/tb";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Slider } from "@/components/ui/slider";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import { BASE_URL } from "@/config";
-import { Link } from "react-router-dom";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { set } from "date-fns";
 import AvgStar from "@/assets/images/avgstar.png";
 import { Badge } from "@/components/ui/badge";
 import CategoryIcon from "@/assets/images/category.svg";
@@ -27,7 +18,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import BlueIcon from "@/assets/images/blue_icon.svg";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const MediShop = () => {
   const { state, setState } = useContext(AuthContext);
@@ -36,6 +36,10 @@ const MediShop = () => {
   // const [specialization, setSpecialization] = useState([]);
 
   const [medicines, setMedicines] = useState([]);
+
+  const [appointments, setAppointments] = useState([]);
+
+  const [addedappointments, setAddedAppointments] = useState([]);
 
   const [search, setSearch] = useState({
     name: "",
@@ -89,7 +93,7 @@ const MediShop = () => {
 
       const result1 = await res1.json();
 
-      console.log(result1.data);
+      // console.log(result1.data);
       setMedicines(result1.data);
     };
 
@@ -98,9 +102,11 @@ const MediShop = () => {
     }
   }, [search]);
 
+  console.log(addedappointments);
+
   useEffect(() => {
     const fetchAppointments = async () => {
-      const res1 = await fetch(`${BASE_URL}/medicine/presc/:apptid`, {
+      const res1 = await fetch(`${BASE_URL}/appointment`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +120,8 @@ const MediShop = () => {
 
       const result1 = await res1.json();
 
-      console.log(result1.appointments);
+      console.log(result1);
+      setAppointments(result1.appointments);
       // setMedicines(result1.data);
     };
 
@@ -123,24 +130,61 @@ const MediShop = () => {
     }
   }, []);
 
-  // const handleChange = (name, value) => {
-  //   if (name == "feeUpper") {
-  //     setSearch({ ...search, feeLower: 0 });
-  //     setSearch({ ...search, [name]: value[0] });
-  //   } else setSearch({ ...search, [name]: value });
-  // };
-  // console.log(search);
-
-  // console.log(state);
-
   return (
     <div className="mx-[180px] mt-[40px] flex space-x-10">
       <div className="w-1/5 flex-col space-y-2">
         <h1 className="text-lg font-bold">Prescription Corner</h1>
         <hr className="border border-black" />
+        <div className="flex space-x-2 mt-5">
+          {appointments.map(
+            (app, index) =>
+              addedappointments.includes(app._id) && (
+                <Card className="w-full">
+                  <CardHeader>
+                    <CardTitle className="text-xl">{app.doctor.name}</CardTitle>
+                    <CardDescription className="text-xs">
+                      {new Date(app.slot.date).toUTCString()}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex-col space-y-2">
+                      {app.prescription.prescribedMeds.map((med, index) => (
+                        <div className="flex items-center space-x-2">
+                          <Checkbox />
+                          <label
+                            htmlFor="terms"
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          >
+                            {med.medicineName}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button
+                      type="submit"
+                      className="w-full"
+                      onClick={() => {
+                        setAddedAppointments((prevAppointments) =>
+                          prevAppointments.filter(
+                            (appointment) => appointment !== app._id
+                          )
+                        );
+                      }}
+                    >
+                      Remove Prescription
+                    </Button>
+                  </CardFooter>
+                </Card>
+              )
+          )}
+        </div>
         <Sheet>
           <SheetTrigger asChild>
-            <Button className="w-full">Add Prescription</Button>
+            {addedappointments.length == 0 && (
+              <Button className="w-full">View Prescription</Button>
+            )}
           </SheetTrigger>
           <SheetContent side="left">
             <SheetHeader>
@@ -149,25 +193,53 @@ const MediShop = () => {
                 Click Add to search for the medicines
               </SheetDescription>
             </SheetHeader>
-            {/* <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  Name
-                </Label>
-                <Input id="name" value="Pedro Duarte" className="col-span-3" />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="username" className="text-right">
-                  Username
-                </Label>
-                <Input id="username" value="@peduarte" className="col-span-3" />
-              </div> 
-            </div> */}
-
+            <div className="flex space-x-2 mt-5">
+              {appointments.map(
+                (app, index) =>
+                  addedappointments.includes(app._id) == false && (
+                    <Card className="w-full">
+                      <CardHeader>
+                        <CardTitle className="text-xl">
+                          {app.doctor.name}
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                          {new Date(app.slot.date).toUTCString()}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex flex-row flex-wrap space-x-3">
+                          {app.prescription.prescribedMeds.map((med, index) => (
+                            <div className="flex">
+                              <img
+                                src={BlueIcon}
+                                className="w-[20px] h-[20px]"
+                                alt=""
+                              />
+                              <p className="text-sm">{med.medicineName}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                      <CardFooter>
+                        <Button
+                          type="submit"
+                          className="w-full"
+                          onClick={() => {
+                            setAddedAppointments([
+                              ...addedappointments,
+                              app._id,
+                            ]);
+                          }}
+                        >
+                          Add Prescription
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  )
+              )}
+            </div>
             <SheetFooter>
-              <SheetClose asChild>
-                <Button type="submit">Save changes</Button>
-              </SheetClose>
+              <SheetClose asChild></SheetClose>
             </SheetFooter>
           </SheetContent>
         </Sheet>
@@ -222,24 +294,6 @@ const MediShop = () => {
                   <img src={ShopIcon} className="w-[20px] h-[20px]" alt="" />
                   <p className="font-bold text-xs pt-1">{med.manufacturer}</p>
                 </div>
-
-                {/* <div className="flex my-[10px]">
-                <div className="flex mr-[10px]">
-                <PiClockCountdownFill className="text-orange-400 " />
-                <p className="text-xs"> {doctor.patientCount} Patients</p>
-                </div>
-                <div className="flex mx-[10px]">
-                <TbCalendarStats className="text-orange-400 " />
-                <p className="text-xs">
-                {" "}
-                Joined on {doctor.createdAt.split("T")[0]}{" "}
-                </p>
-                </div>
-                <div className="flex mx-[10px]">
-                <TbDeviceWatchStats2 className="text-orange-400 " />
-                <p className="text-xs"> {doctor.slotCount} slots available</p>
-                </div>
-              </div> */}
                 <hr className="border-gray-200" />
                 <div className="flex items-center justify-between my-[10px]">
                   <div className="flex space-x-1 items-center justify-between">
