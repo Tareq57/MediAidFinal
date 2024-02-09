@@ -19,6 +19,8 @@ import MyDoctors from "@/pages/PatientProfile/MyDoctors";
 import MyPatients from "@/pages/DoctorProfile/MyPatients";
 import MyReports from "@/pages/PatientProfile/MyReports";
 import MySlots from "@/pages/DoctorProfile/MySlots";
+import AllSlots from "@/pages/DoctorProfile/AllSlots";
+import AddSlots from "@/pages/DoctorProfile/AddSlots";
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -34,7 +36,8 @@ const Routers = () => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="patients" element={<MyPatients />} />
           <Route path="appointments" element={<MyAppointments />} />
-          <Route path="slots" element={<MySlots />} />
+          <Route path="allslots" element={<AllSlots />} />
+          <Route path="addslots" element={<AddSlots />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       )}

@@ -76,7 +76,7 @@ const MyAppointments = () => {
                 }}
                 className="w-full"
               >
-                Add Prescription
+                {state.user.role === "doctor" ? "Add Prescription" : "View Prescription"}
               </Button>
             </div>
           </div>

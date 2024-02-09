@@ -8,6 +8,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import AuthContext from "@/context/AuthContext";
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Label } from "@/components/ui/label";
 
 const DoctorSideBar = () => {
   const { state } = useContext(AuthContext);
@@ -80,23 +81,47 @@ const DoctorSideBar = () => {
         </div>
       </NavLink>
 
+      <hr className="border border-black" />
+
+      <Label className="font-bold text-base text-gray-400 pl-2">My Slots</Label>
+
       <NavLink
-        to="slots"
+        to="allslots"
         className={(navClass) =>
-          navClass.isActive ? setNavClass("slots") : null
+          navClass.isActive ? setNavClass("allslots") : null
         }
       >
         <div
           className={`flex items-center space-x-2   ${
-            navClass == "slots"
+            navClass == "allslots"
               ? "bg-orange-500 text-white"
               : "hover:bg-gray-100"
           } p-2 rounded-full cursor-pointer`}
         >
           <TbReport className="w-[25px] h-[25px]" />
-          <h1 className="font-semibold">My Slots</h1>
+          <h1 className="font-semibold">All Slots</h1>
         </div>
       </NavLink>
+
+      <NavLink
+        to="addslots"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("addslots") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "addslots"
+              ? "bg-orange-500 text-white"
+              : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <TbReport className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">Add Slots</h1>
+        </div>
+      </NavLink>
+
+      <hr className="border border-black" />
 
       <NavLink
         to="settings"
