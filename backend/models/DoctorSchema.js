@@ -35,6 +35,10 @@ const DoctorSchema = new mongoose.Schema({
     enum: ["pending", "approved", "cancelled"],
     default: "approved", //TODO: Change to pending
   },
+
+  avgStars: { type: Number, default: 0 },
+  reviewCount: { type: Number, default: 0 },
+  patientCount: { type: Number, default: 0 },
 },
 { timestamps: true }
 );
