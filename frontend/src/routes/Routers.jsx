@@ -54,7 +54,7 @@ const Routers = () => {
       )}
       <Route path="/prescription" element={<Prescription />} />
       <Route path="/medishop" element={<MediShop />} />
-      <Route path="/medishop/:medid" element={<MedicineDetails />}>
+      <Route path="/medicine/:medid" element={<MedicineDetails />}>
         <Route path="overview" element={<Overview />} />
         <Route path="reviews" element={<MedReview />} />
       </Route>

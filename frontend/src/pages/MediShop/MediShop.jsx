@@ -56,7 +56,7 @@ const MediShop = () => {
   });
 
   const handleViewClick = (med) => {
-    navigate(`/medishop/${med._id}/overview`);
+    navigate(`/medicine/${med._id}/overview`);
   };
 
   const handleChange = (key, value) => {
@@ -112,8 +112,10 @@ const MediShop = () => {
     const fetchMedicines = async () => {
       let params = {};
 
-      if (search.searchBy == "category") params.category = search.value;
-      else if (search.searchBy == "name") params.name = search.value;
+      if (search.searchBy == "category" && search.value != "")
+        params.category = search.value;
+      else if (search.searchBy == "name" && search.value != "")
+        params.name = search.value;
 
       const queryString = new URLSearchParams(params).toString();
 
@@ -164,7 +166,7 @@ const MediShop = () => {
   }, []);
 
   return (
-    <div className="mx-[140px] mt-[40px] flex space-x-10">
+    <div className="mx-[140px] mt-[40px] flex space-x-10 justify-between">
       <div className="w-1/5 flex-col space-y-2">
         <h1 className="text-lg font-bold">Prescription Corner</h1>
         <hr className="border border-black" />
@@ -221,10 +223,22 @@ const MediShop = () => {
               )
           )}
         </div>
-        <Sheet open={opensheet} onOpenChange={(value)=>{setOpenSheet(value);}}>
+        <Sheet
+          open={opensheet}
+          onOpenChange={(value) => {
+            setOpenSheet(value);
+          }}
+        >
           <SheetTrigger asChild>
             {addedappointments.length == 0 && (
-              <Button onClick={()=>{setOpenSheet(true)}} className="w-full">View Prescription</Button>
+              <Button
+                onClick={() => {
+                  setOpenSheet(true);
+                }}
+                className="w-full"
+              >
+                View Prescription
+              </Button>
             )}
           </SheetTrigger>
           <SheetContent side="left">
@@ -286,7 +300,7 @@ const MediShop = () => {
           </SheetContent>
         </Sheet>
       </div>
-      <div className="flex flex-col w-3/5">
+      <div className="flex flex-col w-3/5 min-h-[300px]">
         <div className="flex justify-between">
           <h1 className="font-bold text-3xl text">All Medicine</h1>
           {addedappointments.length == 0 && (
