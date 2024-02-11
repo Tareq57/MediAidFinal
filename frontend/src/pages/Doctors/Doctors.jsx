@@ -94,8 +94,6 @@ const Doctors = () => {
   };
   console.log(search);
 
-  // console.log(state);
-
   return (
     <div className="mx-[180px] mt-[40px] flex">
       <div className="flex flex-col w-2/3">
