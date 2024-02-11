@@ -4653,7 +4653,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Napa 500 mg\",\n    \"category\": \"Paracetamol\",\n    \"company\": \"Beximco Pharmaceuticals Ltd.\",\n    \"overview\": \"Indications of Napa 500 mg\\n\\nNapa 500 mg is indicated for fever, common cold and influenza, headache, toothache, earache, bodyache, myalgia, neuralgia, dysmenorrhoea, sprains, colic pain, back pain, post-operative pain, postpartum pain, inflammatory pain and post vaccination pain in children. It is also indicated for rheumatic & osteoarthritic pain and stiffness of joints.\\nTheropeutic Class\\n\\nNon opioid analgesics\\nPharmacology\\n\\nNapa 500 mg has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg (Acetaminophen) is thought to act primarily in the CNS, increasing the pain threshold by inhibiting both isoforms of cyclooxygenase, COX-1, COX-2, and COX-3 enzymes involved in prostaglandin (PG) synthesis. Napa 500 mg is a para aminophenol derivative, has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg is one of the most widely used, safest and fast acting analgesic. It is well tolerated and free from various side effects of aspirin.\\nDosage & Administration of Napa 500 mg\\nTablet:\\n\\n    Adult: 1-2 tablets every 4 to 6 hours up to a maximum of 4 gm (8 tablets) daily.\\n    Children (6-12 years): ½ to 1 tablet 3 to 4 times daily. For long term treatment it is wise not to exceed the dose beyond 2.6 gm/day.\\n\\nExtended Release Tablet:\\n\\n    Adults & Children over 12 years: Two tablets, swallowed whole, every 6 to 8 hours (maximum of 6 tablets in any 24 hours).The tablet must not be crushed.\\n\\nSyrup/Suspension:\\n\\n    Children under 3 months: 10 mg/kg body weight (reduce to 5 mg/kg if jaundiced) 3 to 4 times daily.\\n    3 months to below 1 year: ½ to 1 teaspoonful 3 to 4 times daily.\\n    1-5 years: 1 -2 teaspoonful 3 to 4 times daily.\\n    6-12 years: 2-A teaspoonful 3 to 4 times daily.\\n    Adults: 4-8 teaspoonful 3 to 4 times daily.\\n\\nSuppository:\\n\\n    Children 3-12 months: 60-120 mg,4 times daily.\\n    Children 1-5 years: 125-250 mg 4 times daily.\\n    Children 6-12 years: 250-500 mg 4 times daily.\\n    Adults & children over 12 years: 0.5-1 gm 4 times daily.\\n\\nPaediatric Drop:\\n\\n    Children Upto 3 months: 0.5 ml (40 mg)\\n    4 to 11 months: 1.0 ml (80 mg)\\n    7 to 2 years: 1.5 ml (120 mg). Do not exceed more than 5 dose daily for a maximum of 5 days.\\n\\nNapa 500 mg tablet with actizorb technology: It dissolves up to five times faster than standard Napa 500 mg tablets. It is a fast acting and safe analgesic with marked antipyretic property. It is specially suitable for patients who, for any reason, can not tolerate aspirin or other analgesics.\\n\\n    Adults and children (aged 12 years and over): Take 1 to 2 Tablets every four to six hours as needed. Do not take more than 8 caplets in 24 hours.\\n    Children (7 to 11 years): Take ½-1 Tablet every four to six hours as needed. Do not take more than 4 caplets in 24 hours. Not recommended in children under 7 years.\\n\\nInteraction of Napa 500 mg\\n\\nPatients who have taken barbiturates, tricyclic antidepressants and alcohol may show diminished ability to metabolise large doses of Napa 500 mg. Alcohol can increase the hepatotoxicity of Napa 500 mg overdosage. Chronic ingestion of anticonvulsants or oral steroid contraceptives induce liver enzymes and may prevent attainment of therapeutic Napa 500 mg levels by increasing first-pass metabolism or clearance.\\nContraindications\\n\\nIt is contraindicated in known hypersensitivity to Napa 500 mg.\\nSide Effects of Napa 500 mg\\n\\nSide effects of Napa 500 mg are usually mild, though haematological reactions including thrombocytopenia, leucopenia, pancytopenia, neutropenia, and agranulocytosis have been reported. Pancreatitis, skin rashes, and other allergic reactions occur occasionally.\\nPregnancy & Lactation\\n\\nPregnancy category B according to USFDA. This drug should be used during pregnancy only if clearly needed\\nPrecautions & Warnings\\n\\nNapa 500 mg should be given with caution to patients with impaired kidney or liver function. Napa 500 mg should be given with care to patients taking other drugs that affect the liver.\\nOverdose Effects of Napa 500 mg\\n\\nSymptoms of Napa 500 mg overdose in the first 24 hours are pallor, nausea, vomiting, anorexia and abdominal pain. Liver damage may become apparent 12-48 hours after ingestion. Abnormalities of glucose metabolism and metabolic acidosis may occur.\\nStorage Conditions\\n\\nKeep in a dry place away from light and heat. Keep out of the reach of children.\\nDrug Classes\\n\\nNon opioid analgesics\\nMode Of Action\\n\\nNapa 500 mg has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg (Acetaminophen) is thought to act primarily in the CNS, increasing the pain threshold by inhibiting both isoforms of cyclooxygenase, COX-1, COX-2, and COX-3 enzymes involved in prostaglandin (PG) synthesis. Napa 500 mg is a para aminophenol derivative, has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg is one of the most widely used, safest and fast acting analgesic. It is well tolerated and free from various side effects of aspirin.\\nPregnancy\\n\\nPregnancy category B according to USFDA. This drug should be used during pregnancy only if clearly needed.  Napa 500 mg is excreted in breast milk. Maternal ingestion of Napa 500 mg in normal therapeutic doses does not appear to present a risk to the nursing infant.\"\n}",
+							"raw": "{\n    \"name\": \"Napa 500 mg\",\n    \"type\": \"Tablet\",\n    \"category\": \"Paracetamol\",\n    \"manufacturer\": \"Beximco Pharmaceuticals Ltd.\",\n    \"image\": \"https://medeasy.health/_next/image?url=https%3A%2F%2Fcdn.medeasy.health%2Fmedia%2Fmedicines%2FIMG-20231023-WA0137.jpg&w=1920&q=75\",\n    \"overview\": \"Indications of Napa 500 mg\\n\\nNapa 500 mg is indicated for fever, common cold and influenza, headache, toothache, earache, bodyache, myalgia, neuralgia, dysmenorrhoea, sprains, colic pain, back pain, post-operative pain, postpartum pain, inflammatory pain and post vaccination pain in children. It is also indicated for rheumatic & osteoarthritic pain and stiffness of joints.\\nTheropeutic Class\\n\\nNon opioid analgesics\\nPharmacology\\n\\nNapa 500 mg has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg (Acetaminophen) is thought to act primarily in the CNS, increasing the pain threshold by inhibiting both isoforms of cyclooxygenase, COX-1, COX-2, and COX-3 enzymes involved in prostaglandin (PG) synthesis. Napa 500 mg is a para aminophenol derivative, has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg is one of the most widely used, safest and fast acting analgesic. It is well tolerated and free from various side effects of aspirin.\\nDosage & Administration of Napa 500 mg\\nTablet:\\n\\n    Adult: 1-2 tablets every 4 to 6 hours up to a maximum of 4 gm (8 tablets) daily.\\n    Children (6-12 years): ½ to 1 tablet 3 to 4 times daily. For long term treatment it is wise not to exceed the dose beyond 2.6 gm/day.\\n\\nExtended Release Tablet:\\n\\n    Adults & Children over 12 years: Two tablets, swallowed whole, every 6 to 8 hours (maximum of 6 tablets in any 24 hours).The tablet must not be crushed.\\n\\nSyrup/Suspension:\\n\\n    Children under 3 months: 10 mg/kg body weight (reduce to 5 mg/kg if jaundiced) 3 to 4 times daily.\\n    3 months to below 1 year: ½ to 1 teaspoonful 3 to 4 times daily.\\n    1-5 years: 1 -2 teaspoonful 3 to 4 times daily.\\n    6-12 years: 2-A teaspoonful 3 to 4 times daily.\\n    Adults: 4-8 teaspoonful 3 to 4 times daily.\\n\\nSuppository:\\n\\n    Children 3-12 months: 60-120 mg,4 times daily.\\n    Children 1-5 years: 125-250 mg 4 times daily.\\n    Children 6-12 years: 250-500 mg 4 times daily.\\n    Adults & children over 12 years: 0.5-1 gm 4 times daily.\\n\\nPaediatric Drop:\\n\\n    Children Upto 3 months: 0.5 ml (40 mg)\\n    4 to 11 months: 1.0 ml (80 mg)\\n    7 to 2 years: 1.5 ml (120 mg). Do not exceed more than 5 dose daily for a maximum of 5 days.\\n\\nNapa 500 mg tablet with actizorb technology: It dissolves up to five times faster than standard Napa 500 mg tablets. It is a fast acting and safe analgesic with marked antipyretic property. It is specially suitable for patients who, for any reason, can not tolerate aspirin or other analgesics.\\n\\n    Adults and children (aged 12 years and over): Take 1 to 2 Tablets every four to six hours as needed. Do not take more than 8 caplets in 24 hours.\\n    Children (7 to 11 years): Take ½-1 Tablet every four to six hours as needed. Do not take more than 4 caplets in 24 hours. Not recommended in children under 7 years.\\n\\nInteraction of Napa 500 mg\\n\\nPatients who have taken barbiturates, tricyclic antidepressants and alcohol may show diminished ability to metabolise large doses of Napa 500 mg. Alcohol can increase the hepatotoxicity of Napa 500 mg overdosage. Chronic ingestion of anticonvulsants or oral steroid contraceptives induce liver enzymes and may prevent attainment of therapeutic Napa 500 mg levels by increasing first-pass metabolism or clearance.\\nContraindications\\n\\nIt is contraindicated in known hypersensitivity to Napa 500 mg.\\nSide Effects of Napa 500 mg\\n\\nSide effects of Napa 500 mg are usually mild, though haematological reactions including thrombocytopenia, leucopenia, pancytopenia, neutropenia, and agranulocytosis have been reported. Pancreatitis, skin rashes, and other allergic reactions occur occasionally.\\nPregnancy & Lactation\\n\\nPregnancy category B according to USFDA. This drug should be used during pregnancy only if clearly needed\\nPrecautions & Warnings\\n\\nNapa 500 mg should be given with caution to patients with impaired kidney or liver function. Napa 500 mg should be given with care to patients taking other drugs that affect the liver.\\nOverdose Effects of Napa 500 mg\\n\\nSymptoms of Napa 500 mg overdose in the first 24 hours are pallor, nausea, vomiting, anorexia and abdominal pain. Liver damage may become apparent 12-48 hours after ingestion. Abnormalities of glucose metabolism and metabolic acidosis may occur.\\nStorage Conditions\\n\\nKeep in a dry place away from light and heat. Keep out of the reach of children.\\nDrug Classes\\n\\nNon opioid analgesics\\nMode Of Action\\n\\nNapa 500 mg has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg (Acetaminophen) is thought to act primarily in the CNS, increasing the pain threshold by inhibiting both isoforms of cyclooxygenase, COX-1, COX-2, and COX-3 enzymes involved in prostaglandin (PG) synthesis. Napa 500 mg is a para aminophenol derivative, has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg is one of the most widely used, safest and fast acting analgesic. It is well tolerated and free from various side effects of aspirin.\\nPregnancy\\n\\nPregnancy category B according to USFDA. This drug should be used during pregnancy only if clearly needed.  Napa 500 mg is excreted in breast milk. Maternal ingestion of Napa 500 mg in normal therapeutic doses does not appear to present a risk to the nursing infant.\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5263,6 +5263,99 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65c5f4a29cfc82e06406b346\",\n            \"medicine\": \"65c4cdaab99af264ac497f56\",\n            \"user\": {\n                \"_id\": \"65965da4e6b3eddbc75645ed\",\n                \"email\": \"p1@gmail.com\",\n                \"password\": \"$2a$10$5UtJRUzKma2yo3yLRZkaLO6Kk1zL7YV8XBmlQ9o.TLI5A1gxJgFoi\",\n                \"name\": \"patient 1\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"patient\",\n                \"gender\": \"male\",\n                \"__v\": 0\n            },\n            \"reviewText\": \"Good\",\n            \"rating\": 4,\n            \"createdAt\": \"2024-02-09T09:47:14.387Z\",\n            \"updatedAt\": \"2024-02-09T09:47:14.387Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch single medicine",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/medicine/fetchone/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"medicine",
+								"fetchone",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65c4cdaab99af264ac497f56"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/medicine/fetchone/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"medicine",
+										"fetchone",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "65c4cdaab99af264ac497f56"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5725"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"165d-9TjZPs0/9baPpI5z8DtB9FkaJng\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Feb 2024 15:27:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"65c4cdaab99af264ac497f56\",\n        \"name\": \"Napa 500 mg\",\n        \"type\": \"Tablet\",\n        \"category\": \"Paracetamol\",\n        \"manufacturer\": \"Beximco Pharmaceuticals Ltd.\",\n        \"image\": \"https://medeasy.health/_next/image?url=https%3A%2F%2Fcdn.medeasy.health%2Fmedia%2Fmedicines%2FIMG-20231023-WA0137.jpg&w=1920&q=75\",\n        \"overview\": \"Indications of Napa 500 mg\\n\\nNapa 500 mg is indicated for fever, common cold and influenza, headache, toothache, earache, bodyache, myalgia, neuralgia, dysmenorrhoea, sprains, colic pain, back pain, post-operative pain, postpartum pain, inflammatory pain and post vaccination pain in children. It is also indicated for rheumatic & osteoarthritic pain and stiffness of joints.\\nTheropeutic Class\\n\\nNon opioid analgesics\\nPharmacology\\n\\nNapa 500 mg has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg (Acetaminophen) is thought to act primarily in the CNS, increasing the pain threshold by inhibiting both isoforms of cyclooxygenase, COX-1, COX-2, and COX-3 enzymes involved in prostaglandin (PG) synthesis. Napa 500 mg is a para aminophenol derivative, has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg is one of the most widely used, safest and fast acting analgesic. It is well tolerated and free from various side effects of aspirin.\\nDosage & Administration of Napa 500 mg\\nTablet:\\n\\n    Adult: 1-2 tablets every 4 to 6 hours up to a maximum of 4 gm (8 tablets) daily.\\n    Children (6-12 years): ½ to 1 tablet 3 to 4 times daily. For long term treatment it is wise not to exceed the dose beyond 2.6 gm/day.\\n\\nExtended Release Tablet:\\n\\n    Adults & Children over 12 years: Two tablets, swallowed whole, every 6 to 8 hours (maximum of 6 tablets in any 24 hours).The tablet must not be crushed.\\n\\nSyrup/Suspension:\\n\\n    Children under 3 months: 10 mg/kg body weight (reduce to 5 mg/kg if jaundiced) 3 to 4 times daily.\\n    3 months to below 1 year: ½ to 1 teaspoonful 3 to 4 times daily.\\n    1-5 years: 1 -2 teaspoonful 3 to 4 times daily.\\n    6-12 years: 2-A teaspoonful 3 to 4 times daily.\\n    Adults: 4-8 teaspoonful 3 to 4 times daily.\\n\\nSuppository:\\n\\n    Children 3-12 months: 60-120 mg,4 times daily.\\n    Children 1-5 years: 125-250 mg 4 times daily.\\n    Children 6-12 years: 250-500 mg 4 times daily.\\n    Adults & children over 12 years: 0.5-1 gm 4 times daily.\\n\\nPaediatric Drop:\\n\\n    Children Upto 3 months: 0.5 ml (40 mg)\\n    4 to 11 months: 1.0 ml (80 mg)\\n    7 to 2 years: 1.5 ml (120 mg). Do not exceed more than 5 dose daily for a maximum of 5 days.\\n\\nNapa 500 mg tablet with actizorb technology: It dissolves up to five times faster than standard Napa 500 mg tablets. It is a fast acting and safe analgesic with marked antipyretic property. It is specially suitable for patients who, for any reason, can not tolerate aspirin or other analgesics.\\n\\n    Adults and children (aged 12 years and over): Take 1 to 2 Tablets every four to six hours as needed. Do not take more than 8 caplets in 24 hours.\\n    Children (7 to 11 years): Take ½-1 Tablet every four to six hours as needed. Do not take more than 4 caplets in 24 hours. Not recommended in children under 7 years.\\n\\nInteraction of Napa 500 mg\\n\\nPatients who have taken barbiturates, tricyclic antidepressants and alcohol may show diminished ability to metabolise large doses of Napa 500 mg. Alcohol can increase the hepatotoxicity of Napa 500 mg overdosage. Chronic ingestion of anticonvulsants or oral steroid contraceptives induce liver enzymes and may prevent attainment of therapeutic Napa 500 mg levels by increasing first-pass metabolism or clearance.\\nContraindications\\n\\nIt is contraindicated in known hypersensitivity to Napa 500 mg.\\nSide Effects of Napa 500 mg\\n\\nSide effects of Napa 500 mg are usually mild, though haematological reactions including thrombocytopenia, leucopenia, pancytopenia, neutropenia, and agranulocytosis have been reported. Pancreatitis, skin rashes, and other allergic reactions occur occasionally.\\nPregnancy & Lactation\\n\\nPregnancy category B according to USFDA. This drug should be used during pregnancy only if clearly needed\\nPrecautions & Warnings\\n\\nNapa 500 mg should be given with caution to patients with impaired kidney or liver function. Napa 500 mg should be given with care to patients taking other drugs that affect the liver.\\nOverdose Effects of Napa 500 mg\\n\\nSymptoms of Napa 500 mg overdose in the first 24 hours are pallor, nausea, vomiting, anorexia and abdominal pain. Liver damage may become apparent 12-48 hours after ingestion. Abnormalities of glucose metabolism and metabolic acidosis may occur.\\nStorage Conditions\\n\\nKeep in a dry place away from light and heat. Keep out of the reach of children.\\nDrug Classes\\n\\nNon opioid analgesics\\nMode Of Action\\n\\nNapa 500 mg has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg (Acetaminophen) is thought to act primarily in the CNS, increasing the pain threshold by inhibiting both isoforms of cyclooxygenase, COX-1, COX-2, and COX-3 enzymes involved in prostaglandin (PG) synthesis. Napa 500 mg is a para aminophenol derivative, has analgesic and antipyretic properties with weak anti-inflammatory activity. Napa 500 mg is one of the most widely used, safest and fast acting analgesic. It is well tolerated and free from various side effects of aspirin.\\nPregnancy\\n\\nPregnancy category B according to USFDA. This drug should be used during pregnancy only if clearly needed.  Napa 500 mg is excreted in breast milk. Maternal ingestion of Napa 500 mg in normal therapeutic doses does not appear to present a risk to the nursing infant.\",\n        \"avgStars\": 4,\n        \"reviewCount\": 1,\n        \"__v\": 0\n    }\n}"
 						}
 					]
 				}

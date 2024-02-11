@@ -135,3 +135,14 @@ export const fetchReviews = async (req, res) => {
         res.status(500).json({success: false, msg: "Internal Server Error"})
     }
 }
+
+export const fetchOneMedicine = async (req, res) => {
+    const id = req.params.id
+    try {
+        const medicine = await Medicine.findOne({_id: id})
+        res.status(200).json({success: true, data: medicine})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Internal Server Error"})
+    }
+}
