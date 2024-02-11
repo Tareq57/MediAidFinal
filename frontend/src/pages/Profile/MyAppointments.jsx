@@ -41,7 +41,6 @@ const MyAppointments = () => {
     }
   }, []);
 
-
   return (
     <div className="flex-col space-y-5">
       <h1 className="font-bold text-3xl">Appointments</h1>
@@ -52,13 +51,13 @@ const MyAppointments = () => {
           <div className="flex-col m-[20px] w-[250px] rounded-lg border border-slate-400 overflow-hidden">
             <div className="flex justify-center items-center">
               <img
-                src={app.user.photo}
+                src={state.role == "doctor" ? app.user.photo : app.doctor.photo}
                 className="h-[100px] w-[100px] aspect-square"
                 alt=""
               />
             </div>
             <div className="flex-col space-y-1 p-3">
-              <p className="font-bold text-base">Patient : {app.user.name}</p>
+              <p className="font-bold text-base">{state.role == "doctor" ? `Patient : ${app.user.name}` : `Doctor : ${app.doctor.name}`}</p>
               <div>
                 <p className="text-sm">Date : {app.slot.date.split("T")[0]}</p>
               </div>
@@ -76,7 +75,9 @@ const MyAppointments = () => {
                 }}
                 className="w-full"
               >
-                {state.user.role === "doctor" ? "Add Prescription" : "View Prescription"}
+                {state.role === "doctor"
+                  ? "Add Prescription"
+                  : "View Prescription"}
               </Button>
             </div>
           </div>
