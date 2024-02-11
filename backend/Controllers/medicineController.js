@@ -60,10 +60,10 @@ export const createReview = async (req, res) => {
     const user = req.userId
     const reviewText = req.body.reviewText
     const rating = req.body.rating
-    console.log(medid)
-    console.log(user)
-    console.log(reviewText)
-    console.log(rating)
+    // console.log(medid)
+    // console.log(user)
+    // console.log(reviewText)
+    // console.log(rating)
 
     try {
         const newReview = new MedReview({
@@ -73,7 +73,7 @@ export const createReview = async (req, res) => {
             rating: rating
         })
         await newReview.save()
-        console.log(newReview)
+        // console.log(newReview)
 
         const medicine = await Medicine.findOne({_id: medid})
         let avg = medicine.avgStars
@@ -127,8 +127,8 @@ export const fetchReviews = async (req, res) => {
 
     try {
         let reviews = null
-        if(obj.length == 0) reviews = await MedReview.find()
-        else reviews = await MedReview.find({$and: obj})
+        if(obj.length == 0) reviews = await MedReview.find().populate('user')
+        else reviews = await MedReview.find({$and: obj}).populate('user')
         res.status(200).json({success: true, data: reviews})
     } catch(err) {
         console.log(err)
