@@ -28,6 +28,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^3.3.1",
+    "html-react-parser": "^5.1.2",
     "lucide-react": "^0.302.0",
     "rc-time-picker": "^3.7.3",
     "react": "^18.2.0",

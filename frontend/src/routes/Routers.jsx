@@ -18,9 +18,11 @@ import Settings from "@/pages/Profile/Settings";
 import MyDoctors from "@/pages/PatientProfile/MyDoctors";
 import MyPatients from "@/pages/DoctorProfile/MyPatients";
 import MyReports from "@/pages/PatientProfile/MyReports";
-import MySlots from "@/pages/DoctorProfile/MySlots";
 import AllSlots from "@/pages/DoctorProfile/AllSlots";
 import AddSlots from "@/pages/DoctorProfile/AddSlots";
+import MedicineDetails from "../pages/MediShop/MedicineDetails";
+import Overview from "../pages/MediShop/Overview";
+import MedReview from "../pages/MediShop/MedReview";
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -32,7 +34,7 @@ const Routers = () => {
       <Route path="/doctors/:id" element={<DoctorDetails />} />
       <Route path="/login" element={<Login />} />
       {state?.role == "doctor" && (
-        <Route path="/user" element={<UserDoctorProfile />} >
+        <Route path="/user" element={<UserDoctorProfile />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="patients" element={<MyPatients />} />
           <Route path="appointments" element={<MyAppointments />} />
@@ -42,7 +44,7 @@ const Routers = () => {
         </Route>
       )}
       {state?.role == "patient" && (
-        <Route path="/user" element={<UserPatientProfile />} >
+        <Route path="/user" element={<UserPatientProfile />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="doctors" element={<MyDoctors />} />
           <Route path="appointments" element={<MyAppointments />} />
@@ -52,6 +54,10 @@ const Routers = () => {
       )}
       <Route path="/prescription" element={<Prescription />} />
       <Route path="/medishop" element={<MediShop />} />
+      <Route path="/medishop/:medid" element={<MedicineDetails />}>
+        <Route path="overview" element={<Overview />} />
+        <Route path="reviews" element={<MedReview />} />
+      </Route>
     </Routes>
   );
 };

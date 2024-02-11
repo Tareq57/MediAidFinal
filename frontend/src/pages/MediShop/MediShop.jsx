@@ -28,12 +28,15 @@ import {
 } from "@/components/ui/card";
 import BlueIcon from "@/assets/images/blue_icon.svg";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useNavigate } from "react-router-dom";
 
 const MediShop = () => {
   const { state, setState } = useContext(AuthContext);
   // console.log(state);
 
   // const [specialization, setSpecialization] = useState([]);
+
+  const navigate = useNavigate();
 
   const [medicines, setMedicines] = useState([]);
 
@@ -51,7 +54,7 @@ const MediShop = () => {
   });
 
   const handleViewClick = (med) => {
-    console.log(med);
+    navigate(`/medishop/${med._id}/overview`);
   };
 
   useEffect(() => {
