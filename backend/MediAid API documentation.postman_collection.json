@@ -6345,6 +6345,106 @@
 				}
 			],
 			"description": "The /api/transaction endpoint is used to create and fetch transactions."
+		},
+		{
+			"name": "Info",
+			"item": [
+				{
+					"name": "Fetch doctor dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/info/dashboard/doctor/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"info",
+								"dashboard",
+								"doctor",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65b37da6078e72d6a64b7949"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/info/dashboard/doctor/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"info",
+										"dashboard",
+										"doctor",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "65b37da6078e72d6a64b7949"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-mIatH9F2UykWCqPJ4vrpEBE6RSw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Feb 2024 13:14:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"patientCount\": 3,\n        \"joinDate\": \"2024-01-01T07:40:32.986Z\",\n        \"avgStars\": 3.45,\n        \"reviewCount\": 10,\n        \"fee\": 700\n    }\n}"
+						}
+					]
+				}
+			]
 		}
 	],
 	"auth": {
