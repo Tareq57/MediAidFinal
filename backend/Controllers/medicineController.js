@@ -14,6 +14,20 @@ export const createNewMedicine = async (req, res) => {
     }
 }
 
+export const setPrices = async(req, res) => {
+    const id = req.params.id
+    const prices = req.body.prices
+    try {
+        const medicine = await Medicine.findOne({_id: id})
+        medicine.prices = prices
+        await medicine.save()
+        res.status(200).json({success: true, data: medicine})
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Internal Server Error"})
+    }
+}
+
 export const searchMedicine = async (req, res) => {
     let name = req.query.name
     let category = req.query.category
@@ -60,10 +74,6 @@ export const createReview = async (req, res) => {
     const user = req.userId
     const reviewText = req.body.reviewText
     const rating = req.body.rating
-    // console.log(medid)
-    // console.log(user)
-    // console.log(reviewText)
-    // console.log(rating)
 
     try {
         const newReview = new MedReview({

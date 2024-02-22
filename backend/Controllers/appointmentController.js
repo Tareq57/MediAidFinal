@@ -22,6 +22,10 @@ export const addAppointment = async (req, res) => {
         appointment.status = "approved"
         await appointment.save()
 
+        const slot = await Slot.findOne({_id: appointment.slot})
+        slot.occupied = slot.occupied + 1
+        await slot.save()
+
         const doctor = await Doctor.findOne({_id: appointment.doctor})
         doctor.patientCount = doctor.patientCount + 1
         await doctor.save()

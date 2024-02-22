@@ -10,6 +10,12 @@ const medicineSchema = new mongoose.Schema(
         overview: {type: String},
         avgStars: {type: Number, default: 0},
         reviewCount: {type: Number, default: 0},
+        prices: [
+            {
+                unit: {type: String},
+                amount: {type: Number},
+            }
+        ],
     }
 )
 
