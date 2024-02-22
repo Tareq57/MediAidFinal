@@ -63,21 +63,25 @@ const DoctorSideBar = () => {
         </div>
       </NavLink>
 
+      <hr className="border border-black" />
+
+      <Label className="font-bold text-base text-gray-400 pl-2">Appointments</Label>
+
       <NavLink
-        to="appointments"
+        to="appointments/current"
         className={(navClass) =>
-          navClass.isActive ? setNavClass("appointments") : null
+          navClass.isActive ? setNavClass("current") : null
         }
       >
         <div
           className={`flex items-center space-x-2   ${
-            navClass == "appointments"
+            navClass == "current"
               ? "bg-orange-500 text-white"
               : "hover:bg-gray-100"
           } p-2 rounded-full cursor-pointer`}
         >
           <MdOutlineEventNote className="w-[25px] h-[25px]" />
-          <h1 className="font-semibold">Appointments</h1>
+          <h1 className="font-semibold">Current</h1>
         </div>
       </NavLink>
 

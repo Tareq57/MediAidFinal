@@ -13,12 +13,14 @@ import {
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "@/context/AuthContext";
 import { BASE_URL } from "@/config";
-import { set } from "date-fns";
+import DeleteIcon from "@/assets/images/delete.svg";
+import { useToast } from "@/components/ui/use-toast";
 
 const AllSlots = () => {
   const { state } = useContext(AuthContext);
   const [slots, setSlots] = useState([]);
 
+  const { toast } = useToast();
   useEffect(() => {
     const fetchSlots = async () => {
       const res = await fetch(
@@ -31,11 +33,11 @@ const AllSlots = () => {
           },
         }
       );
+      const result = await res.json();
 
       if (!res.ok) {
         throw new Error(result.message);
       }
-      const result = await res.json();
 
       setSlots(result.data);
 
@@ -47,11 +49,40 @@ const AllSlots = () => {
     }
   }, []);
 
+  const handleRemoveSlot = (slot) => async () => {
+    const res = await fetch(
+      `${BASE_URL}/doctor/timeslots/${slot._id}`,
+      {
+        method: "DEL",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.token}`,
+        },
+      }
+    );
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      throw new Error(result.message);
+    }
+    else {
+      toast({
+        message: "Slot Removed Successfully",
+        type: "success",
+      });
+    }
+
+    setSlots(result.data);
+
+    console.log(result.data);
+  }
+
   return (
     <div className="flex-col space-y-5">
       <h1 className="font-bold text-3xl">All Slots</h1>
       <hr className="border-black" />
-      
+
       <Table>
         <TableCaption>A list of your slots.</TableCaption>
         <TableHeader>
@@ -59,6 +90,8 @@ const AllSlots = () => {
             <TableHead>Date</TableHead>
             <TableHead>Start Time</TableHead>
             <TableHead>End Time</TableHead>
+            <TableHead>All Seats</TableHead>
+            <TableHead>Occupied</TableHead>
             <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader>
@@ -66,7 +99,11 @@ const AllSlots = () => {
           {slots.map((slot, index) => (
             <TableRow key={index}>
               <TableCell className="font-medium">
-                {slot.date.split("T")[0]}
+                {new Date(slot.date.split("T")[0]).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
               </TableCell>
               <TableCell>
                 {slot.starthr}:{slot.startmin}
@@ -74,14 +111,25 @@ const AllSlots = () => {
               <TableCell>
                 {slot.endhr}:{slot.endmin}
               </TableCell>
-              <TableCell>{slot.done == 0 ? "Available" : "Booked"}</TableCell>
+              <TableCell>{slot.patientCount}</TableCell>
+              <TableCell>{slot.occupied}</TableCell>
+              <TableCell>
+                {slot.occupied == 0 ? (
+                  <div onClick={handleRemoveSlot(slot)}>
+                    <img
+                      src={DeleteIcon}
+                      className="w-[20px] h-[20px] hover:scale-150 transition-transform"
+                      alt=""
+                    />
+                  </div>
+                ) : "Booked"}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell>All days</TableCell>
+            
           </TableRow>
         </TableFooter>
       </Table>

@@ -14,31 +14,22 @@ import { cn } from "@/lib/utils";
 import AuthContext from "@/context/AuthContext";
 import { addDays } from "date-fns";
 import { BASE_URL } from "@/config";
+import { useToast } from "@/components/ui/use-toast";
 
 const AddSlots = () => {
   const { state } = useContext(AuthContext);
   const id = state?.user._id;
 
-  function formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
+  const { toast } = useToast();
 
   const [slot, setSlot] = useState({
     doctor: id,
     slotDate: "",
-    starthr: null,
-    startmin: null,
-    endhr: null,
-    endmin: null,
-    patientCount: null,
+    starthr: "",
+    startmin: "",
+    endhr: "",
+    endmin: "",
+    patientCount: "",
     location: "",
   });
 
@@ -74,20 +65,14 @@ const AddSlots = () => {
       const result = await res.json();
 
       if (!res.ok) {
-        toast({
-          title: "Slot not added",
-          description: "Try again",
-        });
         throw new Error(result.message);
-      } else {
-        toast({
-          title: "Slot added",
-          description: "You can view your slots in all slots",
-        });
       }
-
       console.log(result);
     }
+    toast({
+      title: "Slots added successfully",
+      description: "You can view your slots in all slots",
+    });
   };
 
   return (
@@ -133,6 +118,7 @@ const AddSlots = () => {
                 selected={date}
                 onSelect={setDate}
                 numberOfMonths={2}
+                disabled={{ before: new Date() }}
               />
             </PopoverContent>
           </Popover>

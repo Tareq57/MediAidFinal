@@ -37,7 +37,9 @@ const Routers = () => {
         <Route path="/user" element={<UserDoctorProfile />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="patients" element={<MyPatients />} />
-          <Route path="appointments" element={<MyAppointments />} />
+            <Route path="appointments/*" element={<MyAppointments />} > 
+            
+            </Route>
           <Route path="allslots" element={<AllSlots />} />
           <Route path="addslots" element={<AddSlots />} />
           <Route path="settings" element={<Settings />} />

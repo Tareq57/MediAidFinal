@@ -5,11 +5,14 @@ import { BASE_URL } from "@/config";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const { state } = useContext(AuthContext);
+
+  const { "*": group } = useParams();
+  console.log(group);
 
   const navigate = useNavigate();
   const handleAppointment = async (app) => {
@@ -18,22 +21,29 @@ const MyAppointments = () => {
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const res = await fetch(`${BASE_URL}/appointment`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${state.token}`,
-        },
-      });
+      let curdate = new Date().toISOString().split("T")[0];
+      console.log(curdate);
+      const res = await fetch(
+        `${BASE_URL}/appointment/doctor/${state.user._id}?group=${group}&date=${curdate}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
 
+      const result = await res.json();
       if (!res.ok) {
         throw new Error(result.message);
       }
-      const result = await res.json();
 
-      setAppointments(result.appointments);
+      console.log(result);
 
-      console.log(result.appointments);
+      setAppointments(result.data);
+
+      // console.log(result.appointments);
     };
 
     if (state.user) {
@@ -57,16 +67,20 @@ const MyAppointments = () => {
               />
             </div>
             <div className="flex-col space-y-1 p-3">
-              <p className="font-bold text-base">{state.role == "doctor" ? `Patient : ${app.user.name}` : `Doctor : ${app.doctor.name}`}</p>
+              <p className="font-bold text-base">
+                {state.role == "doctor"
+                  ? `Patient : ${app.user.name}`
+                  : `Doctor : ${app.doctor.name}`}
+              </p>
               <div>
-                <p className="text-sm">Date : {app.slot.date.split("T")[0]}</p>
+                {/* <p className="text-sm">Date : {app.slot.date.split("T")[0]}</p> */}
               </div>
               <div className="flex justify-between">
                 <p className="text-sm">
-                  Start : {app.slot.starthr}:{app.slot.startmin}
+                  {/* Start : {app.slot.starthr}:{app.slot.startmin} */}
                 </p>
                 <p className="text-sm">
-                  End : {app.slot.endhr}:{app.slot.endmin}
+                  {/* End : {app.slot.endhr}:{app.slot.endmin} */}
                 </p>
               </div>
               <Button

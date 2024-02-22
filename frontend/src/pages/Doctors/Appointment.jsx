@@ -35,14 +35,6 @@ const Appointment = ({ apps, doctor }) => {
   console.log(doctor);
   console.log(state.token);
 
-  // useEffect(() => {
-  //   setSlots([]);
-  //   console.log(apps.length)
-  //   console.log(slots.length)
-  //   console.log(date.getDate())
-  //   apps.map((app) => new Date(app.date).getDate() == date.getDate() ? setSlots([...slots, app]) : null);
-  // }, [date]);
-
   const handleChange = (value) => {
     setTargetApp(value);
   };
