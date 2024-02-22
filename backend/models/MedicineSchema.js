@@ -5,7 +5,7 @@ const medicineSchema = new mongoose.Schema(
         name: { type: String, required: true },
         type: {type: String, required: true},
         category: { type: String, required: true},
-        manufacturer: {type: String, required: true},
+        manufacturer: { type:mongoose.Schema.Types.ObjectId, ref: "Company", required: true},
         image: {type: String},
         overview: {type: String},
         avgStars: {type: Number, default: 0},

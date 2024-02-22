@@ -25,11 +25,11 @@ export const searchMedicine = async (req, res) => {
         if (name) obj.push({name: {$regex: name, $options: "i"}})
         if (category) obj.push({category: {$regex: category, $options: "i"}})
         if (type) obj.push({type: {$regex: type, $options: "i"}})
-        if (manufacturer) obj.push({manufacturer: {$regex: manufacturer, $options: "i"}})
+        if (manufacturer) obj.push({manufacturer: manufacturer})
 
         let medicine = null
-        if (obj.length == 0) medicine = await Medicine.find()
-        else medicine = await Medicine.find({ $and: obj })
+        if (obj.length == 0) medicine = await Medicine.find().populate('manufacturer', '-password')
+        else medicine = await Medicine.find({ $and: obj }).populate('manufacturer', '-password')
         res.status(200).json({success: true, data: medicine})
     } catch (err) {
         console.log(err)
@@ -44,7 +44,7 @@ export const prescriptionSearch = async (req, res) => {
         const meds = appt.prescription.prescribedMeds
         const results = []
         for( let i = 0; i < meds.length; i++) {
-            let curr = await Medicine.findOne({name: meds[i].medicineName})
+            let curr = await Medicine.findOne({name: meds[i].medicineName}).populate('manufacturer', '-password')
             results.push(curr)
         }
         console.log(results)
@@ -139,7 +139,7 @@ export const fetchReviews = async (req, res) => {
 export const fetchOneMedicine = async (req, res) => {
     const id = req.params.id
     try {
-        const medicine = await Medicine.findOne({_id: id})
+        const medicine = await Medicine.findOne({_id: id}).populate('manufacturer', '-password')
         res.status(200).json({success: true, data: medicine})
     } catch(err) {
         console.log(err)
