@@ -1,5 +1,6 @@
 import User from '../models/UserSchema.js'
 import Doctor from '../models/DoctorSchema.js'
+import Company from '../models/CompanySchema.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
@@ -9,15 +10,17 @@ export const register = async(req, res) => {
     try {
         let user = null
 
-        if(role === 'patient')
-            user = await User.findOne({email})
-        else if(role === 'doctor')
-            user = await Doctor.findOne({email})
+        // if(role === 'patient')
+        user = await User.findOne({email})
+        // else if(role === 'doctor')
+        user = await Doctor.findOne({email})
+        user = await Company.findOne({email})
         if(user)
             return res.status(400).json({success: false, msg: "User already exists"})
 
         const salt = await bcrypt.genSalt(10)
         const hashPassword = await bcrypt.hash(password, salt)
+        if(!photo) photo = ""
 
         if(role === 'patient') {
             user = new User({
@@ -43,6 +46,16 @@ export const register = async(req, res) => {
             })
         }
 
+        else if(role === 'company') {
+            user = new Company({
+                name,
+                email,
+                password: hashPassword,
+                photo,
+                role
+            })
+        }
+
         await user.save()
         res.status(200).json({success:true, msg: "User registered successfully"})
 
@@ -59,9 +72,11 @@ export const login = async(req, res) => {
         let user = null
         const patient = await User.findOne({email})
         const doctor = await Doctor.findOne({email})
+        const company = await Company.findOne({email})
 
         if(patient) user = patient
         else if(doctor) user = doctor
+        else if(company) user = company
         else
             return res.status(404).json({success:false, msg: "User not found"})
 
