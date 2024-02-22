@@ -22,7 +22,7 @@ const AllSlots = () => {
   useEffect(() => {
     const fetchSlots = async () => {
       const res = await fetch(
-        `${BASE_URL}/doctor/timeslots/${state.user._id}`,
+        `${BASE_URL}/doctor/timeslots?doctor=${state.user._id}`,
         {
           method: "GET",
           headers: {

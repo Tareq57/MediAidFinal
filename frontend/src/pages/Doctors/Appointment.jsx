@@ -23,16 +23,16 @@ import { BASE_URL } from "@/config";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 
-const Appointment = ({ apps , doctor}) => {
+const Appointment = ({ apps, doctor }) => {
   const { state } = useContext(AuthContext);
-  
+
   const [date, setDate] = useState(new Date());
 
   const [slots, setSlots] = useState([]);
 
   const [targetApp, setTargetApp] = useState(null);
 
-  console.log(doctor)
+  console.log(doctor);
   console.log(state.token);
 
   // useEffect(() => {
@@ -65,20 +65,19 @@ const Appointment = ({ apps , doctor}) => {
       toast({
         title: "Appointment not scheduled",
         description: "Try again",
-      })
+      });
       throw new Error(result.message);
-    }
-    else {
+    } else {
       toast({
         title: "Appointment scheduled",
         description: "You can view your appointments in your profile",
-      })
+      });
     }
 
     const result = await res.json();
 
     console.log(result);
-  }
+  };
 
   return (
     <div className="flex-col space-y-5">
@@ -104,6 +103,7 @@ const Appointment = ({ apps , doctor}) => {
                 mode="single"
                 selected={date}
                 onSelect={setDate}
+                disabled={{ before: new Date() }}
                 initialFocus
               />
             </PopoverContent>
@@ -126,18 +126,27 @@ const Appointment = ({ apps , doctor}) => {
                 <SelectLabel>Available Slots</SelectLabel>
                 {apps.map(
                   (app, index) =>
-                    new Date(app.date).getDate() == date.getDate() && (
+                    // console.log(parseInt(app.date.split('-')[2].split('T')[0]))
+                    // console.log(date.getFullYear())
+
+                    parseInt(app.date.split("-")[2].split("T")[0]) ==
+                      date.getDate() &&
+                    parseInt(app.date.split("-")[1]) == date.getMonth() + 1 &&
+                    parseInt(app.date.split("-")[0]) == date.getFullYear() && (
                       <SelectItem key={index} value={app}>
-                        {app.starthr}:{app.startmin} - {app.endhr}:{app.endmin}
+                        {app.starthr}:{app.startmin} - {app.endhr}:{app.endmin} | {app.patientCount-app.occupied} remaining 
                       </SelectItem>
                     )
                 )}
+                {console.log(apps)}
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
       </div>
-      <Button className="w-[280px]" onClick={handleTakeAppointment}>Take Appointment</Button>
+      <Button className="w-[280px]" onClick={handleTakeAppointment}>
+        Take Appointment
+      </Button>
     </div>
   );
 };
