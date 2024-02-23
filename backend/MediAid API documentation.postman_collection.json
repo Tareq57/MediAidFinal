@@ -5846,6 +5846,223 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Modify Cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"medicineId\": \"65c8c4cd69c2d4c2cd3d4ed6\",\n    \"unit\": \"piece\",\n    \"unitPrice\": 1.08,\n    \"qty\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/cart/modify/:userid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cart",
+								"modify",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "65965da4e6b3eddbc75645ed"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"medicineId\": \"65c8c4cd69c2d4c2cd3d4ed6\",\n    \"unit\": \"piece\",\n    \"unitPrice\": 1.08,\n    \"qty\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/api/cart/modify/:userid",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"cart",
+										"modify",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "65965da4e6b3eddbc75645ed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1316"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"524-v1xOtStJ+tBCDGnu1jHoSngwQAI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 Feb 2024 10:27:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"65d8720449d1fe6c3c55ef81\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"medicines\": [\n            {\n                \"medicine\": {\n                    \"_id\": \"65c4cdaab99af264ac497f56\",\n                    \"name\": \"Napa 500 mg\",\n                    \"type\": \"Tablet\",\n                    \"category\": \"Paracetamol\",\n                    \"manufacturer\": \"65d70433d6e534d0ce4a873c\",\n                    \"image\": \"https://medeasy.health/_next/image?url=https%3A%2F%2Fcdn.medeasy.health%2Fmedia%2Fmedicines%2FIMG-20231023-WA0137.jpg&w=1920&q=75\",\n                    \"avgStars\": 4,\n                    \"reviewCount\": 1,\n                    \"__v\": 2,\n                    \"prices\": [\n                        {\n                            \"unit\": \"piece\",\n                            \"amount\": 1.08,\n                            \"_id\": \"65d746dd2fb7be2e9ff8f927\"\n                        },\n                        {\n                            \"unit\": \"10s sheet\",\n                            \"amount\": 10,\n                            \"_id\": \"65d746dd2fb7be2e9ff8f928\"\n                        }\n                    ]\n                },\n                \"unit\": \"10s sheet\",\n                \"unitPrice\": 10,\n                \"qty\": 5,\n                \"_id\": \"65d8720449d1fe6c3c55ef82\"\n            },\n            {\n                \"medicine\": {\n                    \"_id\": \"65c8c4cd69c2d4c2cd3d4ed6\",\n                    \"name\": \"Alcet 5 mg\",\n                    \"type\": \"Tablet\",\n                    \"category\": \"Levocetirizine Dihydrochloride\",\n                    \"manufacturer\": \"65d70479d6e534d0ce4a8741\",\n                    \"image\": \"https://medeasy.health/_next/image?url=https%3A%2F%2Fcdn.medeasy.health%2Fmedia%2Fmedicines%2FIMG-20231019-WA0290.jpg&w=750&q=75\",\n                    \"avgStars\": 0,\n                    \"reviewCount\": 0,\n                    \"__v\": 1,\n                    \"prices\": [\n                        {\n                            \"unit\": \"piece\",\n                            \"amount\": 1.08,\n                            \"_id\": \"65d746f62fb7be2e9ff8f92f\"\n                        },\n                        {\n                            \"unit\": \"10s sheet\",\n                            \"amount\": 10,\n                            \"_id\": \"65d746f62fb7be2e9ff8f930\"\n                        }\n                    ]\n                },\n                \"unit\": \"piece\",\n                \"unitPrice\": 1.08,\n                \"qty\": 10,\n                \"_id\": \"65d873060d281ad953e9732b\"\n            }\n        ],\n        \"totalPrice\": 60.8,\n        \"createdAt\": \"2024-02-23T10:23:00.095Z\",\n        \"updatedAt\": \"2024-02-23T10:27:18.660Z\",\n        \"__v\": 1\n    }\n}"
+						},
+						{
+							"name": "Remove medicine",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"medicineId\": \"65c8c4cd69c2d4c2cd3d4ed6\",\n    \"unit\": \"piece\",\n    \"unitPrice\": 1.08,\n    \"qty\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/api/cart/modify/:userid",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"cart",
+										"modify",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "65965da4e6b3eddbc75645ed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "753"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f1-UvpTOzluAhHslB20dhRMMik+g4Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 Feb 2024 10:38:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"65d8720449d1fe6c3c55ef81\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"medicines\": [\n            {\n                \"medicine\": {\n                    \"_id\": \"65c4cdaab99af264ac497f56\",\n                    \"name\": \"Napa 500 mg\",\n                    \"type\": \"Tablet\",\n                    \"category\": \"Paracetamol\",\n                    \"manufacturer\": \"65d70433d6e534d0ce4a873c\",\n                    \"image\": \"https://medeasy.health/_next/image?url=https%3A%2F%2Fcdn.medeasy.health%2Fmedia%2Fmedicines%2FIMG-20231023-WA0137.jpg&w=1920&q=75\",\n                    \"avgStars\": 4,\n                    \"reviewCount\": 1,\n                    \"__v\": 2,\n                    \"prices\": [\n                        {\n                            \"unit\": \"piece\",\n                            \"amount\": 1.08,\n                            \"_id\": \"65d746dd2fb7be2e9ff8f927\"\n                        },\n                        {\n                            \"unit\": \"10s sheet\",\n                            \"amount\": 10,\n                            \"_id\": \"65d746dd2fb7be2e9ff8f928\"\n                        }\n                    ]\n                },\n                \"unit\": \"10s sheet\",\n                \"unitPrice\": 10,\n                \"qty\": 5,\n                \"_id\": \"65d8720449d1fe6c3c55ef82\"\n            }\n        ],\n        \"totalPrice\": 50,\n        \"createdAt\": \"2024-02-23T10:23:00.095Z\",\n        \"updatedAt\": \"2024-02-23T10:38:07.794Z\",\n        \"__v\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Clear cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/cart/clear/:userid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cart",
+								"clear",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "65965da4e6b3eddbc75645ed"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
