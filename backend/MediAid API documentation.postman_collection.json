@@ -6061,6 +6061,303 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Complete order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transactionId\": \"asdf1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/cart/complete/:userid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cart",
+								"complete",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "65965da4e6b3eddbc75645ed"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"transactionId\": \"asdf1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/api/cart/complete/:userid",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"cart",
+										"complete",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "65965da4e6b3eddbc75645ed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "364"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16c-LYAEKEeL3ryLrVTIR3EkbdXqP5s\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 Feb 2024 14:06:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Order created\",\n    \"data\": {\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"medicines\": [\n            {\n                \"medicine\": \"65c4cdaab99af264ac497f56\",\n                \"unit\": \"10s sheet\",\n                \"unitPrice\": 10,\n                \"qty\": 5,\n                \"_id\": \"65d8a671d356d46612a7dbd9\"\n            }\n        ],\n        \"totalPrice\": 50,\n        \"trxId\": \"asdf1234\",\n        \"_id\": \"65d8a671d356d46612a7dbd8\",\n        \"createdAt\": \"2024-02-23T14:06:41.525Z\",\n        \"updatedAt\": \"2024-02-23T14:06:41.525Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/cart/fetchcart/:userid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cart",
+								"fetchcart",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "65965da4e6b3eddbc75645ed"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/cart/fetchcart/:userid",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"cart",
+										"fetchcart",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "65965da4e6b3eddbc75645ed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "753"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f1-UvpTOzluAhHslB20dhRMMik+g4Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 Feb 2024 14:08:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"65d8720449d1fe6c3c55ef81\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"medicines\": [\n            {\n                \"medicine\": {\n                    \"_id\": \"65c4cdaab99af264ac497f56\",\n                    \"name\": \"Napa 500 mg\",\n                    \"type\": \"Tablet\",\n                    \"category\": \"Paracetamol\",\n                    \"manufacturer\": \"65d70433d6e534d0ce4a873c\",\n                    \"image\": \"https://medeasy.health/_next/image?url=https%3A%2F%2Fcdn.medeasy.health%2Fmedia%2Fmedicines%2FIMG-20231023-WA0137.jpg&w=1920&q=75\",\n                    \"avgStars\": 4,\n                    \"reviewCount\": 1,\n                    \"__v\": 2,\n                    \"prices\": [\n                        {\n                            \"unit\": \"piece\",\n                            \"amount\": 1.08,\n                            \"_id\": \"65d746dd2fb7be2e9ff8f927\"\n                        },\n                        {\n                            \"unit\": \"10s sheet\",\n                            \"amount\": 10,\n                            \"_id\": \"65d746dd2fb7be2e9ff8f928\"\n                        }\n                    ]\n                },\n                \"unit\": \"10s sheet\",\n                \"unitPrice\": 10,\n                \"qty\": 5,\n                \"_id\": \"65d8720449d1fe6c3c55ef82\"\n            }\n        ],\n        \"totalPrice\": 50,\n        \"createdAt\": \"2024-02-23T10:23:00.095Z\",\n        \"updatedAt\": \"2024-02-23T10:38:07.794Z\",\n        \"__v\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/cart/fetchorders/:userid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cart",
+								"fetchorders",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "65965da4e6b3eddbc75645ed"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/cart/fetchorders/:userid",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"cart",
+										"fetchorders",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "65965da4e6b3eddbc75645ed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "344"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"158-FOWF/lNE4TfFu0OAcrQdFrjKseM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 23 Feb 2024 14:10:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65d8a671d356d46612a7dbd8\",\n            \"user\": \"65965da4e6b3eddbc75645ed\",\n            \"medicines\": [\n                {\n                    \"medicine\": \"65c4cdaab99af264ac497f56\",\n                    \"unit\": \"10s sheet\",\n                    \"unitPrice\": 10,\n                    \"qty\": 5,\n                    \"_id\": \"65d8a671d356d46612a7dbd9\"\n                }\n            ],\n            \"totalPrice\": 50,\n            \"trxId\": \"asdf1234\",\n            \"createdAt\": \"2024-02-23T14:06:41.525Z\",\n            \"updatedAt\": \"2024-02-23T14:06:41.525Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
 				}
 			]
 		}
