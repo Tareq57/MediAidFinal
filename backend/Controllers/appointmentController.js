@@ -132,7 +132,7 @@ export const getDoctorGroup = async (req, res) => {
 
         let slots = await Slot.find(query).sort({date: -1})
         for(let i = 0; i < slots.length; i++) {
-            let appointments = await Appointment.find({slot: slots[i]._id}).populate('user', '-password')
+            let appointments = await Appointment.find({slot: slots[i]._id}).populate('user', '-password').sort({serial: 1})
             slots[i] = slots[i].toObject()
             slots[i] = {...slots[i], appointments}
         }
