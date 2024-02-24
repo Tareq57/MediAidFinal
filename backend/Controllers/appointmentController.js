@@ -124,7 +124,7 @@ export const getDoctorGroup = async (req, res) => {
         if(group == "current")
             query.date = date
         else if(group == "upcoming")
-            query.date = {$gte: date}
+            query.date = {$gt: date}
         else if(group == "past") {
             query.date = {$lt: date}
             query.status = "finished"
@@ -158,11 +158,13 @@ export const getPatientGroup = async (req, res) => {
         if(group == "current")
             appointments = appointments.filter(appointment => appointment.slot.date.getTime() == date.getTime())
         else if(group == "upcoming")
-            appointments = appointments.filter(appointment => appointment.slot.date.getTime() >= date.getTime())
+            appointments = appointments.filter(appointment => appointment.slot.date.getTime() > date.getTime())
         else if(group == "past") {
             appointments = appointments.filter(appointment => appointment.slot.date.getTime() < date.getTime())
             appointments = appointments.filter(appointment => appointment.status == "finished")
         }
+
+        appointments = appointments.sort((a, b) => b.slot.date - a.slot.date)
         res.status(200).json({success: true, msg: "Appointments found", data: appointments})
     } catch(err) {
         console.log(err)
