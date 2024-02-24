@@ -22,6 +22,7 @@ import {
 import { BASE_URL } from "@/config";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Appointment = ({ apps, doctor }) => {
   const { state } = useContext(AuthContext);
@@ -31,6 +32,8 @@ const Appointment = ({ apps, doctor }) => {
   const [slots, setSlots] = useState([]);
 
   const [targetApp, setTargetApp] = useState(null);
+
+  const { toast } = useToast();
 
   console.log(doctor);
   console.log(state.token);

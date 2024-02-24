@@ -15,7 +15,6 @@ const DoctorSideBar = () => {
 
   const [navClass, setNavClass] = useState("dashboard");
 
-  console.log(state?.user);
   return (
     <div className="w-1/5 h-[500px] flex flex-col space-y-2">
       <div className="flex space-x-5 items-center my-[10px]">
@@ -45,27 +44,12 @@ const DoctorSideBar = () => {
           <h1 className="font-semibold">Dashboard</h1>
         </div>
       </NavLink>
-      <NavLink
-        to="patients"
-        className={(navClass) =>
-          navClass.isActive ? setNavClass("patients") : null
-        }
-      >
-        <div
-          className={`flex items-center space-x-2   ${
-            navClass == "patients"
-              ? "bg-orange-500 text-white"
-              : "hover:bg-gray-100"
-          } p-2 rounded-full cursor-pointer`}
-        >
-          <AiOutlineMedicineBox className="w-[25px] h-[25px]" />
-          <h1 className="font-semibold">My Patients</h1>
-        </div>
-      </NavLink>
 
       <hr className="border border-black" />
 
-      <Label className="font-bold text-base text-gray-400 pl-2">Appointments</Label>
+      <Label className="font-bold text-base text-gray-400 pl-2">
+        Appointments
+      </Label>
 
       <NavLink
         to="appointments/current"
@@ -81,7 +65,59 @@ const DoctorSideBar = () => {
           } p-2 rounded-full cursor-pointer`}
         >
           <MdOutlineEventNote className="w-[25px] h-[25px]" />
-          <h1 className="font-semibold">Current</h1>
+          <h1 className="font-semibold">Pending</h1>
+        </div>
+      </NavLink>
+
+      <NavLink
+        to="appointments/upcoming"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("upcoming") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "upcoming"
+              ? "bg-orange-500 text-white"
+              : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <MdOutlineEventNote className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">Upcoming</h1>
+        </div>
+      </NavLink>
+
+      <NavLink
+        to="appointments/past"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("past") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "past"
+              ? "bg-orange-500 text-white"
+              : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <MdOutlineEventNote className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">Examined</h1>
+        </div>
+      </NavLink>
+
+      <NavLink
+        to="appointments/all"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("all") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "all" ? "bg-orange-500 text-white" : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <MdOutlineEventNote className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">All</h1>
         </div>
       </NavLink>
 

@@ -14,11 +14,12 @@ import { useState, useEffect, useContext } from "react";
 import AuthContext from "@/context/AuthContext";
 import { BASE_URL } from "@/config";
 import DeleteIcon from "@/assets/images/delete.svg";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast"
 
 const AllSlots = () => {
   const { state } = useContext(AuthContext);
   const [slots, setSlots] = useState([]);
+  const [slotchange, setSlotChange] = useState(false)
 
   const { toast } = useToast();
   useEffect(() => {
@@ -47,13 +48,13 @@ const AllSlots = () => {
     if (state.user) {
       fetchSlots();
     }
-  }, []);
+  }, [slotchange]);
 
   const handleRemoveSlot = (slot) => async () => {
     const res = await fetch(
       `${BASE_URL}/doctor/timeslots/${slot._id}`,
       {
-        method: "DEL",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${state.token}`,
@@ -68,14 +69,12 @@ const AllSlots = () => {
     }
     else {
       toast({
-        message: "Slot Removed Successfully",
-        type: "success",
-      });
+        title: "Slot removed successfully",
+        description: "You can view your slots in all slots",
+      })
+
+      setSlotChange(!slotchange)
     }
-
-    setSlots(result.data);
-
-    console.log(result.data);
   }
 
   return (

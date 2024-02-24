@@ -177,6 +177,7 @@ const MediShop = () => {
       }
 
       const result1 = await res1.json();
+      console.log(result1)
 
       setAppointments(result1.appointments);
     };
