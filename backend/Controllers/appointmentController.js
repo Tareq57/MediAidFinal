@@ -16,8 +16,8 @@ export const addAppointment = async (req, res) => {
         const allAppointments = await Appointment.find({doctor: appointment.doctor, slot: appointment.slot})
         appointment.serial = 1
         for(let i = 0; i < allAppointments.length; i++) {
-            if(allAppointments[i].status == "approved")
-                appointment.serial = allAppointments[i].serial + 1
+            if(allAppointments[i].status != "cancelled")
+                appointment.serial = appointment.serial + 1
         }
         appointment.status = "approved"
         await appointment.save()
