@@ -28,6 +28,17 @@ export const setPrices = async(req, res) => {
     }
 }
 
+export const deleteMedicine = async (req, res) => {
+    const id = req.params.id
+    try {
+        await Medicine.deleteOne({_id: id})
+        res.status(200).json({success: true, msg: "Medicine Deleted"})
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Internal Server Error"})
+    }
+}
+
 export const searchMedicine = async (req, res) => {
     let name = req.query.name
     let category = req.query.category
