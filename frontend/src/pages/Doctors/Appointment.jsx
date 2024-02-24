@@ -23,6 +23,7 @@ import { BASE_URL } from "@/config";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const Appointment = ({ apps, doctor }) => {
   const { state } = useContext(AuthContext);
@@ -34,6 +35,8 @@ const Appointment = ({ apps, doctor }) => {
   const [targetApp, setTargetApp] = useState(null);
 
   const { toast } = useToast();
+
+  const navigate = useNavigate();
 
   console.log(doctor);
   console.log(state.token);
@@ -72,6 +75,8 @@ const Appointment = ({ apps, doctor }) => {
     const result = await res.json();
 
     console.log(result);
+
+    navigate("/user/appointments/all");
   };
 
   return (

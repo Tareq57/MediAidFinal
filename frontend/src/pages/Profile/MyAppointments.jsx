@@ -72,7 +72,7 @@ const MyAppointments = () => {
     }
   }, [group]);
 
-  // console.log(slots)
+  console.log(slots)
 
   return (
     <div className="flex-col space-y-5">
@@ -112,6 +112,11 @@ const MyAppointments = () => {
                       {state.role === "doctor"
                         ? app.user.name
                         : app.doctor.name}
+                    </p>
+                    <p className="font-bold text-base text-center">
+                      {state.role === "doctor"
+                        ? `Serial : ${app.serial}`
+                        : null}
                     </p>
                     <div>
                       {/* <p className="text-sm">Date : {app.slot.date.split("T")[0]}</p> */}
