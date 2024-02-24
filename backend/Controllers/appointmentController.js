@@ -125,8 +125,10 @@ export const getDoctorGroup = async (req, res) => {
             query.date = date
         else if(group == "upcoming")
             query.date = {$gte: date}
-        else if(group == "past")
+        else if(group == "past") {
             query.date = {$lt: date}
+            query.status = "finished"
+        }
 
         let slots = await Slot.find(query).sort({date: -1})
         for(let i = 0; i < slots.length; i++) {
@@ -157,8 +159,10 @@ export const getPatientGroup = async (req, res) => {
             appointments = appointments.filter(appointment => appointment.slot.date.getTime() == date.getTime())
         else if(group == "upcoming")
             appointments = appointments.filter(appointment => appointment.slot.date.getTime() >= date.getTime())
-        else if(group == "past")
+        else if(group == "past") {
             appointments = appointments.filter(appointment => appointment.slot.date.getTime() < date.getTime())
+            appointments = appointments.filter(appointment => appointment.status == "finished")
+        }
         res.status(200).json({success: true, msg: "Appointments found", data: appointments})
     } catch(err) {
         console.log(err)
