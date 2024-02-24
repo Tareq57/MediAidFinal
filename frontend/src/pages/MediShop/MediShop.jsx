@@ -182,7 +182,7 @@ const MediShop = () => {
       setAppointments(result1.appointments);
     };
 
-    if (state.user) {
+    if (state.user && state.role == "patient") {
       fetchAppointments();
     }
   }, []);
