@@ -72,7 +72,7 @@ const MyAppointments = () => {
     }
   }, [group]);
 
-  console.log(slots)
+  console.log(slots);
 
   return (
     <div className="flex-col space-y-5">
@@ -129,16 +129,29 @@ const MyAppointments = () => {
                         {/* End : {app.slot.endhr}:{app.slot.endmin} */}
                       </p>
                     </div>
-                    <Button
-                      onClick={() => {
-                        handleAppointment(app);
-                      }}
-                      className="w-full"
-                    >
-                      {state.role === "doctor"
-                        ? "Add Prescription"
-                        : "View Prescription"}
-                    </Button>
+                    {group == "current" && (
+                      <Button
+                        onClick={() => {
+                          handleAppointment(app);
+                        }}
+                        className="w-full"
+                      >
+                        Add Prescription
+                      </Button>
+                    )}
+
+                    {group == "upcoming" && null}
+
+                    {group == "past" && (
+                      <Button
+                        onClick={() => {
+                          handleAppointment(app);
+                        }}
+                        className="w-full"
+                      >
+                        View Prescription
+                      </Button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -182,9 +195,7 @@ const MyAppointments = () => {
                   }}
                   className="w-full"
                 >
-                  {state.role === "doctor"
-                    ? "Add Prescription"
-                    : "View Prescription"}
+                  View Prescription
                 </Button>
               </div>
             </div>

@@ -26,7 +26,7 @@ const Dashboard = () => {
       setUserData(result.data);
     };
 
-    if (state.user) {
+    if (state.user && state.role == "doctor") {
       fetchUser();
     }
   }, []);

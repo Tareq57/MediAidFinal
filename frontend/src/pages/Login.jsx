@@ -136,7 +136,8 @@ const Login = () => {
 
     setState({ user: result.data, role: result.role, token: result.token });
 
-    navigate("/doctors");
+    if (state.role == "patient" || state.role == "doctor") navigate("/doctors");
+    else if(state.role == "company") navigate('/medishop');
   };
 
   const handleSignup = async (e) => {
@@ -244,7 +245,7 @@ const Login = () => {
                       <SelectItem value="doctor">Doctor</SelectItem>
                       <SelectItem value="patient">Patient</SelectItem>
                       <SelectItem value="medilab">Medilab</SelectItem>
-                      <SelectItem value="medishop">Medishop</SelectItem>
+                      <SelectItem value="company">Medicine Manufacturer</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
