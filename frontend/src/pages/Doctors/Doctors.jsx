@@ -82,15 +82,15 @@ const Doctors = () => {
         },
       });
 
+      const result1 = await res1.json();
+      const result2 = await res2.json();
+
       if (!res1.ok) {
         throw new Error(result1.message);
       }
       if (!res2.ok) {
-        throw new Error(result.message);
+        throw new Error(result2.message);
       }
-
-      const result1 = await res1.json();
-      const result2 = await res2.json();
 
       console.log(result1.data);
 

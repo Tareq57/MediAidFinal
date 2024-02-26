@@ -135,9 +135,9 @@ const Login = () => {
     console.log(result);
 
     setState({ user: result.data, role: result.role, token: result.token });
-
-    if (state.role == "patient" || state.role == "doctor") navigate("/doctors");
-    else if(state.role == "company") navigate('/medishop');
+    // navigate("/doctors");
+    if (result.role == "patient" || result.role == "doctor") navigate("/doctors");
+    else if(result.role == "company") navigate('/medishop');
   };
 
   const handleSignup = async (e) => {
