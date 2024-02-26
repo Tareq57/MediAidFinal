@@ -16,6 +16,7 @@ import { set } from "date-fns";
 import AvgStar from "@/assets/images/avgstar.png";
 import Loader from "@/assets/gifs/page_loader.json";
 import Lottie from 'react-lottie';
+import {debounce} from 'lodash';
 
 const Doctors = () => {
   const { state, setState } = useContext(AuthContext);
@@ -99,15 +100,28 @@ const Doctors = () => {
     };
 
     if (state.user) {
-      fetchDoctors();
+      const timer = setTimeout(() => {
+      fetchDoctors(); }, 300);
+      return () => clearTimeout(timer);
+      // fetchDoctors();
+      // debouncedFetchDoctors()
     }
   }, [search]);
+
+  const debouncedSetSearch = debounce((name, value) => {
+    if (name === "feeUpper") {
+      setSearch(prevSearch => ({ ...prevSearch, feeLower: 0, [name]: value[0] }));
+    } else {
+      setSearch(prevSearch => ({ ...prevSearch, [name]: value }));
+    }
+  }, 500);
 
   const handleChange = (name, value) => {
     if (name == "feeUpper") {
       setSearch({ ...search, feeLower: 0 });
       setSearch({ ...search, [name]: value[0] });
     } else setSearch({ ...search, [name]: value });
+    // debouncedSetSearch(name, value)
   };
   console.log(search);
 
