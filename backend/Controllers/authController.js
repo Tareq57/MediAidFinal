@@ -1,6 +1,7 @@
 import User from '../models/UserSchema.js'
 import Doctor from '../models/DoctorSchema.js'
 import Company from '../models/CompanySchema.js'
+import Cart from '../models/CartSchema.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
@@ -87,11 +88,19 @@ export const login = async(req, res) => {
         const token = jwt.sign({id:user._id, role:user.role}, process.env.JWT_SECRET, {expiresIn: "15d"})
         const {password, role, appointments, ...rest} = user._doc
 
+        let data = { ...rest }
+        let cartSize = 0
+        if(role == 'patient') {
+            const cart = await Cart.findOne({user: user._id})
+            cartSize = cart ? cart.medicines.length : 0
+        }
+        data.cartSize = cartSize
+
         res.status(200).json({
             success:true,
             msg: "Login Successful",
             token,
-            data: { ...rest },
+            data: data,
             role
         })
 
