@@ -7,14 +7,14 @@ export function AuthContextProvider({ children }) {
     user : localStorage.getItem("user") != null ? JSON.parse(localStorage.getItem("user")) : null,
     role : localStorage.getItem("role"),
     token : localStorage.getItem("token"),
-    cartsize : localStorage.getItem("cartsize")
+    cartSize : localStorage.getItem("cartSize"),
   });
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.user));
     localStorage.setItem("role", state.role);
     localStorage.setItem("token", state.token);
-    localStorage.setItem("cartsize", state.cartsize);
+    localStorage.setItem("cartSize", state.cartSize);
   }, [state]);
 
   return <AuthContext.Provider value={{state, setState}}>{children}</AuthContext.Provider>;

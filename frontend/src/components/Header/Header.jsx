@@ -22,8 +22,9 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("role");
+    localStorage.removeItem("cartSize");
 
-    setState({ token: null, user: null, role: null });
+    setState({ token: null, user: null, role: null, cartSize: null });
 
     toast({
       title: "Logged Out",
@@ -32,6 +33,9 @@ const Header = () => {
 
     navigate("/");
   };
+
+  console.log(state)
+
   return (
     <header
       className="header flex items-center relative z-1010"
@@ -108,8 +112,8 @@ const Header = () => {
             </button> */}
             <div className="relative">
               <img src={CartIcon} className="w-[30px] h-[30px] " alt="" />
-              <span className="absolute -top-2 -right-2 bg-orange-500 text-white font-bold rounded-full p-1">
-                {console.log(state)}
+              <span className="absolute -top-2 -right-2 bg-orange-500 text-xs text-white font-bold rounded-full p-1">
+                {state?.cartSize}
               </span>
             </div>
 

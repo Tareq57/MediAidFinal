@@ -134,7 +134,7 @@ const Login = () => {
 
     console.log(result);
 
-    setState({ user: result.data, role: result.role, token: result.token });
+    setState({ user: result.data, role: result.role, token: result.token, cartSize: result.data.cartSize});
     // navigate("/doctors");
     if (result.role == "patient" || result.role == "doctor") navigate("/doctors");
     else if(result.role == "company") navigate('/medishop');

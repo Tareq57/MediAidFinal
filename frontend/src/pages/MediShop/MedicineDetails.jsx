@@ -26,7 +26,7 @@ const MedicineDetails = () => {
 
   // console.log(medid);
 
-  const { state } = useContext(AuthContext);
+  const { state, setState} = useContext(AuthContext);
 
   const [navClass, setNavClass] = useState("overview");
 
@@ -88,6 +88,8 @@ const MedicineDetails = () => {
     if (!res.ok) {
       throw new Error(result.message);
     }
+
+    setState({...state, cartSize: result.data.medicines.length})
 
     console.log(result);
   };
