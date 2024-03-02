@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
+import CartIcon from "@/assets/gifs/CartIcon.svg";
 
 const Header = () => {
   const { toast } = useToast();
@@ -27,7 +28,7 @@ const Header = () => {
     toast({
       title: "Logged Out",
       description: "You have been logged out successfully!",
-    })
+    });
 
     navigate("/");
   };
@@ -101,10 +102,16 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="flex">
+          <div className="flex items-center justify-center space-x-2">
             {/* <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-[3px] px-4 rounded-full">
               Login/SignUp
             </button> */}
+            <div className="relative">
+              <img src={CartIcon} className="w-[30px] h-[30px] " alt="" />
+              <span className="absolute -top-2 -right-2 bg-orange-500 text-white font-bold rounded-full p-1">
+                {console.log(state)}
+              </span>
+            </div>
 
             {state.token && state.user ? (
               <div className="flex space-x-2">

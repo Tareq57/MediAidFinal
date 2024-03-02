@@ -10,12 +10,21 @@ import { Outlet } from "react-router-dom";
 import { MyContext } from "@/context/MyContext";
 import { BASE_URL } from "@/config";
 import MedCat from "@/assets/images/medcategory.svg";
-import Disease  from "@/assets/images/disease.svg";
+import Disease from "@/assets/images/disease.svg";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { set } from "lodash";
 
 const MedicineDetails = () => {
   const { medid } = useParams();
 
-  console.log(medid);
+  // console.log(medid);
 
   const { state } = useContext(AuthContext);
 
@@ -24,6 +33,15 @@ const MedicineDetails = () => {
   const [medicine, setMedicine] = useState(null);
 
   const [review, setReview] = useState(null);
+
+  const [cartItem, setCartItem] = useState({
+    medicineId: medid,
+    unit: "",
+    unitPrice: "",
+    qty: "1",
+  });
+
+  console.log(cartItem);
 
   useEffect(() => {
     const fetchMedicine = async () => {
@@ -42,13 +60,37 @@ const MedicineDetails = () => {
       }
 
       setMedicine(result1.data);
+
+      setCartItem({
+        ...cartItem,
+        medicineId: result1.data._id,
+        unit: result1.data.prices[0].unit,
+        unitPrice: result1.data.prices[0].amount,
+      });
     };
     if (state.user) {
       fetchMedicine();
     }
   }, []);
 
-  console.log(review);
+  const handleAddCart = async () => {
+    const res = await fetch(`${BASE_URL}/cart/modify/${state.user._id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${state.token}`,
+      }, 
+      body: JSON.stringify(cartItem),
+    });
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      throw new Error(result.message);
+    }
+
+    console.log(result);
+  };
 
   return (
     medicine && (
@@ -90,11 +132,75 @@ const MedicineDetails = () => {
             <p className="text-white font-bold">{medicine.manufacturer.name}</p>
           </div>
         </div>
-        <img
-          src={medicine.image}
-          className="w-[400px] absolute right-[220px] top-[150px] rounded-2xl"
-          alt=""
-        />
+        <div className="w-[400px] absolute right-[220px] top-[150px] rounded-2xl overflow-hidden">
+          <img src={medicine.image} className="" alt="" />
+          <div className="flex-col space-y-2 p-5">
+            <p className="text-lg font-bold ">
+              Best Price :{" "}
+              {parseInt(cartItem.qty) * parseFloat(cartItem.unitPrice)} Taka
+            </p>
+            <Select
+              onValueChange={(value) => {
+                console.log(value);
+                for (let i = 0; i < medicine.prices.length; i++) {
+                  if (medicine.prices[i].unit == value) {
+                    setCartItem({
+                      ...cartItem,
+                      unit: medicine.prices[i].unit,
+                      unitPrice: medicine.prices[i].amount,
+                    });
+                    break;
+                  }
+                }
+              }}
+              // defaultValue={price.unit}
+              value={cartItem.unit}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose Unit" />
+              </SelectTrigger>
+              <SelectContent>
+                {medicine.prices.map((price, index) => (
+                  <SelectItem value={price.unit}>{price.unit}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <div className="flex space-x-2">
+              <div className="w-1/3">
+                <Button
+                  className="text-2xl w-full"
+                  onClick={() => {
+                    if (parseInt(cartItem.qty) > 1) {
+                      setCartItem({
+                        ...cartItem,
+                        qty: (parseInt(cartItem.qty) - 1).toString(),
+                      });
+                    }
+                  }}
+                >
+                  -
+                </Button>
+              </div>
+              <div className="w-1/3">
+                <p className="text-xl text-center p-2">{cartItem.qty}</p>
+              </div>
+              <div className="w-1/3">
+                <Button
+                  className="text-2xl w-full"
+                  onClick={() => {
+                    setCartItem({
+                      ...cartItem,
+                      qty: (parseInt(cartItem.qty) + 1).toString(),
+                    });
+                  }}
+                >
+                  +
+                </Button>
+              </div>
+            </div>
+            <Button className="w-full" onClick={handleAddCart}>Add to Cart</Button>
+          </div>
+        </div>
 
         <div className="flex space-x-2 mt-5">
           <NavLink
