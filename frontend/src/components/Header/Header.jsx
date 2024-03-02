@@ -34,7 +34,7 @@ const Header = () => {
     navigate("/");
   };
 
-  console.log(state)
+  console.log(state);
 
   return (
     <header
@@ -110,11 +110,13 @@ const Header = () => {
             {/* <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-[3px] px-4 rounded-full">
               Login/SignUp
             </button> */}
-            <div className="relative">
-              <img src={CartIcon} className="w-[30px] h-[30px] " alt="" />
-              <span className="absolute -top-2 -right-2 bg-orange-500 text-xs text-white font-bold rounded-full p-1">
-                {state?.cartSize}
-              </span>
+            <div className="relative cursor-pointer">
+              <Link to="/cart">
+                <img src={CartIcon} className="w-[30px] h-[30px] " alt="" />
+                <span className="absolute -top-2 -right-2 bg-orange-500 text-xs text-white font-bold rounded-full p-1">
+                  {state?.cartSize}
+                </span>
+              </Link>
             </div>
 
             {state.token && state.user ? (

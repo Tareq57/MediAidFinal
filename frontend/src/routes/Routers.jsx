@@ -26,6 +26,7 @@ import Overview from "../pages/MediShop/Overview";
 import MedReview from "../pages/MediShop/MedReview";
 import AddMedicine from "../pages/MedishopProfile/AddMedicine";
 import AllMedicine from "../pages/MedishopProfile/AllMedicine"
+import Cart from "../pages/Cart/Cart";
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -69,6 +70,7 @@ const Routers = () => {
         <Route path="overview" element={<Overview />} />
         <Route path="reviews" element={<MedReview />} />
       </Route>
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   );
 };

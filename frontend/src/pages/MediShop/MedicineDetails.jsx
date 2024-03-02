@@ -20,10 +20,12 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { set } from "lodash";
+import { useToast } from "@/components/ui/use-toast"
 
 const MedicineDetails = () => {
   const { medid } = useParams();
 
+  const {toast} = useToast();
   // console.log(medid);
 
   const { state, setState} = useContext(AuthContext);
@@ -86,7 +88,17 @@ const MedicineDetails = () => {
     const result = await res.json();
 
     if (!res.ok) {
+      toast({
+        title: "Medicine not added to cart",
+        description: "Try again",
+      });
       throw new Error(result.message);
+    }
+    else {
+      toast({
+        title: "Added to cart",
+        description: "You can view your cart in your profile",
+      });
     }
 
     setState({...state, cartSize: result.data.medicines.length})
