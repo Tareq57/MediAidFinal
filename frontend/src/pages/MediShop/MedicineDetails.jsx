@@ -10,6 +10,7 @@ import { Outlet } from "react-router-dom";
 import { MyContext } from "@/context/MyContext";
 import { BASE_URL } from "@/config";
 import MedCat from "@/assets/images/medcategory.svg";
+import Disease  from "@/assets/images/disease.svg";
 
 const MedicineDetails = () => {
   const { medid } = useParams();
@@ -52,7 +53,7 @@ const MedicineDetails = () => {
   return (
     medicine && (
       <div className="flex-col mx-[180px] mt-[40px] space-x-10">
-        <div className="h-[200px] bg-black w-full relative p-10 rounded-lg">
+        <div className="h-[220px] bg-black w-full relative p-10 rounded-lg">
           <div className="flex w-1/2 justify-between">
             <p className="font-bold text-3xl text-white">{medicine.name}</p>
             <div className="mt-2">
@@ -63,6 +64,11 @@ const MedicineDetails = () => {
           <div className="flex space-x-1">
             <img src={MedCat} className="w-[25px] h-[25px]" alt="" />
             <p className="text-white font-bold text-lg">{medicine.category}</p>
+          </div>
+
+          <div className="flex space-x-1">
+            <img src={Disease} className="w-[25px] h-[25px]" alt="" />
+            <p className="text-white font-bold text-lg">{medicine.disease}</p>
           </div>
 
           <div className="flex space-x-5 mt-[5px]">

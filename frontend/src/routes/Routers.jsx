@@ -25,7 +25,7 @@ import MedicineDetails from "../pages/MediShop/MedicineDetails";
 import Overview from "../pages/MediShop/Overview";
 import MedReview from "../pages/MediShop/MedReview";
 import AddMedicine from "../pages/MedishopProfile/AddMedicine";
-// import AllMedicine from "../pages/MedishopProfile/AllMedicine"
+import AllMedicine from "../pages/MedishopProfile/AllMedicine"
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -59,7 +59,7 @@ const Routers = () => {
         <Route path="/user" element={<UserMedishopProfile />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="medicines/addmedicine" element={<AddMedicine />} />
-          {/* <Route path="medicines/allmedicine" element={<AllMedicine />} /> */}
+          <Route path="medicines/allmedicine" element={<AllMedicine />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       )}

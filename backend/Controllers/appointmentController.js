@@ -55,6 +55,25 @@ export const getAppointments = async (req, res) => {
     }
 }
 
+export const getAllAppointments = async (req, res) => {
+    const id = req.userId
+    const role = req.role
+    try {
+        let appointments
+        appointments = await Appointment.find()
+        // if (role === 'patient')
+        //     appointments = await Appointment.find({user: id}).populate('doctor', '-password').populate('slot')
+        // else if (role === 'doctor')
+        //     appointments = await Appointment.find({doctor: id}).populate('user', '-password').populate('slot')
+        // else
+        //     res.status(401).json({success: false, msg: "Unauthorized"})
+        res.status(200).json({success: true, appointments})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Couldn't fetch appointments"})
+    }
+}
+
 export const approveAppointment = async (req, res) => {
     const id = req.params.id
     try {

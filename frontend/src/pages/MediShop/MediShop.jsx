@@ -34,6 +34,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { set } from "date-fns";
 import Loader from "@/assets/gifs/page_loader.json";
 import Lottie from "react-lottie";
+import DiseaseIcon from "@/assets/images/diseaseIcon.svg";
 
 const MediShop = () => {
   const { state, setState } = useContext(AuthContext);
@@ -133,10 +134,14 @@ const MediShop = () => {
         params.category = search.value;
       else if (search.searchBy == "name" && search.value != "")
         params.name = search.value;
+      else if (search.searchBy == "disease" && search.value != "")
+        params.disease = search.value;
 
       const queryString = new URLSearchParams(params).toString();
 
       setLoading(true);
+
+      console.log(queryString);
 
       const res1 = await fetch(`${BASE_URL}/medicine/search?${queryString}`, {
         method: "GET",
@@ -153,6 +158,8 @@ const MediShop = () => {
       if (!res1.ok) {
         throw new Error(result1.message);
       }
+
+      console.log(result1);
 
       setMedicines(result1.data);
     };
@@ -177,7 +184,7 @@ const MediShop = () => {
       }
 
       const result1 = await res1.json();
-      console.log(result1)
+      console.log(result1);
 
       setAppointments(result1.appointments);
     };
@@ -334,7 +341,7 @@ const MediShop = () => {
             <div className="flex">
               <input
                 type="text"
-                placeholder="Search by name"
+                placeholder={`Search by ${search.searchBy}`}
                 value={search.value}
                 onChange={(e) => handleChange("value", e.target.value)}
                 className="border-b-2 border-black focus:outline-none w-[300px]"
@@ -360,7 +367,7 @@ const MediShop = () => {
           {medicines.map((med, index) => (
             <div
               key={index}
-              className="flex-col m-[5px] w-[290px] my-[10px] h-[250px] rounded-lg border border-slate-400 overflow-hidden"
+              className="flex-col m-[5px] w-[290px] my-[10px] h-[270px] rounded-lg border border-slate-400 overflow-hidden"
             >
               <div className=" h-[120px]">
                 <img
@@ -384,7 +391,13 @@ const MediShop = () => {
                 </div>
                 <div className="flex space-x-1">
                   <img src={ShopIcon} className="w-[20px] h-[20px]" alt="" />
-                  <p className="font-bold text-xs pt-1">{med.manufacturer.name}</p>
+                  <p className="font-bold text-xs pt-1">
+                    {med.manufacturer.name}
+                  </p>
+                </div>
+                <div className="flex space-x-1">
+                  <img src={DiseaseIcon} className="w-[20px] h-[20px]" alt="" />
+                  <p className="font-bold text-xs pt-1">{med.disease}</p>
                 </div>
                 <hr className="border-gray-200" />
                 <div className="flex items-center justify-between my-[10px]">
@@ -426,6 +439,10 @@ const MediShop = () => {
             <div className="flex items-center space-x-2">
               <RadioGroupItem value={"category"} id="r1" />
               <Label htmlFor="r1">Category</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value={"disease"} id="r1" />
+              <Label htmlFor="r1">Disease</Label>
             </div>
           </RadioGroup>
         </div>

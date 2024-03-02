@@ -16,6 +16,7 @@ const medicineSchema = new mongoose.Schema(
                 amount: {type: Number},
             }
         ],
+        disease: {type: String},
     }
 )
 

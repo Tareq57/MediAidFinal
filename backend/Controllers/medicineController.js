@@ -44,6 +44,7 @@ export const searchMedicine = async (req, res) => {
     let category = req.query.category
     let type = req.query.type
     let manufacturer = req.query.manufacturer
+    let disease = req.query.disease
 
     try {
         const obj = []
@@ -51,6 +52,7 @@ export const searchMedicine = async (req, res) => {
         if (category) obj.push({category: {$regex: category, $options: "i"}})
         if (type) obj.push({type: {$regex: type, $options: "i"}})
         if (manufacturer) obj.push({manufacturer: manufacturer})
+        if (disease) obj.push({disease: {$regex: disease, $options: "i"}})
 
         let medicine = null
         if (obj.length == 0) medicine = await Medicine.find().populate('manufacturer', '-password')

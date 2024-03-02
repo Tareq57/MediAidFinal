@@ -7,6 +7,7 @@ import {addAppointment,
     finishAppointment,
     getDoctorGroup,
     getPatientGroup,
+    getAllAppointments
 } from '../Controllers/appointmentController.js'
 
 const router = express.Router({mergeParams: true})
@@ -16,6 +17,7 @@ router.get('/', authenticate, restrict(['patient', 'doctor']), getAppointments)
 router.patch('/:id', authenticate, restrict(['doctor']), approveAppointment)
 router.get('/combo', authenticate, getCombo)
 router.post('/finish/:id', authenticate, restrict(['doctor']), finishAppointment)
+router.get('/all', getAllAppointments)   
 
 router.get('/doctor/:id', getDoctorGroup)
 router.get('/patient/:id', getPatientGroup)
