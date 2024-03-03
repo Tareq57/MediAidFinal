@@ -164,7 +164,15 @@ export const fetchCart = async (req, res) => {
 export const fetchOrders = async (req, res) => {
     const userid = req.params.userid
     try {
-        let orders = await Order.find({user: userid}).populate('medicines.medicine', '-overview')
+        let orders = await Order.find({user: userid})
+            .populate({
+                path: 'medicines.medicine',
+                select: '-overview',
+                populate: {
+                    path: 'manufacturer',
+                    select: '-password'
+                }
+            })
         res.status(200).json({success: true, data: orders})
     } catch(err) {
         console.log(err)
