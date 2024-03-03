@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { set } from "lodash";
 
 const Cart = () => {
   const { state } = useContext(AuthContext);
@@ -37,7 +38,7 @@ const Cart = () => {
         throw new Error(result.message);
       }
 
-      setCart(result.data);
+      setCart(result.data.medicines);
     };
 
     fetchCart();
@@ -75,10 +76,10 @@ const Cart = () => {
           <h1 className="text-5xl font-bold">Shopping Cart</h1>
           <hr className="border border-black" />
           <h1 className="italic text-gray-500 font-bold">
-            {cart?.medicines?.length} items in the cart
+            {cart?.length} items in the cart
           </h1>
           <div className="flex-col space-y-3">
-            {cart.medicines.map((med, index) => (
+            {cart.map((med, index) => (
               <div
                 key={index}
                 className="flex my-[10px] h-[150px] rounded-lg border border-slate-400 overflow-hidden"
@@ -127,9 +128,31 @@ const Cart = () => {
                     </div>
                     <div className="flex-col w-1/3 space-y-1">
                       <div className="flex items-center justify-center">
-                        <Button className="w-1/3 h-[25px] text-xl">-</Button>
+                        <Button
+                          className="w-1/3 h-[25px] text-xl"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            let updatedCart = [...cart];
+                            if (updatedCart[index].qty > 1)
+                              updatedCart[index].qty =
+                                updatedCart[index].qty - 1;
+                            setCart(updatedCart);
+                          }}
+                        >
+                          -
+                        </Button>
                         <h1 className="text-center w-1/3">{med.qty}</h1>
-                        <Button className="w-1/3 h-[25px] text-xl">+</Button>
+                        <Button
+                          className="w-1/3 h-[25px] text-xl"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            let updatedCart = [...cart];
+                            updatedCart[index].qty = updatedCart[index].qty + 1;
+                            setCart(updatedCart);
+                          }}
+                        >
+                          +
+                        </Button>
                       </div>
                       <div>
                         <h1 className="text-sm font-bold">Unit : {med.unit}</h1>
@@ -138,7 +161,7 @@ const Cart = () => {
                         </h1>
                         <h1 className="text-xs font-bold">
                           Total Price :{" "}
-                          {parseFloat(med.unitPrice) * parseInt(med.qty)} Taka
+                          {(parseFloat(med.unitPrice) * parseInt(med.qty)).toFixed(2)} Taka
                         </h1>
                       </div>
                       <Button
@@ -162,7 +185,7 @@ const Cart = () => {
           <Card>
             <CardHeader>
               <CardTitle className="text-xl">
-                Total Amount : {cart.totalPrice}
+                {/* Total Amount : {cart.totalPrice} */}
               </CardTitle>
             </CardHeader>
             <CardContent>

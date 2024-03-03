@@ -151,7 +151,7 @@ const MedicineDetails = () => {
           <div className="flex-col space-y-2 p-5">
             <p className="text-lg font-bold ">
               Best Price :{" "}
-              {parseInt(cartItem.qty) * parseFloat(cartItem.unitPrice)} Taka
+              {(parseInt(cartItem.qty) * parseFloat(cartItem.unitPrice)).toFixed(2)} Taka
             </p>
             <Select
               onValueChange={(value) => {
