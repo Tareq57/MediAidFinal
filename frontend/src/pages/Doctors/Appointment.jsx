@@ -24,6 +24,7 @@ import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 
 const Appointment = ({ apps, doctor }) => {
   const { state } = useContext(AuthContext);
@@ -45,7 +46,8 @@ const Appointment = ({ apps, doctor }) => {
     setTargetApp(value);
   };
 
-  const handleTakeAppointment = async (value) => {
+  const onToken = async (token) => {
+    console.log(token)
     const res = await fetch(`${BASE_URL}/appointment`, {
       method: "PUT",
       headers: {
@@ -134,7 +136,8 @@ const Appointment = ({ apps, doctor }) => {
                     parseInt(app.date.split("-")[1]) == date.getMonth() + 1 &&
                     parseInt(app.date.split("-")[0]) == date.getFullYear() && (
                       <SelectItem key={index} value={app}>
-                        {app.starthr}:{app.startmin} - {app.endhr}:{app.endmin} | {app.patientCount-app.occupied} remaining 
+                        {app.starthr}:{app.startmin} - {app.endhr}:{app.endmin}{" "}
+                        | {app.patientCount - app.occupied} remaining
                       </SelectItem>
                     )
                 )}
@@ -144,9 +147,17 @@ const Appointment = ({ apps, doctor }) => {
           </Select>
         </div>
       </div>
-      <Button className="w-[280px]" onClick={handleTakeAppointment}>
-        Take Appointment
-      </Button>
+
+      <div>
+        <StripeCheckout
+          stripeKey="pk_test_51OqEoBJp2O3nTHsUqofo4BM2FNMYiT43ZdwhfWC1vkBve5gU5G7hpMUOYsDL8pOP0dGrArWqH5lgm7S4rt3mFiso0007cpU8Hy"
+          token={onToken}
+        >
+          <Button className="w-[280px]">
+            Take Appointment
+          </Button>
+        </StripeCheckout>
+      </div>
     </div>
   );
 };

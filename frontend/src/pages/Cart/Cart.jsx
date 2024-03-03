@@ -18,10 +18,14 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { set } from "lodash";
+import StripeCheckout from "react-stripe-checkout";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { state, setState } = useContext(AuthContext);
   const [cart, setCart] = useState(null);
+
+  const navigate = useNavigate();
 
   const [totalprice, setTotalPrice] = useState(0);
   const [editmode, setEditMode] = useState(false);
@@ -51,10 +55,36 @@ const Cart = () => {
   console.log(totalprice);
   console.log(cart);
 
+  const onToken = (token) => {
+    console.log(token);
+
+    const completeOrder = async () => {
+      const res = await fetch(`${BASE_URL}/cart/complete/${state.user._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.token}`,
+        },
+        body: JSON.stringify({ transactionId: "asdf1234" }),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.message);
+      }
+
+      setState({ ...state, cartSize: 0 });
+
+      navigate("/user/orders");
+    };
+
+    completeOrder();
+  };
+
   const handleSaveChange = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setEditMode(false);
-    let postbody=[];
+    let postbody = [];
     cart.forEach((med) => {
       postbody.push({
         medicineId: med.medicine._id,
@@ -70,7 +100,7 @@ const Cart = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${state.token}`,
       },
-      body: JSON.stringify({medicines : postbody}),
+      body: JSON.stringify({ medicines: postbody }),
     });
 
     const result = await res.json();
@@ -83,7 +113,7 @@ const Cart = () => {
     setCart(result.data.medicines);
     setTotalPrice(result.data.totalPrice);
 
-    setState({...state, cartSize : result.data.medicines.length})
+    setState({ ...state, cartSize: result.data.medicines.length });
   };
 
   return (
@@ -225,11 +255,7 @@ const Cart = () => {
           </div>
           {editmode && (
             <div className="flex justify-end">
-              <Button
-                onClick={(e)=>handleSaveChange(e)}
-              >
-                Save Changes
-              </Button>
+              <Button onClick={(e) => handleSaveChange(e)}>Save Changes</Button>
             </div>
           )}
         </div>
@@ -246,7 +272,12 @@ const Cart = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <Button className="w-full rounded-none">Checkout</Button>
+              <StripeCheckout
+                stripeKey="pk_test_51OqEoBJp2O3nTHsUqofo4BM2FNMYiT43ZdwhfWC1vkBve5gU5G7hpMUOYsDL8pOP0dGrArWqH5lgm7S4rt3mFiso0007cpU8Hy"
+                token={onToken}
+              >
+                <Button className="w-full rounded-none">Checkout</Button>
+              </StripeCheckout>
             </CardContent>
             <CardFooter>
               <div className="flex-col space-y-1 w-full">

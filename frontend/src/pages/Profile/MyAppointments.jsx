@@ -181,6 +181,11 @@ const MyAppointments = () => {
                     Date : {app.slot.date.split("T")[0]}
                   </p>
                 </div>
+                <div>
+                  <p className="text-sm">
+                    Serial : {app.serial}
+                  </p>
+                </div>
                 <div className="flex justify-between">
                   <p className="text-sm">
                     Start : {app.slot.starthr}:{app.slot.startmin}
