@@ -6369,15 +6369,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "344"
+									"value": "976"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"158-FOWF/lNE4TfFu0OAcrQdFrjKseM\""
+									"value": "W/\"3d0-HJtsWaF0JRsKQmxhr+BOZ6KmWDM\""
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 23 Feb 2024 14:10:12 GMT"
+									"value": "Sun, 03 Mar 2024 12:23:52 GMT"
 								},
 								{
 									"key": "Connection",
@@ -6389,7 +6389,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65d8a671d356d46612a7dbd8\",\n            \"user\": \"65965da4e6b3eddbc75645ed\",\n            \"medicines\": [\n                {\n                    \"medicine\": \"65c4cdaab99af264ac497f56\",\n                    \"unit\": \"10s sheet\",\n                    \"unitPrice\": 10,\n                    \"qty\": 5,\n                    \"_id\": \"65d8a671d356d46612a7dbd9\"\n                }\n            ],\n            \"totalPrice\": 50,\n            \"trxId\": \"asdf1234\",\n            \"createdAt\": \"2024-02-23T14:06:41.525Z\",\n            \"updatedAt\": \"2024-02-23T14:06:41.525Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65d8a671d356d46612a7dbd8\",\n            \"user\": \"65965da4e6b3eddbc75645ed\",\n            \"medicines\": [\n                {\n                    \"medicine\": {\n                        \"_id\": \"65c4cdaab99af264ac497f56\",\n                        \"name\": \"Napa 500 mg\",\n                        \"type\": \"Tablet\",\n                        \"category\": \"Paracetamol\",\n                        \"manufacturer\": {\n                            \"_id\": \"65d70433d6e534d0ce4a873c\",\n                            \"email\": \"beximco@gmail.com\",\n                            \"name\": \"Beximco Pharmaceuticals Ltd.\",\n                            \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                            \"role\": \"company\",\n                            \"__v\": 0\n                        },\n                        \"image\": \"https://medeasy.health/_next/image?url=https%3A%2F%2Fcdn.medeasy.health%2Fmedia%2Fmedicines%2FIMG-20231023-WA0137.jpg&w=1920&q=75\",\n                        \"avgStars\": 4,\n                        \"reviewCount\": 1,\n                        \"__v\": 2,\n                        \"prices\": [\n                            {\n                                \"unit\": \"piece\",\n                                \"amount\": 1.08,\n                                \"_id\": \"65d746dd2fb7be2e9ff8f927\"\n                            },\n                            {\n                                \"unit\": \"10s sheet\",\n                                \"amount\": 10,\n                                \"_id\": \"65d746dd2fb7be2e9ff8f928\"\n                            }\n                        ],\n                        \"disease\": \"fever,headache\"\n                    },\n                    \"unit\": \"10s sheet\",\n                    \"unitPrice\": 10,\n                    \"qty\": 5,\n                    \"_id\": \"65d8a671d356d46612a7dbd9\"\n                }\n            ],\n            \"totalPrice\": 50,\n            \"trxId\": \"asdf1234\",\n            \"createdAt\": \"2024-02-23T14:06:41.525Z\",\n            \"updatedAt\": \"2024-02-23T14:06:41.525Z\",\n            \"__v\": 0\n        }\n    ]\n}"
 						}
 					]
 				},
