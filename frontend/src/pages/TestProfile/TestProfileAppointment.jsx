@@ -8,12 +8,14 @@ import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import uploadImagetoCloudinary from "@/utils/uploadCloudinary";
 import { useToast } from "@/components/ui/use-toast";
-
+import { set } from "lodash";
 
 const TestProfileAppointment = () => {
   const [slots, setslots] = useState([]);
   const { state } = useContext(AuthContext);
   const [loading, setLoading] = React.useState(false);
+
+  const [finished, setFinished] = React.useState(false);
 
   const { id } = useParams();
   const { toast } = useToast();
@@ -50,7 +52,7 @@ const TestProfileAppointment = () => {
     if (state.user && state.role == "lab") {
       fetchSlots();
     }
-  }, [group]);
+  }, [group, finished]);
 
   console.log(slots);
 
@@ -90,10 +92,12 @@ const TestProfileAppointment = () => {
         throw new Error(result.message);
       }
       console.log(result);
+
+      setFinished(!finished);
     };
     input.click();
 
-    navigate("")
+    navigate("");
   };
 
   return (
@@ -145,11 +149,33 @@ const TestProfileAppointment = () => {
                         {/* End : {app.slot.endhr}:{app.slot.endmin} */}
                       </p>
                     </div>
-                    {group == "current" && (
-                      <Button onClick={()=>handleUploadReport(app)} className="w-full">
-                        Upload Report
-                      </Button>
-                    )}
+                    {group == "current" &&
+                      app.status !=
+                        "finished" && (
+                          <div className="flex-col">
+                            <p className="text-center">Status : Not Finished</p>
+                            <Button
+                              onClick={() => handleUploadReport(app)}
+                              className="w-full"
+                            >
+                              Upload Report
+                            </Button>
+                          </div>
+                        )}
+
+                    {group == "current" &&
+                      app.status ==
+                        "finished" && (
+                          <div className="flex-col">
+                            <p className="text-center">Status : Finished</p>
+                            <Button
+                              onClick={() => handleUploadReport(app)}
+                              className="w-full"
+                            >
+                              Download Report
+                            </Button>
+                          </div>
+                        )}
 
                     {group == "upcoming" && null}
 
