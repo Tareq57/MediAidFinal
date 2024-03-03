@@ -31,13 +31,11 @@ const AddLabTests = () => {
 
 
     const [test, setTest] = React.useState({
-        Lab: id,
+        lab: id,
         name: "",
         description: "",
-        image: "",
+        photo: "",
         price: 0,
-
-
     });
 
     const handleSelectChange = (name, value) => {
@@ -59,14 +57,14 @@ const AddLabTests = () => {
         });
 
         console.log(data.url);
-        setTest({ ...test, image: data.url });
+        setTest({ ...test, photo: data.url });
     };
     const handleAddTest = async (e) => {
         e.preventDefault();
         console.log(test);
     
-        const res = await fetch(`${BASE_URL}/mediLab/addtests`, {
-          method: "POST",
+        const res = await fetch(`${BASE_URL}/test/createnew`, {
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${state.token}`,

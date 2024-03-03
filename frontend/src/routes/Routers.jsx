@@ -11,7 +11,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 import Prescription from "@/components/Prescription/Prescription";
-import TestReviews from  "@/components/TestDetails/Reviews";
+import TestReviews from "@/components/TestDetails/Reviews";
 import TestDescription from "@/components/TestDetails/Description";
 import MediShop from "@/pages/MediShop/MediShop";
 import Dashboard from "@/pages/Profile/Dashboard";
@@ -36,9 +36,13 @@ import AllLabTests from "@/pages/MediLabProfile/MediAlltests";
 import AddLabTests from "@/pages/MediLabProfile/MediAddTests";
 
 import AddMedicine from "../pages/MedishopProfile/AddMedicine";
-import AllMedicine from "../pages/MedishopProfile/AllMedicine"
+import AllMedicine from "../pages/MedishopProfile/AllMedicine";
 import Cart from "../pages/Cart/Cart";
 import MyOrders from "../pages/PatientProfile/MyOrders";
+import TestProfile from "../pages/TestProfile/TestProfile";
+import AddTestSlot from "../pages/TestProfile/AddTestSlot";
+import AllTestSlot from "../pages/TestProfile/AllTestSlot";
+import TestAppointment from "../pages/TestProfile/TestAppointment";
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -49,12 +53,12 @@ const Routers = () => {
       <Route path="/doctors" element={<Doctors />} />
       <Route path="/medilab" element={<MediLabs />} />
       <Route path="/medilabs/:id" element={<MediLabDetails />} />
-      <Route path="/medilabs/allTests/:id" element={<AllLabTests/>} />
-      <Route path="/user/allTests/:id" element={<AllLabTests/>} />
+      <Route path="/medilabs/allTests/:id" element={<AllLabTests />} />
+      <Route path="/user/allTests/:id" element={<AllLabTests />} />
       <Route path="/doctors/:id" element={<DoctorDetails />} />
       <Route path="/login" element={<Login />} />
       {/* <Route path= "/tests/:id" element={<TestDetails/>}/> */}
-      <Route path="/tests/reviews/:id" element={<TestReviews/>}/>
+      <Route path="/tests/reviews/:id" element={<TestReviews />} />
 
       {state?.role == "doctor" && (
         <Route path="/user" element={<UserDoctorProfile />}>
@@ -68,16 +72,16 @@ const Routers = () => {
       )}
       {state?.role == "lab" && (
         <Route path="/user" element={<UserMediLabProfile />}>
-           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
           {/* <Route path="patients" element={<MyPatients />} />
           <Route path="appointments" element={<MyAppointments />} />*/}
           <Route path="alltests" element={<AllLabTests />} />
-          <Route path="addtests" element={<AddLabTests />} /> 
-          <Route path="settings" element={<MediLabSettings />} />  
+          <Route path="addtests" element={<AddLabTests />} />
+          <Route path="settings" element={<MediLabSettings />} />
         </Route>
       )}
 
-     {state?.role == "patient" && (
+      {state?.role == "patient" && (
         <Route path="/user" element={<UserPatientProfile />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="doctors" element={<MyDoctors />} />
@@ -86,19 +90,13 @@ const Routers = () => {
           <Route path="settings" element={<Settings />} />
           <Route path="orders" element={<MyOrders />} />
         </Route>
-      )} 
+      )}
 
-      {/* {state?.role == "mediLab" && (
-        <Route path="/user" element={<UserMediLabProfile />}>
-          <Route path="LabDashboard" element={<LabDashboard />} />
-          <Route path="LabPatients" element={<MyLabPatients />} />
-          <Route path="LabAppoinments" element={<MyLabAppointments />} />
-          <Route path="allLabslots" element={<AllLabSlots />} />
-          <Route path="addLabslots" element={<AddLabSlots />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      )} */}
-      
+      <Route path="/testprofile/:id" element={<TestProfile />}>
+        <Route path="addslots" element={<AddTestSlot />} />
+        <Route path="allslots" element={<AllTestSlot />} />
+        <Route path="appointments/*" element={<TestAppointment />} />
+      </Route>
 
       {state?.role == "company" && (
         <Route path="/user" element={<UserMedishopProfile />}>

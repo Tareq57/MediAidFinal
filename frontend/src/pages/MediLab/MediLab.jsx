@@ -41,7 +41,7 @@ const MediLab = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const [medicines, setMedicines] = useState([]);
+  const [tests, setTests] = useState([]);
 
   const defaultOptions = {
     loop: true,
@@ -90,7 +90,7 @@ const MediLab = () => {
 
       console.log(queryString);
 
-      const res1 = await fetch(`${BASE_URL}/medicine/search?${queryString}`, {
+      const res1 = await fetch(`${BASE_URL}/test/search?${queryString}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +108,7 @@ const MediLab = () => {
 
       console.log(result1);
 
-      setMedicines(result1.data);
+      setTests(result1.data);
     };
 
     if (state.user) {
@@ -147,22 +147,21 @@ const MediLab = () => {
         )}
 
         <div className="flex flex-row flex-wrap">
-          {medicines.map((med, index) => (
+          {tests.map((test, index) => (
             <div
               key={index}
-              className="flex-col m-[5px] w-[270px] my-[10px] h-[270px] rounded-lg border border-slate-400 overflow-hidden"
+              className="flex-col m-[5px] w-[270px] my-[10px] h-[250px] rounded-lg border border-slate-400 overflow-hidden"
             >
               <div className=" h-[120px]">
                 <img
-                  src={med.image}
+                  src={test.photo}
                   alt="medicine"
                   className="top-0 left-0 w-full h-full object-cover"
                 />
               </div>
               <div className="flex-col p-[15px]">
                 <div className="flex items-center justify-between">
-                  <h1 className="font-bold text">{med.name}</h1>
-                  <Badge>{med.type}</Badge>
+                  <h1 className="font-bold text">{test.name}</h1>
                 </div>
                 <div className="flex space-x-1">
                   <img
@@ -170,24 +169,21 @@ const MediLab = () => {
                     className="w-[20px] h-[20px]"
                     alt=""
                   />
-                  <p className="font-bold text-sm">{med.category}</p>
-                </div>
-                <div className="flex space-x-1">
-                  <img src={ShopIcon} className="w-[20px] h-[20px]" alt="" />
-                  <p className="font-bold text-xs pt-1">
-                    {med.manufacturer.name}
+                  <p className="font-bold text-sm">
+                    {test.patientCount} patients
                   </p>
                 </div>
                 <div className="flex space-x-1">
-                  <img src={DiseaseIcon} className="w-[20px] h-[20px]" alt="" />
-                  <p className="font-bold text-xs pt-1">{med.disease}</p>
+                  <img src={ShopIcon} className="w-[20px] h-[20px]" alt="" />
+                  <p className="font-bold text-xs pt-1">{test.lab.name}</p>
                 </div>
+
                 <hr className="border-gray-200" />
                 <div className="flex items-center justify-between my-[10px]">
                   <div className="flex space-x-1 items-center justify-between">
                     <img src={AvgStar} className="w-[25px] h-[25px]" alt="" />
                     <p className="font-bold pt-1 text-sm">
-                      {med.avgStars.toFixed(2)}
+                      {test.avgStars.toFixed(2)}
                     </p>
                   </div>
                   <h1
