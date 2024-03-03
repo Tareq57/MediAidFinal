@@ -42,7 +42,8 @@ import MyOrders from "../pages/PatientProfile/MyOrders";
 import TestProfile from "../pages/TestProfile/TestProfile";
 import AddTestSlot from "../pages/TestProfile/AddTestSlot";
 import AllTestSlot from "../pages/TestProfile/AllTestSlot";
-import TestAppointment from "../pages/TestProfile/TestAppointment";
+import TestAppointment from "../pages/TestProfile/TestProfileAppointment";
+import TestProfileAppointment from "../pages/TestProfile/TestProfileAppointment";
 import TestDetails from "@/pages/MediLab/TestDetails";
 import MyLabAppointments from "@/pages/PatientProfile/MyLabAppointments";
 
@@ -92,14 +93,13 @@ const Routers = () => {
           <Route path="reports" element={<MyReports />} />
           <Route path="settings" element={<Settings />} />
           <Route path="orders" element={<MyOrders />} />
-          
         </Route>
       )}
 
       <Route path="/testprofile/:id" element={<TestProfile />}>
         <Route path="addslots" element={<AddTestSlot />} />
         <Route path="allslots" element={<AllTestSlot />} />
-        <Route path="appointments/*" element={<TestAppointment />} />
+        <Route path="appointments/*" element={<TestProfileAppointment />} />
       </Route>
 
       <Route path="/test/:id" element={<TestDetails />} />
