@@ -6,12 +6,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
+import uploadImagetoCloudinary from "@/utils/uploadCloudinary";
 
 const TestProfileAppointment = () => {
   const [slots, setslots] = useState([]);
   const { state } = useContext(AuthContext);
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   const { "*": group } = useParams();
 
@@ -44,10 +45,49 @@ const TestProfileAppointment = () => {
 
     if (state.user && state.role == "lab") {
       fetchSlots();
-    } 
+    }
   }, [group]);
 
   console.log(slots);
+
+  const handleUploadReport = async (app) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/pdf"; // specify the accepted file types
+    input.onchange = async (event) => {
+      const file = event.target.files[0];
+      // handle the file upload logic here
+      console.log(file);
+
+      setLoading(true);
+      const data = await uploadImagetoCloudinary(file);
+      setLoading(false);
+
+      toast({
+        title: "Image Uploaded Successfully",
+        description: "Image upload done, you can now sign up",
+      });
+
+      console.log(data.url);
+
+      const res = await fetch(`${BASE_URL}/labappt/report/${app._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.token}`,
+        },
+        body: JSON.stringify({ report: data.url }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message);
+      }
+      console.log(result);
+    };
+    input.click();
+  };
 
   return (
     <div className="flex-col space-y-5">
@@ -74,9 +114,7 @@ const TestProfileAppointment = () => {
                   <div className="flex justify-center items-center">
                     <img
                       src={
-                        state.role == "lab"
-                          ? app.test.photo
-                          : app.test.photo
+                        state.role == "lab" ? app.user.photo : app.user.photo
                       }
                       className="h-[100px] w-[100px] aspect-square"
                       alt=""
@@ -84,14 +122,10 @@ const TestProfileAppointment = () => {
                   </div>
                   <div className="flex-col space-y-1 p-3">
                     <p className="font-bold text-base text-center">
-                      {state.role === "lab"
-                        ? app.test.name
-                        : app.test.name}
+                      {state.role === "lab" ? app.user.name : app.user.name}
                     </p>
                     <p className="font-bold text-base text-center">
-                      {state.role === "lab"
-                        ? `Serial : ${app.serial}`
-                        : null}
+                      {state.role === "lab" ? `Serial : ${app.serial}` : null}
                     </p>
                     <div>
                       {/* <p className="text-sm">Date : {app.slot.date.split("T")[0]}</p> */}
@@ -105,13 +139,8 @@ const TestProfileAppointment = () => {
                       </p>
                     </div>
                     {group == "current" && (
-                      <Button
-                        onClick={() => {
-                          handleAppointment(app);
-                        }}
-                        className="w-full"
-                      >
-                        Add Prescription
+                      <Button onClick={handleUploadReport} className="w-full">
+                        Upload Report
                       </Button>
                     )}
 
