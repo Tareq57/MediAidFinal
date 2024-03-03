@@ -100,6 +100,50 @@ const TestProfileAppointment = () => {
     navigate("");
   };
 
+  const handleDownloadReport = async (app) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/pdf"; // specify the accepted file types
+    input.onchange = async (event) => {
+      const file = event.target.files[0];
+      // handle the file upload logic here
+      console.log(file);
+
+      setLoading(true);
+      const data = await uploadImagetoCloudinary(file);
+      setLoading(false);
+
+      toast({
+        title: "Image Uploaded Successfully",
+        description: "Image upload done, you can now sign up",
+      });
+
+      console.log(data.url);
+      console.log(app);
+
+      const res = await fetch(`${BASE_URL}/labappt/report/${app._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.token}`,
+        },
+        body: JSON.stringify({ report: data.url }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message);
+      }
+      console.log(result);
+
+      setFinished(!finished);
+    };
+    input.click();
+
+    navigate("");
+  };
+
   return (
     <div className="flex-col space-y-5">
       <h1 className="font-bold text-3xl">Appointments</h1>
@@ -169,7 +213,7 @@ const TestProfileAppointment = () => {
                           <div className="flex-col">
                             <p className="text-center">Status : Finished</p>
                             <Button
-                              onClick={() => handleUploadReport(app)}
+                              onClick={() => handleDownloadReport(app)}
                               className="w-full"
                             >
                               Download Report
