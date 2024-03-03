@@ -34,12 +34,60 @@ export const modifyCart = async (req, res) => {
 
         await cart.save()
         
-        cart = await Cart.findOne({user: userid}).populate('medicines.medicine', '-overview')
+        cart = await Cart.findOne({user: userid})
+            .populate({
+                path: 'medicines.medicine',
+                select: '-overview',
+                populate: {
+                    path: 'manufacturer',
+                    select: '-password'
+                }
+            })
         res.status(200).json({success: true, data: cart})
     } catch(err) {
         console.log(err)
         res.status(500).json({success: false, msg: "Internal server error"})
     }
+}
+
+export const replaceCart = async (req, res) => {
+    const userid = req.params.userid
+    const { medicines } = req.body
+    console.log(medicines)
+
+    try {
+        let cart = await Cart.findOne({user: userid})
+        if(!cart) cart = new Cart({user: userid, medicines: [], totalPrice: 0})
+
+        cart.medicines = []
+        cart.totalPrice = 0
+        for(let i=0; i<medicines.length; i++) {
+            cart.medicines.push({
+                medicine: medicines[i].medicineId,
+                unit: medicines[i].unit,
+                unitPrice: medicines[i].unitPrice,
+                qty: medicines[i].qty
+            })
+            cart.totalPrice += medicines[i].unitPrice * medicines[i].qty
+        }
+        console.log(cart.medicines)
+        await cart.save()
+
+        cart = await Cart.findOne({user: userid})
+            .populate({
+                path: 'medicines.medicine',
+                select: '-overview',
+                populate: {
+                    path: 'manufacturer',
+                    select: '-password'
+                }
+            })
+        res.status(200).json({success: true, data: cart})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Internal server error"})
+    }
+
 }
 
 export const clearCart = async (req, res) => {
@@ -97,7 +145,15 @@ export const createOrder = async (req, res) => {
 export const fetchCart = async (req, res) => {
     const userid = req.params.userid
     try {
-        let cart = await Cart.findOne({user: userid}).populate('medicines.medicine', '-overview')
+        let cart = await Cart.findOne({user: userid})
+            .populate({
+                path: 'medicines.medicine',
+                select: '-overview',
+                populate: {
+                    path: 'manufacturer',
+                    select: '-password'
+                }
+            })
         res.status(200).json({success: true, data: cart})
     } catch(err) {
         console.log(err)

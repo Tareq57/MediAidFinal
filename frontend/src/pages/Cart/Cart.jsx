@@ -111,7 +111,7 @@ const Cart = () => {
                           alt=""
                         />
                         <p className="font-bold text-xs pt-1">
-                          {med.medicine.manufacturer}
+                          {med.medicine.manufacturer.name}
                         </p>
                       </div>
                       <div className="flex space-x-1">

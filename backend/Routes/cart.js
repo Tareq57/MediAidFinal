@@ -2,6 +2,7 @@ import express from 'express'
 import { authenticate, restrict } from '../auth/verifyToken.js'
 import {
     modifyCart,
+    replaceCart,
     clearCart,
     createOrder,
     fetchCart,
@@ -10,6 +11,7 @@ import {
 const router = express.Router({mergeParams: true})
 
 router.post('/modify/:userid', modifyCart)
+router.post('/replace/:userid', replaceCart)
 router.post('/clear/:userid', clearCart)
 router.post('/complete/:userid', createOrder)
 
