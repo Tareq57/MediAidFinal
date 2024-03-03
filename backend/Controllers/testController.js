@@ -43,6 +43,10 @@ export const searchTest = async(req, res) => {
     let name = req.query.name
     let labname = req.query.labname
     let labid = req.query.labid
+    let location = req.query.location
+    let feelower = req.query.feelower
+    let feeupper = req.query.feeupper
+    let rating = req.query.rating
 
     try {
         const obj = []
@@ -53,6 +57,10 @@ export const searchTest = async(req, res) => {
             obj.push({lab: {$in: labids}})
         }
         if (labid) obj.push({lab: labid})
+        if (location) obj.push({location: {$regex: location, $options: "i"}})
+        if (feelower) obj.push({price: {$gte: feelower}})
+        if (feeupper) obj.push({price: {$lte: feeupper}})
+        if (rating) obj.push({avgStars: {$gte: rating}})
 
         let tests = null
         if (obj.length == 0) tests = await Test.find().populate('lab', '-password')

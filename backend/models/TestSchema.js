@@ -6,6 +6,7 @@ const TestSchema = new mongoose.Schema({
     price: { type: Number, required: true, default: 0},
     photo: { type: String },
     lab: { type: mongoose.Schema.Types.ObjectId, ref: "Lab" },
+    location: { type: String, default: "" },
 
     avgStars: { type: Number, default: 0 },
     reviewCount: { type: Number, default: 0 },

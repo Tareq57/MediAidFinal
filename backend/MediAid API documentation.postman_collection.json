@@ -7105,7 +7105,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:5000/api/test/search?labid=65e48fc4dd6285e664952723",
+							"raw": "localhost:5000/api/test/search?feelower=100&feeupper=1100",
 							"host": [
 								"localhost"
 							],
@@ -7128,7 +7128,26 @@
 								},
 								{
 									"key": "labid",
-									"value": "65e48fc4dd6285e664952723"
+									"value": "65e48fc4dd6285e664952723",
+									"disabled": true
+								},
+								{
+									"key": "location",
+									"value": "gareeb",
+									"disabled": true
+								},
+								{
+									"key": "feelower",
+									"value": "100"
+								},
+								{
+									"key": "feeupper",
+									"value": "1100"
+								},
+								{
+									"key": "rating",
+									"value": "3",
+									"disabled": true
 								}
 							]
 						}
@@ -7355,6 +7374,272 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e49933c41680810a2c5040\",\n            \"name\": \"X-ray\",\n            \"description\": \"A lab test\",\n            \"price\": 1000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n            \"updatedAt\": \"2024-03-03T15:37:23.500Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49b1b387f2d4c5dfb50ce\",\n            \"name\": \"Blood Test\",\n            \"description\": \"A lab test\",\n            \"price\": 400,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/9/95/Blooddraw.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:45:31.759Z\",\n            \"updatedAt\": \"2024-03-03T15:45:31.759Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49ba0387f2d4c5dfb50d2\",\n            \"name\": \"CT Scan\",\n            \"description\": \"A lab test\",\n            \"price\": 8000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg/1024px-Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:47:44.550Z\",\n            \"updatedAt\": \"2024-03-03T15:47:44.550Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "By location",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/search?location=gareeb",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"search"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ct",
+											"disabled": true
+										},
+										{
+											"key": "labname",
+											"value": "popular",
+											"disabled": true
+										},
+										{
+											"key": "labid",
+											"value": "65e48fc4dd6285e664952723",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "gareeb"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2905"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b59-38nZlqqsHFyB+pqFXN6X4tkuBIY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 17:04:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e49933c41680810a2c5040\",\n            \"name\": \"X-ray\",\n            \"description\": \"A lab test\",\n            \"price\": 1000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"location\": \"41 Gareeb-e-Nawaz Ave, Dhaka 1230\",\n            \"avgStars\": 4,\n            \"reviewCount\": 1,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n            \"updatedAt\": \"2024-03-03T16:21:03.592Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49b1b387f2d4c5dfb50ce\",\n            \"name\": \"Blood Test\",\n            \"description\": \"A lab test\",\n            \"price\": 400,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/9/95/Blooddraw.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"location\": \"41 Gareeb-e-Nawaz Ave, Dhaka 1230\",\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:45:31.759Z\",\n            \"updatedAt\": \"2024-03-03T15:45:31.759Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49ba0387f2d4c5dfb50d2\",\n            \"name\": \"CT Scan\",\n            \"description\": \"A lab test\",\n            \"price\": 8000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg/1024px-Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"location\": \"41 Gareeb-e-Nawaz Ave, Dhaka 1230\",\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:47:44.550Z\",\n            \"updatedAt\": \"2024-03-03T15:47:44.550Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e4a742f9f85aab9b30f374\",\n            \"name\": \"Blood Test\",\n            \"description\": \"Blood test details\\nOnek valo test\",\n            \"price\": 400,\n            \"photo\": \"http://res.cloudinary.com/rauzaruk/image/upload/v1709483750/mediaid/bbubkleptwkrfqobhk4h.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"location\": \"41 Gareeb-e-Nawaz Ave, Dhaka 1230\",\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T16:37:22.874Z\",\n            \"updatedAt\": \"2024-03-03T16:37:22.874Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "By rating",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/search?rating=3",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"search"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ct",
+											"disabled": true
+										},
+										{
+											"key": "labname",
+											"value": "popular",
+											"disabled": true
+										},
+										{
+											"key": "labid",
+											"value": "65e48fc4dd6285e664952723",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "gareeb",
+											"disabled": true
+										},
+										{
+											"key": "feelower",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "feeupper",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "rating",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "688"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b0-WO/dMSswABmbAlRIjJ8MAQXUhtk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 17:09:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e49933c41680810a2c5040\",\n            \"name\": \"X-ray\",\n            \"description\": \"A lab test\",\n            \"price\": 1000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"location\": \"41 Gareeb-e-Nawaz Ave, Dhaka 1230\",\n            \"avgStars\": 4,\n            \"reviewCount\": 1,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n            \"updatedAt\": \"2024-03-03T16:21:03.592Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "By fee range",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/search?feelower=100&feeupper=1100",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"search"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ct",
+											"disabled": true
+										},
+										{
+											"key": "labname",
+											"value": "popular",
+											"disabled": true
+										},
+										{
+											"key": "labid",
+											"value": "65e48fc4dd6285e664952723",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "gareeb",
+											"disabled": true
+										},
+										{
+											"key": "feelower",
+											"value": "100"
+										},
+										{
+											"key": "feeupper",
+											"value": "1100"
+										},
+										{
+											"key": "rating",
+											"value": "3",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1993"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7c9-EQvbpFA67CsuWt+OK4UKjOKD9+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 17:10:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e49933c41680810a2c5040\",\n            \"name\": \"X-ray\",\n            \"description\": \"A lab test\",\n            \"price\": 1000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"location\": \"41 Gareeb-e-Nawaz Ave, Dhaka 1230\",\n            \"avgStars\": 4,\n            \"reviewCount\": 1,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n            \"updatedAt\": \"2024-03-03T16:21:03.592Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49b1b387f2d4c5dfb50ce\",\n            \"name\": \"Blood Test\",\n            \"description\": \"A lab test\",\n            \"price\": 400,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/9/95/Blooddraw.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"location\": \"41 Gareeb-e-Nawaz Ave, Dhaka 1230\",\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:45:31.759Z\",\n            \"updatedAt\": \"2024-03-03T15:45:31.759Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e4a742f9f85aab9b30f374\",\n            \"name\": \"Blood Test\",\n            \"description\": \"Blood test details\\nOnek valo test\",\n            \"price\": 400,\n            \"photo\": \"http://res.cloudinary.com/rauzaruk/image/upload/v1709483750/mediaid/bbubkleptwkrfqobhk4h.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"location\": \"41 Gareeb-e-Nawaz Ave, Dhaka 1230\",\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T16:37:22.874Z\",\n            \"updatedAt\": \"2024-03-03T16:37:22.874Z\",\n            \"__v\": 0\n        }\n    ]\n}"
 						}
 					]
 				},
