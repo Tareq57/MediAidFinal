@@ -48,15 +48,15 @@ export const getTestGroup = async(req, res) => {
         let query = {test: testId}
         if(group == "current") {
             query.date = date
-            query.status = "approved"
+            // query.status = "approved"
         }
         else if(group == "upcoming") {
             query.date = {$gt: date}
-            query.status = "approved"
+            // query.status = "approved"
         }
         else if(group == "past") {
-            // query.date = {$lt: date}
-            query.status = "finished"
+            query.date = {$lt: date}
+            // query.status = "finished"
         }
 
         let testSlots = await TestSlot.find(query).populate('test').sort({date: -1})
