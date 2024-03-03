@@ -110,7 +110,7 @@ export const addReport = async(req, res) => {
     const data = req.body
     try {
         let labappt = await Labappt.findOne({_id: apptId})
-        labappt.report = data.report
+        labappt.reportLink = data.report
         labappt.status = "finished"
         await labappt.save()
         res.status(200).json({success: true, msg: "Report added successfully", data: labappt})
