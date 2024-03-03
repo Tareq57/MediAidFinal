@@ -94,7 +94,7 @@ const Header = () => {
                 </li>
                 <li className="menu-item p-[10px] hover:underline hover:underline-offset-[15px]">
                   <NavLink
-                    to="/medilabs"
+                    to="/medilab"
                     className={(navClass) =>
                       navClass.isActive ? "font-bold text-orange-500" : ""
                     }

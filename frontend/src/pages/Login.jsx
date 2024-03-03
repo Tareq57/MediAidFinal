@@ -139,6 +139,7 @@ const Login = () => {
     // navigate("/doctors");
     if (result.role == "patient" || result.role == "doctor") navigate("/doctors");
     else if(result.role == "company") navigate('/medishop');
+    else if(result.role == "lab") navigate('/medilab');
   };
 
   const handleSignup = async (e) => {
