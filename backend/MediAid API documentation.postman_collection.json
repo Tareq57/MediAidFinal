@@ -7986,6 +7986,10 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Lab Appointments",
+			"item": []
 		}
 	],
 	"auth": {

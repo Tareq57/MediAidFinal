@@ -1,0 +1,1 @@
+import Labappt from "../models/LabapptSchema.js";

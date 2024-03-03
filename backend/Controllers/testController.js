@@ -1,6 +1,7 @@
 import Test from "../models/TestSchema.js"
 import Lab from "../models/LabSchema.js"
 import TestReview from "../models/TestReviewSchema.js"
+import Labappt from "../models/LabapptSchema.js"
 
 export const createNewTest = async (req, res) => {
     const newTest = new Test(req.body)
@@ -201,6 +202,17 @@ export const fetchSlots = async(req, res) => {
         if(slotid) obj._id = slotid
         if(req.query.date) obj.date = date
         const slots = await TestSlot.find(obj).sort({date: -1})
+
+        if(slotid) {
+            for(let i=0; i<slots.length; i++) {
+                const appointments = await Labappt.find({
+                    testSlot: slots[i]._id,
+                    status: {$in: ["pending", "approved"]}
+                })
+                slots[i] = slots[i].toObject()
+                slots[i] = {...slots[i], appointments}
+            }
+        }
 
         res.status(200).json({success: true, data: slots})
     } catch(err) {
