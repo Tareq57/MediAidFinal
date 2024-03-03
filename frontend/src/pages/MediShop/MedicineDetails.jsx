@@ -107,8 +107,6 @@ const MedicineDetails = () => {
 
   };
 
-  console.log(totalprice);  
-
   return (
     medicine && (
       <div className="flex-col mx-[180px] mt-[40px] space-x-10">
