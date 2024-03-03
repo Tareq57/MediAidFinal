@@ -6,7 +6,7 @@ import PatientSideBar from "../PatientProfile/PatientSideBar";
 import MediLabSideBar from "../MediLabProfile/MediLabSideBar";
 import { Outlet } from "react-router-dom";
 
-const UserProfile = () => {
+const UserMediLabProfile = () => {
   const { state } = useContext(AuthContext);
 
   return (
@@ -17,7 +17,7 @@ const UserProfile = () => {
       {state?.role == "doctor" && (
         <DoctorSideBar ></DoctorSideBar>
       )}
-      {state?.role == "mediLab" && (
+      {state?.role == "lab" && (
         <MediLabSideBar></MediLabSideBar>
       )}
       <div className="border-r border-gray-500 h-full min-h-[500px] "></div>
@@ -28,4 +28,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserMediLabProfile;

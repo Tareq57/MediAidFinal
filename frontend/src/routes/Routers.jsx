@@ -66,7 +66,7 @@ const Routers = () => {
           <Route path="settings" element={<Settings />} />
         </Route>
       )}
-      {state?.role == "mediLab" && (
+      {state?.role == "lab" && (
         <Route path="/user" element={<UserMediLabProfile />}>
            <Route path="dashboard" element={<Dashboard />} />
           {/* <Route path="patients" element={<MyPatients />} />

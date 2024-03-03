@@ -45,58 +45,20 @@ const MediLabSideBar = () => {
           <h1 className="font-semibold">Dashboard</h1>
         </div>
       </NavLink>
-      <NavLink
-        to="patients"
-        className={(navClass) =>
-          navClass.isActive ? setNavClass("patients") : null
-        }
-      >
-        <div
-          className={`flex items-center space-x-2   ${
-            navClass == "patients"
-              ? "bg-orange-500 text-white"
-              : "hover:bg-gray-100"
-          } p-2 rounded-full cursor-pointer`}
-        >
-          <AiOutlineMedicineBox className="w-[25px] h-[25px]" />
-          <h1 className="font-semibold">My Patients</h1>
-        </div>
-      </NavLink>
-
-      <NavLink
-        to="appointments"
-        className={(navClass) =>
-          navClass.isActive ? setNavClass("appointments") : null
-        }
-      >
-        <div
-          className={`flex items-center space-x-2   ${
-            navClass == "appointments"
-              ? "bg-orange-500 text-white"
-              : "hover:bg-gray-100"
-          } p-2 rounded-full cursor-pointer`}
-        >
-          <MdOutlineEventNote className="w-[25px] h-[25px]" />
-          <h1 className="font-semibold">Appointments</h1>
-        </div>
-      </NavLink>
 
       <hr className="border border-black" />
 
       <Label className="font-bold text-base text-gray-400 pl-2">Tests</Label>
 
       <NavLink
-        to={{
-          pathname: `/medilabs/allTests/${state?.user._id}`,
-          // state: { user: "medilabs" },
-        }}
+        to="alltests"
         className={(navClass) =>
           navClass.isActive ? setNavClass("alltests") : null
         }
       >
         <div
           className={`flex items-center space-x-2   ${
-            navClass == "allslots"
+            navClass == "alltests"
               ? "bg-orange-500 text-white"
               : "hover:bg-gray-100"
           } p-2 rounded-full cursor-pointer`}
@@ -114,7 +76,7 @@ const MediLabSideBar = () => {
       >
         <div
           className={`flex items-center space-x-2   ${
-            navClass == "addslots"
+            navClass == "addtests"
               ? "bg-orange-500 text-white"
               : "hover:bg-gray-100"
           } p-2 rounded-full cursor-pointer`}
