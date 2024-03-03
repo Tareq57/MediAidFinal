@@ -15,23 +15,23 @@ import AuthContext from "@/context/AuthContext";
 import { addDays } from "date-fns";
 import { BASE_URL } from "@/config";
 import { useToast } from "@/components/ui/use-toast";
+import { useParams } from "react-router-dom";
 
 const AddTestSlot = () => {
   const { state } = useContext(AuthContext);
-  const id = state?.user._id;
+  const {id} = useParams();
   const { toast } = useToast();
 
   // const { toast } = useToast();
 
   const [slot, setSlot] = useState({
-    doctor: id,
+    testid: id,
     slotDate: "",
     starthr: "",
     startmin: "",
     endhr: "",
     endmin: "",
     patientCount: "",
-    location: "",
   });
 
   const handleChange = (name, value) => {
@@ -54,7 +54,7 @@ const AddTestSlot = () => {
 
       console.log(newSlot);
 
-      const res = await fetch(`${BASE_URL}/doctor/timeslots`, {
+      const res = await fetch(`${BASE_URL}/test/slot/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

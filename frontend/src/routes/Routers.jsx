@@ -43,6 +43,7 @@ import TestProfile from "../pages/TestProfile/TestProfile";
 import AddTestSlot from "../pages/TestProfile/AddTestSlot";
 import AllTestSlot from "../pages/TestProfile/AllTestSlot";
 import TestAppointment from "../pages/TestProfile/TestAppointment";
+import TestDetails from "@/pages/MediLab/TestDetails";
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -97,6 +98,8 @@ const Routers = () => {
         <Route path="allslots" element={<AllTestSlot />} />
         <Route path="appointments/*" element={<TestAppointment />} />
       </Route>
+
+      <Route path="/test/:id" element={<TestDetails />} />
 
       {state?.role == "company" && (
         <Route path="/user" element={<UserMedishopProfile />}>

@@ -59,8 +59,8 @@ const MediLab = () => {
     searchBy: "any",
   });
 
-  const handleViewClick = (med) => {
-    navigate(`/medicine/${med._id}/overview`);
+  const handleViewClick = (test) => {
+    navigate(`/test/${test._id}`);
   };
 
   const handleChange = (key, value) => {
@@ -188,7 +188,7 @@ const MediLab = () => {
                   </div>
                   <h1
                     className="font-bold hover:scale-110 transition-transform cursor-pointer"
-                    onClick={() => handleViewClick(med)}
+                    onClick={() => handleViewClick(test)}
                   >
                     view more
                   </h1>

@@ -181,7 +181,7 @@ export const deleteSlot = async(req, res) => {
     const remId = req.params.slotid
 
     try {
-        await Slot.findByIdAndDelete(remId)
+        await TestSlot.findByIdAndDelete(remId)
         res.status(200).json({success: true, msg: "Time slot deleted successfully"})
     } catch(error) {
         console.log(error)

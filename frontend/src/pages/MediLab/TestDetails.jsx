@@ -6,18 +6,12 @@ import AuthContext from "@/context/AuthContext";
 import { PiClockCountdownFill } from "react-icons/pi";
 import { TbCalendarStats } from "react-icons/tb";
 import { TbDeviceWatchStats2 } from "react-icons/tb";
-import TestDescription from "@/components/TestDetails/Description";
-import TestReviews from "@/components/TestDetails/Reviews";
-import { MyContext } from "@/context/MyContext";
-import { Outlet } from "react-router-dom";
-import MedCat from "@/assets/images/medcategory.svg";
-import StarIcon from "@/assets/images/avgstar.png";
-import ReviewIcon from "@/assets/images/reviews.png";
-import { Badge } from "@/components/ui/badge";
-import { NavLink } from "react-router-dom";
-import TestAppointment from "./TestAppointment";
+// import Qualification from "@/components/DoctorDetails/Qualification";
+// import Reviews from "@/components/DoctorDetails/Reviews";
+// import Appointment from "./Appointment";
 import { set } from "date-fns";
-// import { Description } from "@radix-ui/react-dialog";
+import  TestOverview  from "./TestOverview";
+import TestReview from "./TestReview";
 
 const TestDetails = () => {
   const { id } = useParams();
@@ -26,23 +20,18 @@ const TestDetails = () => {
 
   const [test, setTest] = useState(null);
 
-  const [appointments, setAppointments] = useState(null);
+//   const [appointments, setAppointments] = useState(null);
 
-  const [navClass, setNavClass] = useState("Description");
+  const [navClass, setNavClass] = useState("Qualification");
 
   const handleclick = (e) => {
-    if (e.target.id == "Des") setNavClass("Description");
+    if (e.target.id == "Qual") setNavClass("Qualification");
     else if (e.target.id == "Rev") setNavClass("Reviews");
   };
 
-
   useEffect(() => {
-    const fetchTest = async () => {
-      // let params = {};
-      // params.testId=id
-
-      // const queryString = new URLSearchParams(params).toString();
-      const res = await fetch(`${BASE_URL}/test/fetch/${id}`, {
+    const fetchDoctor = async () => {
+      const res = await fetch(`${BASE_URL}/test/getone/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -50,66 +39,63 @@ const TestDetails = () => {
         },
       });
 
-        // const queryString = new URLSearchParams({ test: id }).toString();
-        // const res2 = await fetch(`${BASE_URL}/test/appointments?${queryString}`, {
-        //   method: "GET",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: `Bearer ${state.token}`,
-        //   },
-        // });
+    //   const res2 = await fetch(`${BASE_URL}/test/slot/fetch?testid=${id}`, {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${state.token}`,
+    //     },
+    //   });
+      const result = await res.json();
+    //   const result2 = await res2.json();
 
       if (!res.ok) {
-        throw new Error(result.message);
+        throw new Error(result.msg);
       }
 
-        // if (!res2.ok) {
-        //   throw new Error(result.message);
-        // }
+    //   if (!res2.ok) {
+    //     throw new Error(result2.message);
+    //   }
 
-      const result1 = await res.json();
-        // const result2 = await res2.json();
-
-      setTest(result1.data);
-        // setAppointments(result2.data);
+      setTest(result.data);
+    //   setAppointments(result2.data);
     };
-    fetchTest();
+    fetchDoctor();
   }, []);
 
-  console.log(test);
 
   return (
     test != null && (
       <div className="flex mx-[180px] mt-[40px] space-x-10">
         <div className="w-2/3 flex-col space-y-3">
           <h1 className="text-3xl font-bold">{test.name}</h1>
-          {/* <h1 className="text-xl font-bold">Phone: 0{mediLab.phone}</h1> */}
-          {/* <div className="flex my-[10px]">
+          {/* <h1 className="text-xl font-bold">{doctor.specialization.name} Specialist</h1> */}
+          <div className="flex my-[10px]">
             <div className="flex mr-[10px] space-x-1">
               <PiClockCountdownFill className="text-orange-400 " />
-              <p className="text-xs"> {doctor.patientCount} Patients</p>
+              <p className="text-xs"> {test.patientCount} Patients</p>
             </div>
             <div className="flex mx-[10px] space-x-1">
               <TbCalendarStats className="text-orange-400 " />
               <p className="text-xs">
                 {" "}
-                Joined on {doctor.createdAt.split("T")[0]}{" "}
+                Joined on {test.createdAt.split("T")[0]}{" "}
               </p>
             </div>
             <div className="flex mx-[10px]">
               <TbDeviceWatchStats2 className="text-orange-400 space-x-1" />
-              <p className="text-xs"> {doctor.slotCount} slots available</p>
+              <p className="text-xs"> {test.slotCount} slots available</p>
             </div>
-          </div> */}
+          </div>
           <div className="border border-black rounded-xl overflow-hidden justify-center flex bg-slate-100">
-            <img src={test.image} alt="" className="h-[400px]" />
+            <img src={test.photo} alt="" className="h-[400px]" />
           </div>
           <div className="navigation border rounded-lg overflow-hidden">
             <ul className="menu flex items-center">
               <li
-                id="Des"
+                id="Qual"
                 className={`menu-item p-[10px] hover:cursor-pointer font-bold text-xl ${
-                  navClass == "Description" ? "bg-orange-300" : ""
+                  navClass == "Qualification" ? "bg-orange-300" : ""
                 }`}
                 onClick={handleclick}
               >
@@ -128,17 +114,16 @@ const TestDetails = () => {
             <hr className="border-black" />
 
             <div>
-              {navClass == "Description" && (
-                <TestDescription test={test} />
-                
+              {navClass == "Qualification" && (
+                <TestOverview test={test} />
               )}
-              {navClass == "Reviews" && <TestReviews test={test} />}
+              {navClass == "Reviews" && <TestReview test={test} />}
             </div>
           </div>
         </div>
-     {/*   <div className="w-1/3 ">
-          <TestAppointment apps={appointments} test={test}></TestAppointment>
-        </div> */}
+        <div className="w-1/3 ">
+          {/* <Appointment apps={appointments} doctor={doctor}></Appointment> */}
+        </div>
       </div>
     )
   );
