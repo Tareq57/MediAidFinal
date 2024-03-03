@@ -46,12 +46,16 @@ export const getTestGroup = async(req, res) => {
 
     try {
         let query = {test: testId}
-        if(group == "current")
+        if(group == "current") {
             query.date = date
-        else if(group == "upcoming")
+            query.status = "approved"
+        }
+        else if(group == "upcoming") {
             query.date = {$gt: date}
+            query.status = "approved"
+        }
         else if(group == "past") {
-            query.date = {$lt: date}
+            // query.date = {$lt: date}
             query.status = "finished"
         }
 
@@ -80,12 +84,16 @@ export const getPatientGroup = async(req, res) => {
     try {
         let labappts = await Labappt.find({user: patientId}).populate('testSlot').populate('test')
                                                             .populate('user', '-password').sort({createdAt: -1})
-        if(group == "current")
+        if(group == "current") {
             labappts = labappts.filter(labappt => labappt.testSlot.date.getTime() == date.getTime())
-        else if(group == "upcoming")
+            labappts = labappts.filter(labappt => labappt.status != "finished")
+        }
+        else if(group == "upcoming") {
             labappts = labappts.filter(labappt => labappt.testSlot.date.getTime() > date.getTime())
+            labappts = labappts.filter(labappt => labappt.status != "finished")
+        }
         else if(group == "past") {
-            labappts = labappts.filter(labappt => labappt.testSlot.date.getTime() < date.getTime())
+            // labappts = labappts.filter(labappt => labappt.testSlot.date.getTime() < date.getTime())
             labappts = labappts.filter(labappt => labappt.status == "finished")
         }
 
