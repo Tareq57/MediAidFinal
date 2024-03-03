@@ -16,6 +16,7 @@ import infoRoutes from "./Routes/info.js"
 import companyRoutes from "./Routes/company.js"
 import cartRoutes from "./Routes/cart.js"
 import labRoutes from "./Routes/lab.js"
+import testRoutes from "./Routes/test.js"
 
 dotenv.config()
 
@@ -60,6 +61,7 @@ app.use("/api/info", infoRoutes)
 app.use("/api/company", companyRoutes)
 app.use("/api/cart", cartRoutes)
 app.use("/api/lab", labRoutes)
+app.use("/api/test", testRoutes)
 
 app.listen(port, () => {
     connectDB();
