@@ -140,3 +140,63 @@ export const fetchReviews = async(req, res) => {
         res.status(500).json({success: false, msg: "Internal server error", error: err})
     }
 }
+
+export const createSlot = async(req, res) => {
+    let {testid, starthr, endhr, startmin, endmin, slotDate, patientCount, location} = req.body
+    
+    try {
+        slotDate = new Date(slotDate)
+        slotDate.setDate(slotDate.getDate() + 1)
+        slotDate.setHours(0, 0, 0)
+
+        const newSlot = new TestSlot({
+            test: testid,
+            starthr, 
+            endhr, 
+            startmin, 
+            endmin, 
+            date: slotDate,
+            patientCount,
+            location
+        })
+        await newSlot.save()
+        res.status(200).json({success: true, data: newSlot})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "slot creation failed", error: err})
+    }
+}
+
+export const deleteSlot = async(req, res) => {
+    const remId = req.params.slotid
+
+    try {
+        await Slot.findByIdAndDelete(remId)
+        res.status(200).json({success: true, msg: "Time slot deleted successfully"})
+    } catch(error) {
+        console.log(error)
+        res.status(500).json({success: false, msg: "Time slot deletion failed"})
+    }
+}
+
+export const fetchSlots = async(req, res) => {
+    const testid = req.query.testid
+    const slotid = req.query.slotid
+
+    let date = new Date(req.query.date)
+    date.setDate(date.getDate() + 1)
+    date.setHours(0, 0, 0)
+
+    try {
+        let obj = {}
+        if(testid) obj.test = testid
+        if(slotid) obj._id = slotid
+        if(req.query.date) obj.date = date
+        const slots = await TestSlot.find(obj).sort({date: -1})
+
+        res.status(200).json({success: true, data: slots})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Internal server error", error: err})
+    }
+}

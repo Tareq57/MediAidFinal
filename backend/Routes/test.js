@@ -8,7 +8,10 @@ import {
     searchTest,
     createReview,
     deleteReview,
-    fetchReviews
+    fetchReviews,
+    createSlot,
+    deleteSlot,
+    fetchSlots
 } from '../Controllers/testController.js'
 
 router.put('/createnew', createNewTest)
@@ -21,5 +24,9 @@ router.put('/review/create/:testid', authenticate, createReview)
 router.delete('/review/deleteone/:reviewid', deleteReview)
 
 router.get('/review', fetchReviews)
+
+router.post('/slot/create', createSlot)
+router.delete('/slot/:slotid', deleteSlot)
+router.get('/slot/fetch', fetchSlots)
 
 export default router

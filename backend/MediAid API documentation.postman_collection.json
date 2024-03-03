@@ -7607,6 +7607,98 @@
 							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e4a36ecc4e3dcf4173e690\",\n            \"test\": {\n                \"_id\": \"65e49933c41680810a2c5040\",\n                \"name\": \"X-ray\",\n                \"description\": \"A lab test\",\n                \"price\": 1000,\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n                \"lab\": \"65e48fc4dd6285e664952723\",\n                \"avgStars\": 4,\n                \"reviewCount\": 1,\n                \"patientCount\": 0,\n                \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n                \"updatedAt\": \"2024-03-03T16:21:03.592Z\",\n                \"__v\": 0\n            },\n            \"user\": {\n                \"_id\": \"65965da4e6b3eddbc75645ed\",\n                \"email\": \"p1@gmail.com\",\n                \"name\": \"patient 1\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"patient\",\n                \"gender\": \"male\",\n                \"__v\": 0\n            },\n            \"reviewText\": \"Good\",\n            \"rating\": 4,\n            \"createdAt\": \"2024-03-03T16:21:02.828Z\",\n            \"updatedAt\": \"2024-03-03T16:21:02.828Z\",\n            \"__v\": 0\n        }\n    ]\n}"
 						}
 					]
+				},
+				{
+					"name": "Add time slot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"testid\": \"65e49ba0387f2d4c5dfb50d2\",\n    \"starthr\": 18,\n    \"startmin\": 0,\n    \"endhr\": 21,\n    \"endmin\": 0,\n    \"slotDate\": \"2024-01-28\",\n    \"patientCount\": 10,\n    \"location\": \"Popular Diagnostic Center, Shantinagar Mor, Dhaka\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/test/slot/create",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"slot",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete slot by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/test/slot/:slotid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"slot",
+								":slotid"
+							],
+							"variable": [
+								{
+									"key": "slotid",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get slots",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/test/slot/fetch?date&testid&slotid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"slot",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": null
+								},
+								{
+									"key": "testid",
+									"value": null
+								},
+								{
+									"key": "slotid",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
