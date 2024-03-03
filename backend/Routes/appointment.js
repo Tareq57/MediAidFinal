@@ -7,8 +7,7 @@ import {addAppointment,
     finishAppointment,
     getDoctorGroup,
     getPatientGroup,
-    getAllAppointments
-    getTestGroup,
+    getAllAppointments,
     addTestAppointment,
     getTestAppointments,
     approveTestAppointment,
@@ -34,6 +33,6 @@ router.post('/test/finish/:id', authenticate, restrict(['mediLab']), finishTestA
 
 router.get('/doctor/:id', getDoctorGroup)
 router.get('/patient/:id', getPatientGroup)
-router.get('/test/:id',getTestGroup)
+// router.get('/test/:id',getTestGroup)
 
 export default router

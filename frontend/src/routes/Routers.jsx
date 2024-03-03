@@ -52,7 +52,7 @@ const Routers = () => {
       <Route path="/user/allTests/:id" element={<AllLabTests/>} />
       <Route path="/doctors/:id" element={<DoctorDetails />} />
       <Route path="/login" element={<Login />} />
-      <Route path= "/tests/:id" element={<TestDetails/>}/>
+      {/* <Route path= "/tests/:id" element={<TestDetails/>}/> */}
       <Route path="/tests/reviews/:id" element={<TestReviews/>}/>
 
       {state?.role == "doctor" && (
