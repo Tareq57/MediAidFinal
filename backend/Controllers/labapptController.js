@@ -57,7 +57,7 @@ export const getTestGroup = async(req, res) => {
 
         let testSlots = await TestSlot.find(query).populate('test').sort({date: -1})
         for(let i=0; i < testSlots.length; i++) {
-            let appointments = await Labappt.find({test: testId, testSlot: testSlots[i]._id})
+            let appointments = await Labappt.find({test: testId, testSlot: testSlots[i]._id}).populate('user', '-password').sort({serial: 1})
             testSlots[i] = testSlots[i].toObject()
             testSlots[i] = {...testSlots[i], appointments}
         }
