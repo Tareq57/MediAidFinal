@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const appointmentSchema = new mongoose.Schema(
+const labapptSchema = new mongoose.Schema(
   {
     test: {
       type: mongoose.Types.ObjectId,
@@ -40,4 +40,4 @@ const appointmentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Appointment", appointmentSchema);
+export default mongoose.model("Labappt", labapptSchema);
