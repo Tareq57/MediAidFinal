@@ -2,6 +2,7 @@ import User from '../models/UserSchema.js'
 import Doctor from '../models/DoctorSchema.js'
 import MediLab from '../models/MediLabSchemaa.js'
 import Cart from '../models/CartSchema.js'
+import Company from '../models/CompanySchema.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
@@ -74,10 +75,12 @@ export const login = async(req, res) => {
         const patient = await User.findOne({email})
         const doctor = await Doctor.findOne({email})
         const mediLab = await MediLab.findOne({email})
+        const company = await Company.findOne({email})
 
         if(patient) user = patient
         else if(doctor) user = doctor
         else if(mediLab) user = mediLab
+        else if(company) user = company
         else
             return res.status(404).json({success:false, msg: "User not found"})
 

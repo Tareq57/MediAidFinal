@@ -115,57 +115,45 @@ const Home = () => {
         <hr className="my-4 border-gray-600 h-50" />
       </div>
 
-      <div className="Feedback flex items-center">
+      <div className="Feedback flex justify-between">
         <div className="w-1/4 p-5 ">
           <FaQuoteRight className="h-5 w-5" />
           <p className="m-2">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-            quia cum tenetur quasi deserunt voluptates inventore vero eius earum
-            laudantium recusandae voluptas beatae consectetur vel, minima
-            blanditiis aut accusantium neque!
+          This doctor appointment app has truly simplified my healthcare experience. Its intuitive interface allows for easy appointment scheduling with my preferred doctors, making the entire process efficient and stress-free. Managing my medical appointments has never been this straightforward, and I highly recommend this app for anyone seeking a user-friendly solution for booking and keeping track of their healthcare visits.
           </p>
           <div>
-            <h1 className="font-bold">Mohammad Ali</h1>
+            <h1 className="font-bold">Farhan Shahriar</h1>
             <h1 className="">Patient</h1>
           </div>
         </div>
         <div className="w-1/4 p-5">
           <FaQuoteRight className="h-5 w-5" />
           <p className="m-2">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-            quia cum tenetur quasi deserunt voluptates inventore vero eius earum
-            laudantium recusandae voluptas beatae consectetur vel, minima
-            blanditiis aut accusantium neque!
+          This all-in-one doctor appointment app has been a game-changer for me. Not only does it make scheduling medical appointments a breeze, but the added lab appointment module has made managing diagnostic tests incredibly convenient. Plus, the e-commerce feature for purchasing medicines is a brilliant addition, making it a one-stop solution for all my healthcare needs.
           </p>
           <div>
-            <h1 className="font-bold">Mohammad Ali</h1>
+            <h1 className="font-bold">Hasan Mahmud</h1>
             <h1 className="">Patient</h1>
           </div>
         </div>
         <div className="w-1/4 p-5">
           <FaQuoteRight className="h-5 w-5" />
           <p className="m-2">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-            quia cum tenetur quasi deserunt voluptates inventore vero eius earum
-            laudantium recusandae voluptas beatae consectetur vel, minima
-            blanditiis aut accusantium neque!
+          Managing a diagnostic lab has become remarkably efficient with this doctor appointment app. The lab appointment module seamlessly integrates with our workflow, allowing for streamlined coordination of tests. The user-friendly interface has simplified the process for both staff and patients, enhancing overall efficiency. It's a valuable tool that has significantly improved the operations of our diagnostic lab, making it an essential asset for any lab manager looking to optimize their workflow.
           </p>
           <div>
-            <h1 className="font-bold">Mohammad Ali</h1>
-            <h1 className="">Patient</h1>
+            <h1 className="font-bold">Tonmoy Hasan</h1>
+            <h1 className="">Lab Agent</h1>
           </div>
         </div>
         <div className="w-1/4 p-5">
           <FaQuoteRight className="h-5 w-5" />
           <p className="m-2">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-            quia cum tenetur quasi deserunt voluptates inventore vero eius earum
-            laudantium recusandae voluptas beatae consectetur vel, minima
-            blanditiis aut accusantium neque!
+          This doctor appointment app has significantly improved the efficiency of my practice. The seamless interface simplifies appointment scheduling for patients, and the lab appointment module enhances coordination for diagnostic tests. It's become an indispensable tool in my clinic, streamlining communication and optimizing patient care. Highly recommended for fellow healthcare professionals seeking an effective practice management solution.
           </p>
           <div>
-            <h1 className="font-bold">Mohammad Ali</h1>
-            <h1 className="">Patient</h1>
+            <h1 className="font-bold">Khaled Mahmud</h1>
+            <h1 className="">Doctor</h1>
           </div>
         </div>
       </div>
