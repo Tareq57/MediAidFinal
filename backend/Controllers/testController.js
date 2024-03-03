@@ -2,6 +2,7 @@ import Test from "../models/TestSchema.js"
 import Lab from "../models/LabSchema.js"
 import TestReview from "../models/TestReviewSchema.js"
 import Labappt from "../models/LabapptSchema.js"
+import TestSlot from "../models/TestSlotSchema.js"
 
 export const createNewTest = async (req, res) => {
     const newTest = new Test(req.body)

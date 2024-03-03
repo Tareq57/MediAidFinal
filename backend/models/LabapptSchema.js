@@ -12,7 +12,6 @@ const labapptSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    ticketPrice: { type: Number, required: true },
 
     testSlot: {
       type: mongoose.Types.ObjectId,

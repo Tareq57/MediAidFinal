@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken'
 import Doctor from '../models/DoctorSchema.js'
 import User from '../models/UserSchema.js'
+import Company from '../models/CompanySchema.js'
+import Lab from '../models/LabSchema.js'
 
 export const authenticate = async(req, res, next) => {
     const authToken = req.headers.authorization
@@ -28,11 +30,19 @@ export const restrict = roles => async(req, res, next) => {
 
     const patient = await User.findById(userId)
     const doctor = await Doctor.findById(userId)
+    const company = await Company.findById(userId)
+    const lab = await Lab.findById(userId)
 
     if(patient)
         user = patient
     else if(doctor)
         user = doctor
+    else if(company)
+        user = company
+    else if(lab)
+        user = lab
+    else
+        return res.status(401).json({success: false, msg: "Unauthorized, in restrict function"})
 
     if(!roles.includes(user.role))
         return res.status(401).json({success: false, msg: "Unauthorized, in restrict function"})

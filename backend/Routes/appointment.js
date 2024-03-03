@@ -1,6 +1,7 @@
 import express from 'express'
 import { authenticate, restrict } from '../auth/verifyToken.js'
-import {addAppointment,
+import {
+    addAppointment,
     getAppointments, 
     approveAppointment, 
     getCombo, 
