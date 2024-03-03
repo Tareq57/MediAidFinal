@@ -78,7 +78,19 @@ export const getPatientGroup = async(req, res) => {
     date.setHours(0, 0, 0)
 
     try {
-        let labappts = await Labappt.find({user: patientId}).populate('testSlot').sort({createdAt: -1})
+        let labappts = await Labappt.find({user: patientId}).populate('testSlot').populate('test')
+                                                            .populate('user', '-password').sort({createdAt: -1})
+        if(group == "current")
+            labappts = labappts.filter(labappt => labappt.testSlot.date.getTime() == date.getTime())
+        else if(group == "upcoming")
+            labappts = labappts.filter(labappt => labappt.testSlot.date.getTime() > date.getTime())
+        else if(group == "past") {
+            labappts = labappts.filter(labappt => labappt.testSlot.date.getTime() < date.getTime())
+            labappts = labappts.filter(labappt => labappt.status == "finished")
+        }
+
+        labappts = labappts.sort((a, b) => b.testSlot.date - a.testSlot.date)
+        res.status(200).json({success: true, msg: "Appointments found", data: labappts})
     } catch(err) {
         console.log(err)
         res.status(500).json({success: false, msg: "Couldn't fetch appointments"})

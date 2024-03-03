@@ -8066,6 +8066,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get patient appointments by group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/labappt/test/:id?date=2024-03-04&group=upcoming",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"labappt",
+								"test",
+								":id"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2024-03-04"
+								},
+								{
+									"key": "group",
+									"value": "upcoming",
+									"description": "current, upcoming, past, all"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
