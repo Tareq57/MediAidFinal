@@ -44,6 +44,7 @@ import AddTestSlot from "../pages/TestProfile/AddTestSlot";
 import AllTestSlot from "../pages/TestProfile/AllTestSlot";
 import TestAppointment from "../pages/TestProfile/TestAppointment";
 import TestDetails from "@/pages/MediLab/TestDetails";
+import MyLabAppointments from "@/pages/PatientProfile/MyLabAppointments";
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -87,9 +88,11 @@ const Routers = () => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="doctors" element={<MyDoctors />} />
           <Route path="appointments/*" element={<MyAppointments />} />
+          <Route path="labappointments/*" element={<MyLabAppointments />} />
           <Route path="reports" element={<MyReports />} />
           <Route path="settings" element={<Settings />} />
           <Route path="orders" element={<MyOrders />} />
+          
         </Route>
       )}
 

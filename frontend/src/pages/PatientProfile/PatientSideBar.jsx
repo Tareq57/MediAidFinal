@@ -125,6 +125,82 @@ const PatientSideBar = () => {
 
       <hr className="border border-black" />
 
+      <Label className="font-bold text-base text-gray-400 pl-2">
+        My Lab Appointments
+      </Label>
+
+      <NavLink
+        to="labappointments/current"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("labcurrent") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "labcurrent"
+              ? "bg-orange-500 text-white"
+              : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <MdOutlineEventNote className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">Pending</h1>
+        </div>
+      </NavLink>
+
+      <NavLink
+        to="labappointments/upcoming"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("labupcoming") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "labupcoming"
+              ? "bg-orange-500 text-white"
+              : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <MdOutlineEventNote className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">Upcoming</h1>
+        </div>
+      </NavLink>
+
+      <NavLink
+        to="labappointments/past"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("labpast") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "labpast"
+              ? "bg-orange-500 text-white"
+              : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <MdOutlineEventNote className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">Examined</h1>
+        </div>
+      </NavLink>
+
+      <NavLink
+        to="labappointments/all"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("laball") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "laball" ? "bg-orange-500 text-white" : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <MdOutlineEventNote className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">All</h1>
+        </div>
+      </NavLink>
+
+      <hr className="border border-black" />
+
     
       <NavLink
         to="reports"

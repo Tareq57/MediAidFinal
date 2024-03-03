@@ -48,7 +48,7 @@ const TestAppointment = ({ apps, test }) => {
 
   const onToken = async (token) => {
     console.log(token)
-    const res = await fetch(`${BASE_URL}/appointment`, {
+    const res = await fetch(`${BASE_URL}/labappt/new`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -56,8 +56,7 @@ const TestAppointment = ({ apps, test }) => {
       },
       body: JSON.stringify({
         test: test._id,
-        ticketPrice: 1000,
-        timeSlot: targetApp._id,
+        testSlot: targetApp._id,
       }),
     });
 
