@@ -6812,6 +6812,803 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "Create new test",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"X-ray\",\n    \"description:\": \"X-ray test for disease detection\",\n    \"price\": 1000,\n    \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n    \"lab\": \"65e48fc4dd6285e664952723\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/test/createnew",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"createnew"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"X-ray\",\n    \"description:\": \"X-ray test for disease detection\",\n    \"price\": 1000,\n    \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n    \"lab\": \"65e48fc4dd6285e664952723\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/api/test/createnew",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"createnew"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "639"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27f-PObhN/Td6kda+xwHiS0sQ0VGbcM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 15:37:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"65e49933c41680810a2c5040\",\n        \"name\": \"X-ray\",\n        \"description\": \"A lab test\",\n        \"price\": 1000,\n        \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n        \"lab\": {\n            \"_id\": \"65e48fc4dd6285e664952723\",\n            \"email\": \"popular@gmail.com\",\n            \"name\": \"Popular Diagnostics Ltd.\",\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n            \"role\": \"lab\",\n            \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n            \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n            \"__v\": 0\n        },\n        \"avgStars\": 0,\n        \"reviewCount\": 0,\n        \"patientCount\": 0,\n        \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n        \"updatedAt\": \"2024-03-03T15:37:23.500Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete test",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/test/deleteone/:testid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"deleteone",
+								":testid"
+							],
+							"variable": [
+								{
+									"key": "testid",
+									"value": "65e498302ef5928526ff4a28"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/deleteone/:testid",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"deleteone",
+										":testid"
+									],
+									"variable": [
+										{
+											"key": "testid",
+											"value": "65e498302ef5928526ff4a28"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-8o4vF9CGcUGq5R16f38FVjiE6U0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 15:37:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Test deleted\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch single test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/test/getone/:testid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"getone",
+								":testid"
+							],
+							"variable": [
+								{
+									"key": "testid",
+									"value": "65e49933c41680810a2c5040"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/getone/:testid",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"getone",
+										":testid"
+									],
+									"variable": [
+										{
+											"key": "testid",
+											"value": "65e49933c41680810a2c5040"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "639"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27f-PObhN/Td6kda+xwHiS0sQ0VGbcM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 15:41:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"65e49933c41680810a2c5040\",\n        \"name\": \"X-ray\",\n        \"description\": \"A lab test\",\n        \"price\": 1000,\n        \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n        \"lab\": {\n            \"_id\": \"65e48fc4dd6285e664952723\",\n            \"email\": \"popular@gmail.com\",\n            \"name\": \"Popular Diagnostics Ltd.\",\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n            \"role\": \"lab\",\n            \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n            \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n            \"__v\": 0\n        },\n        \"avgStars\": 0,\n        \"reviewCount\": 0,\n        \"patientCount\": 0,\n        \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n        \"updatedAt\": \"2024-03-03T15:37:23.500Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Search for test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/test/search?labid=65e48fc4dd6285e664952723",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "ct",
+									"disabled": true
+								},
+								{
+									"key": "labname",
+									"value": "popular",
+									"disabled": true
+								},
+								{
+									"key": "labid",
+									"value": "65e48fc4dd6285e664952723"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "By name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/search?name=ct",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"search"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ct"
+										},
+										{
+											"key": "labname",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "labid",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "890"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37a-GDsNzxolYUSlJGyDh3x9d7Qii3g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 15:50:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e49ba0387f2d4c5dfb50d2\",\n            \"name\": \"CT Scan\",\n            \"description\": \"A lab test\",\n            \"price\": 8000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg/1024px-Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:47:44.550Z\",\n            \"updatedAt\": \"2024-03-03T15:47:44.550Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "By lab name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/search?labname=popular",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"search"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ct",
+											"disabled": true
+										},
+										{
+											"key": "labname",
+											"value": "popular"
+										},
+										{
+											"key": "labid",
+											"value": "65e48fc4dd6285e664952723",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2086"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"826-u9TkalaNdNoQ5ir0Zhz04F8pbCE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 15:51:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e49933c41680810a2c5040\",\n            \"name\": \"X-ray\",\n            \"description\": \"A lab test\",\n            \"price\": 1000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n            \"updatedAt\": \"2024-03-03T15:37:23.500Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49b1b387f2d4c5dfb50ce\",\n            \"name\": \"Blood Test\",\n            \"description\": \"A lab test\",\n            \"price\": 400,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/9/95/Blooddraw.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:45:31.759Z\",\n            \"updatedAt\": \"2024-03-03T15:45:31.759Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49ba0387f2d4c5dfb50d2\",\n            \"name\": \"CT Scan\",\n            \"description\": \"A lab test\",\n            \"price\": 8000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg/1024px-Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:47:44.550Z\",\n            \"updatedAt\": \"2024-03-03T15:47:44.550Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "By lab id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/search?labid=65e48fc4dd6285e664952723",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"search"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ct",
+											"disabled": true
+										},
+										{
+											"key": "labname",
+											"value": "popular",
+											"disabled": true
+										},
+										{
+											"key": "labid",
+											"value": "65e48fc4dd6285e664952723"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2086"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"826-u9TkalaNdNoQ5ir0Zhz04F8pbCE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 15:52:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e49933c41680810a2c5040\",\n            \"name\": \"X-ray\",\n            \"description\": \"A lab test\",\n            \"price\": 1000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n            \"updatedAt\": \"2024-03-03T15:37:23.500Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49b1b387f2d4c5dfb50ce\",\n            \"name\": \"Blood Test\",\n            \"description\": \"A lab test\",\n            \"price\": 400,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/9/95/Blooddraw.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:45:31.759Z\",\n            \"updatedAt\": \"2024-03-03T15:45:31.759Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"65e49ba0387f2d4c5dfb50d2\",\n            \"name\": \"CT Scan\",\n            \"description\": \"A lab test\",\n            \"price\": 8000,\n            \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg/1024px-Modern%C3%AD_v%C3%BDpo%C4%8Detn%C3%AD_tomografie_s_p%C5%99%C3%ADmo_digit%C3%A1ln%C3%AD_detekc%C3%AD_rentgenov%C3%A9ho_z%C3%A1%C5%99en%C3%AD.jpg\",\n            \"lab\": {\n                \"_id\": \"65e48fc4dd6285e664952723\",\n                \"email\": \"popular@gmail.com\",\n                \"name\": \"Popular Diagnostics Ltd.\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"lab\",\n                \"createdAt\": \"2024-03-03T14:57:08.780Z\",\n                \"updatedAt\": \"2024-03-03T15:19:00.629Z\",\n                \"__v\": 0\n            },\n            \"avgStars\": 0,\n            \"reviewCount\": 0,\n            \"patientCount\": 0,\n            \"createdAt\": \"2024-03-03T15:47:44.550Z\",\n            \"updatedAt\": \"2024-03-03T15:47:44.550Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create new review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY1ZGE0ZTZiM2VkZGJjNzU2NDVlZCIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzA5NDgyMTAwLCJleHAiOjE3MTA3NzgxMDB9.6cadzutqV1Md6n_aJzwylxTNiGZIs8QhKjcWEBesQNw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reviewText\": \"Good\",\n    \"rating\": 4.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/test/review/create/:testid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"review",
+								"create",
+								":testid"
+							],
+							"variable": [
+								{
+									"key": "testid",
+									"value": "65e49933c41680810a2c5040"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"reviewText\": \"Good\",\n    \"rating\": 4.0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/api/test/review/create/:testid",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"review",
+										"create",
+										":testid"
+									],
+									"variable": [
+										{
+											"key": "testid",
+											"value": "65e49933c41680810a2c5040"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "243"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f3-G58xeSH9HWr1UPKqL97TYHwlVwQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 16:09:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"test\": \"65e49933c41680810a2c5040\",\n        \"user\": \"65965da4e6b3eddbc75645ed\",\n        \"reviewText\": \"Good\",\n        \"rating\": 4,\n        \"_id\": \"65e4a0c9e154e1c168591137\",\n        \"createdAt\": \"2024-03-03T16:09:45.055Z\",\n        \"updatedAt\": \"2024-03-03T16:09:45.055Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/test/review/deleteone/:reviewid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"review",
+								"deleteone",
+								":reviewid"
+							],
+							"variable": [
+								{
+									"key": "reviewid",
+									"value": "65e4a0c9e154e1c168591137"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/test/review?testid=65e49933c41680810a2c5040&userid=65965da4e6b3eddbc75645ed",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"test",
+								"review"
+							],
+							"query": [
+								{
+									"key": "testid",
+									"value": "65e49933c41680810a2c5040"
+								},
+								{
+									"key": "userid",
+									"value": "65965da4e6b3eddbc75645ed"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/test/review?testid=65e49933c41680810a2c5040&userid=65965da4e6b3eddbc75645ed",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"test",
+										"review"
+									],
+									"query": [
+										{
+											"key": "testid",
+											"value": "65e49933c41680810a2c5040"
+										},
+										{
+											"key": "userid",
+											"value": "65965da4e6b3eddbc75645ed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "756"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f4-wfXQLiClUeCmnBSPd+MIZZefOlA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 16:21:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"65e4a36ecc4e3dcf4173e690\",\n            \"test\": {\n                \"_id\": \"65e49933c41680810a2c5040\",\n                \"name\": \"X-ray\",\n                \"description\": \"A lab test\",\n                \"price\": 1000,\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Knee_plain_X-ray.jpg/800px-Knee_plain_X-ray.jpg\",\n                \"lab\": \"65e48fc4dd6285e664952723\",\n                \"avgStars\": 4,\n                \"reviewCount\": 1,\n                \"patientCount\": 0,\n                \"createdAt\": \"2024-03-03T15:37:23.500Z\",\n                \"updatedAt\": \"2024-03-03T16:21:03.592Z\",\n                \"__v\": 0\n            },\n            \"user\": {\n                \"_id\": \"65965da4e6b3eddbc75645ed\",\n                \"email\": \"p1@gmail.com\",\n                \"name\": \"patient 1\",\n                \"photo\": \"https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg\",\n                \"role\": \"patient\",\n                \"gender\": \"male\",\n                \"__v\": 0\n            },\n            \"reviewText\": \"Good\",\n            \"rating\": 4,\n            \"createdAt\": \"2024-03-03T16:21:02.828Z\",\n            \"updatedAt\": \"2024-03-03T16:21:02.828Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
 		}
 	],
 	"auth": {
