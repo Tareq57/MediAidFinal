@@ -7,6 +7,7 @@ import dotenv from "dotenv"
 import authRoutes from "./Routes/auth.js"
 import userRoutes from "./Routes/user.js"
 import doctorRoutes from "./Routes/doctor.js"
+import mediLabRoutes from "./Routes/mediLab.js"
 import specializationRoutes from "./Routes/specialization.js"
 import reviewRoutes from "./Routes/review.js"
 import appointmentRoutes from "./Routes/appointment.js"
@@ -15,6 +16,9 @@ import medicineRoutes from "./Routes/medicine.js"
 import infoRoutes from "./Routes/info.js"
 import companyRoutes from "./Routes/company.js"
 import cartRoutes from "./Routes/cart.js"
+import reviewLabRoutes from "./Routes/reviewLab.js"
+import reviewTestRoutes from "./Routes/reviewTest.js"
+import testRoutes from "./Routes/test.js"
 
 dotenv.config()
 
@@ -50,6 +54,7 @@ app.use(cors(corsOptions))
 app.use("/api/auth", authRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/doctor", doctorRoutes)
+app.use("/api/mediLab", mediLabRoutes)
 app.use("/api/specialization", specializationRoutes)
 app.use("/api/review", reviewRoutes)
 app.use("/api/appointment", appointmentRoutes)
@@ -58,6 +63,9 @@ app.use("/api/medicine", medicineRoutes)
 app.use("/api/info", infoRoutes)
 app.use("/api/company", companyRoutes)
 app.use("/api/cart", cartRoutes)
+app.use("/api/reviewLab",reviewLabRoutes)
+app.use("/api/reviewTest",reviewTestRoutes)
+app.use("/api/test",testRoutes)
 
 app.listen(port, () => {
     connectDB();

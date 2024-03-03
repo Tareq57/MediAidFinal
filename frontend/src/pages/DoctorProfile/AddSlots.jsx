@@ -19,8 +19,9 @@ import { useToast } from "@/components/ui/use-toast";
 const AddSlots = () => {
   const { state } = useContext(AuthContext);
   const id = state?.user._id;
-
   const { toast } = useToast();
+
+  // const { toast } = useToast();
 
   const [slot, setSlot] = useState({
     doctor: id,

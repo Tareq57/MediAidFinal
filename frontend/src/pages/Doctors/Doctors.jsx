@@ -87,6 +87,7 @@ const Doctors = () => {
       const result2 = await res2.json();
 
       if (!res1.ok) {
+        
         throw new Error(result1.message);
       }
       if (!res2.ok) {
@@ -181,6 +182,7 @@ const Doctors = () => {
                       ? doctor.averageStars.toFixed(2)
                       : (0.0).toFixed(2)}
                   </p>
+                  {/* <p className="font-bold pt-2">{doctor.averageStars.toFixed(2)}</p> */}
                 </div>
               </div>
               <div className="flex my-[10px]">

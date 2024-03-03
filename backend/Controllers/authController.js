@@ -1,6 +1,6 @@
 import User from '../models/UserSchema.js'
 import Doctor from '../models/DoctorSchema.js'
-import Company from '../models/CompanySchema.js'
+import MediLab from '../models/MediLabSchemaa.js'
 import Cart from '../models/CartSchema.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
@@ -15,7 +15,7 @@ export const register = async(req, res) => {
         user = await User.findOne({email})
         // else if(role === 'doctor')
         user = await Doctor.findOne({email})
-        user = await Company.findOne({email})
+        user = await MediLab.findOne({email})
         if(user)
             return res.status(400).json({success: false, msg: "User already exists"})
 
@@ -47,8 +47,8 @@ export const register = async(req, res) => {
             })
         }
 
-        else if(role === 'company') {
-            user = new Company({
+        else if(role === 'mediLab') {
+            user = new MediLab({
                 name,
                 email,
                 password: hashPassword,
@@ -73,11 +73,11 @@ export const login = async(req, res) => {
         let user = null
         const patient = await User.findOne({email})
         const doctor = await Doctor.findOne({email})
-        const company = await Company.findOne({email})
+        const mediLab = await MediLab.findOne({email})
 
         if(patient) user = patient
         else if(doctor) user = doctor
-        else if(company) user = company
+        else if(mediLab) user = mediLab
         else
             return res.status(404).json({success:false, msg: "User not found"})
 

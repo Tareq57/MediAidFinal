@@ -44,8 +44,9 @@ const Login = () => {
     name: "",
     email: "",
     password: "",
-    photo: null,
-    gender: "",
+    photo: "",
+    phone:"",
+    gender: "male",
     role: "",
     fee: "",
     specialization: "",
@@ -73,7 +74,7 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
-    if (signupData.role == "patient") {
+    if (signupData.role == "patient" || signupData == "mediLab") {
       setsignupData({ ...signupData, fee: "" });
     }
   }, [signupData.role]);
@@ -339,11 +340,10 @@ const Login = () => {
                 <div className="space-y-1">
                   <Label
                     htmlFor="new"
-                    className={`${
-                      signupData.role != "doctor"
-                        ? "text-gray-400"
-                        : "text-black"
-                    }`}
+                    className={`${signupData.role != "doctor"
+                      ? "text-gray-400"
+                      : "text-black"
+                      }`}
                   >
                     Fee
                   </Label>
@@ -357,21 +357,19 @@ const Login = () => {
                       signupData.role != "doctor" ? "" : "Enter fee in taka"
                     }
                     readOnly={signupData.role != "doctor"}
-                    className={`border ${
-                      signupData.role != "doctor"
-                        ? "border-gray"
-                        : "border-black"
-                    }`}
+                    className={`border ${signupData.role != "doctor"
+                      ? "border-gray"
+                      : "border-black"
+                      }`}
                   />
                 </div>
                 <div className="space-y-1">
                   <Label
                     htmlFor="new"
-                    className={`${
-                      signupData.role != "doctor"
-                        ? "text-gray-400"
-                        : "text-black"
-                    }`}
+                    className={`${signupData.role != "doctor"
+                      ? "text-gray-400"
+                      : "text-black"
+                      }`}
                   >
                     Specialization
                   </Label>
@@ -383,11 +381,10 @@ const Login = () => {
                         specialization: value._id,
                       })
                     }
-                    className={`border ${
-                      signupData.role != "doctor"
-                        ? "border-gray-400"
-                        : "border-black"
-                    }`}
+                    className={`border ${signupData.role != "doctor"
+                      ? "border-gray-400"
+                      : "border-black"
+                      }`}
                   >
                     <SelectTrigger>
                       <SelectValue
