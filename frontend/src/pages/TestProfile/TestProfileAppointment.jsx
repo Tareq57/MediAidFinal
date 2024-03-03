@@ -7,12 +7,16 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import uploadImagetoCloudinary from "@/utils/uploadCloudinary";
+import { useToast } from "@/components/ui/use-toast";
+
 
 const TestProfileAppointment = () => {
   const [slots, setslots] = useState([]);
   const { state } = useContext(AuthContext);
+  const [loading, setLoading] = React.useState(false);
 
   const { id } = useParams();
+  const { toast } = useToast();
 
   const { "*": group } = useParams();
 
@@ -69,6 +73,7 @@ const TestProfileAppointment = () => {
       });
 
       console.log(data.url);
+      console.log(app);
 
       const res = await fetch(`${BASE_URL}/labappt/report/${app._id}`, {
         method: "POST",
@@ -87,6 +92,8 @@ const TestProfileAppointment = () => {
       console.log(result);
     };
     input.click();
+
+    navigate("")
   };
 
   return (
@@ -139,7 +146,7 @@ const TestProfileAppointment = () => {
                       </p>
                     </div>
                     {group == "current" && (
-                      <Button onClick={handleUploadReport} className="w-full">
+                      <Button onClick={()=>handleUploadReport(app)} className="w-full">
                         Upload Report
                       </Button>
                     )}
