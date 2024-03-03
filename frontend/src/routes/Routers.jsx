@@ -38,6 +38,7 @@ import AddLabTests from "@/pages/MediLabProfile/MediAddTests";
 import AddMedicine from "../pages/MedishopProfile/AddMedicine";
 import AllMedicine from "../pages/MedishopProfile/AllMedicine"
 import Cart from "../pages/Cart/Cart";
+import MyOrders from "../pages/PatientProfile/MyOrders";
 
 const Routers = () => {
   const { state } = useContext(AuthContext);
@@ -83,6 +84,7 @@ const Routers = () => {
           <Route path="appointments/*" element={<MyAppointments />} />
           <Route path="reports" element={<MyReports />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="orders" element={<MyOrders />} />
         </Route>
       )} 
 

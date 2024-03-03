@@ -145,6 +145,24 @@ const PatientSideBar = () => {
       </NavLink>
 
       <NavLink
+        to="orders"
+        className={(navClass) =>
+          navClass.isActive ? setNavClass("orders") : null
+        }
+      >
+        <div
+          className={`flex items-center space-x-2   ${
+            navClass == "orders"
+              ? "bg-orange-500 text-white"
+              : "hover:bg-gray-100"
+          } p-2 rounded-full cursor-pointer`}
+        >
+          <IoSettingsOutline className="w-[25px] h-[25px]" />
+          <h1 className="font-semibold">Orders</h1>
+        </div>
+      </NavLink>
+
+      <NavLink
         to="settings"
         className={(navClass) =>
           navClass.isActive ? setNavClass("settings") : null
