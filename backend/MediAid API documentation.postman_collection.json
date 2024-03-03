@@ -7989,7 +7989,85 @@
 		},
 		{
 			"name": "Lab Appointments",
-			"item": []
+			"item": [
+				{
+					"name": "Create new appointment (patient only)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY1ZGE0ZTZiM2VkZGJjNzU2NDVlZCIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzA5NDg3OTU3LCJleHAiOjE3MTA3ODM5NTd9.vUGCOq2BYy-Y4qJKdPM3u_3F_8YAljbdc4ZLFaxSdN8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"test\": \"\",\n    \"testSlot\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/labappt/new",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"labappt",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get test slots with appointments by group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/labappt/test/:id?date=2024-03-04&group=upcoming",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"labappt",
+								"test",
+								":id"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2024-03-04"
+								},
+								{
+									"key": "group",
+									"value": "upcoming",
+									"description": "current, upcoming, past, all"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65e49933c41680810a2c5040"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {

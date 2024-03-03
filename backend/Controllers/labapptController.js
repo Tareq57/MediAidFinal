@@ -70,5 +70,17 @@ export const getTestGroup = async(req, res) => {
 }
 
 export const getPatientGroup = async(req, res) => {
-    
+    const patientId = req.params.id
+    const group = req.query.group
+    const date = new Date(req.query.date)
+
+    date.setDate(date.getDate() + 1)
+    date.setHours(0, 0, 0)
+
+    try {
+        let labappts = await Labappt.find({user: patientId}).populate('testSlot').sort({createdAt: -1})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Couldn't fetch appointments"})
+    }
 }
