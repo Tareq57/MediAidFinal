@@ -21,7 +21,7 @@ const TestDetails = () => {
 
   const [test, setTest] = useState(null);
 
-//   const [appointments, setAppointments] = useState(null);
+  const [appointments, setAppointments] = useState(null);
 
   const [navClass, setNavClass] = useState("Qualification");
 
