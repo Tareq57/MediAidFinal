@@ -8104,6 +8104,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Add report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"report\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/labappt/report/:apptid",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"labappt",
+								"report",
+								":apptid"
+							],
+							"variable": [
+								{
+									"key": "apptid",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

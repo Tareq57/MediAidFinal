@@ -96,3 +96,18 @@ export const getPatientGroup = async(req, res) => {
         res.status(500).json({success: false, msg: "Couldn't fetch appointments"})
     }
 }
+
+export const addReport = async(req, res) => {
+    const apptId = req.params.apptid
+    const data = req.body
+    try {
+        let labappt = await Labappt.findOne({_id: apptId})
+        labappt.report = data.report
+        labappt.status = "finished"
+        await labappt.save()
+        res.status(200).json({success: true, msg: "Report added successfully", data: labappt})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({success: false, msg: "Couldn't add report"})
+    }
+}
