@@ -1,6 +1,5 @@
 import User from '../models/UserSchema.js'
 import Doctor from '../models/DoctorSchema.js'
-import MediLab from '../models/MediLabSchemaa.js'
 import Cart from '../models/CartSchema.js'
 import Company from '../models/CompanySchema.js'
 import jwt from 'jsonwebtoken'
@@ -16,7 +15,6 @@ export const register = async(req, res) => {
         user = await User.findOne({email})
         // else if(role === 'doctor')
         user = await Doctor.findOne({email})
-        user = await MediLab.findOne({email})
         if(user)
             return res.status(400).json({success: false, msg: "User already exists"})
 
@@ -45,16 +43,6 @@ export const register = async(req, res) => {
                 role,
                 fee,
                 specialization
-            })
-        }
-
-        else if(role === 'mediLab') {
-            user = new MediLab({
-                name,
-                email,
-                password: hashPassword,
-                photo,
-                role
             })
         }
 

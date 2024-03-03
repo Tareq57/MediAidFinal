@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import Doctor from '../models/DoctorSchema.js'
-import MediLab from '../models/MediLabSchemaa.js'
 import User from '../models/UserSchema.js'
 
 export const authenticate = async(req, res, next) => {
@@ -29,14 +28,11 @@ export const restrict = roles => async(req, res, next) => {
 
     const patient = await User.findById(userId)
     const doctor = await Doctor.findById(userId)
-    const mediLab = await MediLab.findById(userId)
 
     if(patient)
         user = patient
     else if(doctor)
         user = doctor
-    else if(mediLab)
-        user = mediLab
 
     if(!roles.includes(user.role))
         return res.status(401).json({success: false, msg: "Unauthorized, in restrict function"})
