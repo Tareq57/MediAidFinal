@@ -28,6 +28,7 @@ const MedicineDetails = () => {
   const {toast} = useToast();
   // console.log(medid);
 
+
   const { state, setState} = useContext(AuthContext);
 
   const [navClass, setNavClass] = useState("overview");
@@ -100,11 +101,13 @@ const MedicineDetails = () => {
         description: "You can view your cart in your profile",
       });
     }
+    console.log(result);
 
     setState({...state, cartSize: result.data.medicines.length})
 
-    console.log(result);
   };
+
+  console.log(totalprice);  
 
   return (
     medicine && (

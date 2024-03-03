@@ -20,8 +20,11 @@ import { Input } from "@/components/ui/input";
 import { set } from "lodash";
 
 const Cart = () => {
-  const { state } = useContext(AuthContext);
+  const { state, setState } = useContext(AuthContext);
   const [cart, setCart] = useState(null);
+
+  const [totalprice, setTotalPrice] = useState(0);
+  const [editmode, setEditMode] = useState(false);
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -39,34 +42,48 @@ const Cart = () => {
       }
 
       setCart(result.data.medicines);
+      setTotalPrice(result.data.totalPrice);
     };
 
     fetchCart();
   }, []);
 
+  console.log(totalprice);
   console.log(cart);
 
-  const handleMedRemove = async (medId) => {
-    const res = await fetch(
-      `${BASE_URL}/cart/removemedicine/${state.user._id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${state.token}`,
-        },
-        body: JSON.stringify({
-          medicineId: medId,
-        }),
-      }
-    );
+  const handleSaveChange = async (e) => {
+    e.preventDefault()
+    setEditMode(false);
+    let postbody=[];
+    cart.forEach((med) => {
+      postbody.push({
+        medicineId: med.medicine._id,
+        unit: med.unit,
+        unitPrice: med.unitPrice,
+        qty: med.qty,
+      });
+    });
+
+    const res = await fetch(`${BASE_URL}/cart/replace/${state.user._id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${state.token}`,
+      },
+      body: JSON.stringify({medicines : postbody}),
+    });
 
     const result = await res.json();
     if (!res.ok) {
       throw new Error(result.message);
     }
 
-    setCart(result.data);
+    console.log(result.data);
+
+    setCart(result.data.medicines);
+    setTotalPrice(result.data.totalPrice);
+
+    setState({...state, cartSize : result.data.medicines.length})
   };
 
   return (
@@ -78,6 +95,18 @@ const Cart = () => {
           <h1 className="italic text-gray-500 font-bold">
             {cart?.length} items in the cart
           </h1>
+          {!editmode && (
+            <div className="flex justify-end">
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setEditMode(true);
+                }}
+              >
+                Edit Cart
+              </Button>
+            </div>
+          )}
           <div className="flex-col space-y-3">
             {cart.map((med, index) => (
               <div
@@ -126,34 +155,45 @@ const Cart = () => {
                         </p>
                       </div>
                     </div>
+
                     <div className="flex-col w-1/3 space-y-1">
-                      <div className="flex items-center justify-center">
-                        <Button
-                          className="w-1/3 h-[25px] text-xl"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            let updatedCart = [...cart];
-                            if (updatedCart[index].qty > 1)
+                      {editmode && (
+                        <div className="flex items-center justify-center">
+                          <Button
+                            className="w-1/3 h-[25px] text-xl"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              let updatedCart = [...cart];
+                              if (updatedCart[index].qty > 1) {
+                                updatedCart[index].qty =
+                                  updatedCart[index].qty - 1;
+                                setTotalPrice(
+                                  totalprice - parseFloat(med.unitPrice)
+                                );
+                              }
+                              setCart(updatedCart);
+                            }}
+                          >
+                            -
+                          </Button>
+                          <h1 className="text-center w-1/3">{med.qty}</h1>
+                          <Button
+                            className="w-1/3 h-[25px] text-xl"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              let updatedCart = [...cart];
                               updatedCart[index].qty =
-                                updatedCart[index].qty - 1;
-                            setCart(updatedCart);
-                          }}
-                        >
-                          -
-                        </Button>
-                        <h1 className="text-center w-1/3">{med.qty}</h1>
-                        <Button
-                          className="w-1/3 h-[25px] text-xl"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            let updatedCart = [...cart];
-                            updatedCart[index].qty = updatedCart[index].qty + 1;
-                            setCart(updatedCart);
-                          }}
-                        >
-                          +
-                        </Button>
-                      </div>
+                                updatedCart[index].qty + 1;
+                              setTotalPrice(
+                                totalprice + parseFloat(med.unitPrice)
+                              );
+                              setCart(updatedCart);
+                            }}
+                          >
+                            +
+                          </Button>
+                        </div>
+                      )}
                       <div>
                         <h1 className="text-sm font-bold">Unit : {med.unit}</h1>
                         <h1 className="text-xs font-bold text-gray-400">
@@ -161,23 +201,37 @@ const Cart = () => {
                         </h1>
                         <h1 className="text-xs font-bold">
                           Total Price :{" "}
-                          {(parseFloat(med.unitPrice) * parseInt(med.qty)).toFixed(2)} Taka
+                          {(
+                            parseFloat(med.unitPrice) * parseInt(med.qty)
+                          ).toFixed(2)}{" "}
+                          Taka
                         </h1>
                       </div>
-                      <Button
-                        className="w-full h-[30px] bg-red-500"
-                        onClick={() => {
-                          handleMedRemove;
-                        }}
-                      >
-                        Remove
-                      </Button>
+                      {editmode && (
+                        <Button
+                          className="w-full h-[30px] bg-red-500"
+                          onClick={() => {
+                            setCart(cart.filter((item, idx) => idx !== index));
+                          }}
+                        >
+                          Remove
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+          {editmode && (
+            <div className="flex justify-end">
+              <Button
+                onClick={(e)=>handleSaveChange(e)}
+              >
+                Save Changes
+              </Button>
+            </div>
+          )}
         </div>
         <div className="w-1/4 flex-col space-y-2">
           <h1 className="font-bold text-2xl">Order Summary : </h1>
@@ -185,7 +239,10 @@ const Cart = () => {
           <Card>
             <CardHeader>
               <CardTitle className="text-xl">
-                {/* Total Amount : {cart.totalPrice} */}
+                <div className="flex-col">
+                  <p>Total Amount : </p>
+                  <p>{totalprice.toFixed(2)} BDT</p>
+                </div>
               </CardTitle>
             </CardHeader>
             <CardContent>
