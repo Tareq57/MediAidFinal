@@ -72,6 +72,22 @@ const MyLabAppointments = () => {
     }
   }, [group]);
 
+  const handleDownloadReport = async (app) => {
+    const url = app
+    fetch(url)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const href = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = href;
+        link.setAttribute("download", "file.pdf"); // Use any filename you want
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch((e) => console.error(e));
+  };
+
   console.log(slots);
 
   return (
@@ -85,9 +101,7 @@ const MyLabAppointments = () => {
             <div className="flex-col m-[10px] w-[230px] rounded-lg border border-slate-400 overflow-hidden">
               <div className="flex justify-center items-center">
                 <img
-                  src={
-                    state.role == "doctor" ? app.test.photo : app.test.photo
-                  }
+                  src={state.role == "doctor" ? app.test.photo : app.test.photo}
                   className="h-[100px] w-[100px] aspect-square"
                   alt=""
                 />
@@ -102,9 +116,7 @@ const MyLabAppointments = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm">
-                    Serial : {app.serial}
-                  </p>
+                  <p className="text-sm">Serial : {app.serial}</p>
                 </div>
                 <div className="flex justify-between">
                   <p className="text-sm">
@@ -114,14 +126,29 @@ const MyLabAppointments = () => {
                     End : {app.testSlot.endhr}:{app.testSlot.endmin}
                   </p>
                 </div>
-                <Button
-                  onClick={() => {
-                    handleAppointment(app);
-                  }}
-                  className="w-full"
-                >
-                  View Prescription
-                </Button>
+
+                {group == "current" && (
+                  <div className="flex-col">
+                    <p className="text-center">Status : Not Finished</p>
+                  </div>
+                )}
+
+                {group == "upcoming" && (
+                  <div className="flex-col">
+                    <p className="text-center">Status : Not Finished</p>
+                  </div>
+                )}
+
+                {group == "past" && (
+                  <Button
+                    onClick={() => {
+                      handleDownloadReport(app.reportLink);
+                    }}
+                    className="w-full"
+                  >
+                    Download Report
+                  </Button>
+                )}
               </div>
             </div>
           ))}

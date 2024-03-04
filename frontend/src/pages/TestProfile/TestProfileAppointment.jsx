@@ -101,47 +101,19 @@ const TestProfileAppointment = () => {
   };
 
   const handleDownloadReport = async (app) => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "application/pdf"; // specify the accepted file types
-    input.onchange = async (event) => {
-      const file = event.target.files[0];
-      // handle the file upload logic here
-      console.log(file);
-
-      setLoading(true);
-      const data = await uploadImagetoCloudinary(file);
-      setLoading(false);
-
-      toast({
-        title: "Image Uploaded Successfully",
-        description: "Image upload done, you can now sign up",
-      });
-
-      console.log(data.url);
-      console.log(app);
-
-      const res = await fetch(`${BASE_URL}/labappt/report/${app._id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${state.token}`,
-        },
-        body: JSON.stringify({ report: data.url }),
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) {
-        throw new Error(result.message);
-      }
-      console.log(result);
-
-      setFinished(!finished);
-    };
-    input.click();
-
-    navigate("");
+    const url = app
+    fetch(url)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const href = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = href;
+        link.setAttribute("download", "file.pdf"); // Use any filename you want
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch((e) => console.error(e));
   };
 
   return (
@@ -193,33 +165,29 @@ const TestProfileAppointment = () => {
                         {/* End : {app.slot.endhr}:{app.slot.endmin} */}
                       </p>
                     </div>
-                    {group == "current" &&
-                      app.status !=
-                        "finished" && (
-                          <div className="flex-col">
-                            <p className="text-center">Status : Not Finished</p>
-                            <Button
-                              onClick={() => handleUploadReport(app)}
-                              className="w-full"
-                            >
-                              Upload Report
-                            </Button>
-                          </div>
-                        )}
+                    {group == "current" && app.status != "finished" && (
+                      <div className="flex-col">
+                        <p className="text-center">Status : Not Finished</p>
+                        <Button
+                          onClick={() => handleUploadReport(app)}
+                          className="w-full"
+                        >
+                          Upload Report
+                        </Button>
+                      </div>
+                    )}
 
-                    {group == "current" &&
-                      app.status ==
-                        "finished" && (
-                          <div className="flex-col">
-                            <p className="text-center">Status : Finished</p>
-                            <Button
-                              onClick={() => handleDownloadReport(app)}
-                              className="w-full"
-                            >
-                              Download Report
-                            </Button>
-                          </div>
-                        )}
+                    {group == "current" && app.status == "finished" && (
+                      <div className="flex-col">
+                        <p className="text-center">Status : Finished</p>
+                        <Button
+                          onClick={() => handleDownloadReport(app.reportLink)}
+                          className="w-full"
+                        >
+                          Download Report
+                        </Button>
+                      </div>
+                    )}
 
                     {group == "upcoming" && null}
 

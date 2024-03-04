@@ -10,7 +10,7 @@ const UserProfile = () => {
   console.log(state?.role);
 
   return (
-    <div className="mx-[180px] mt-[40px] min-h-[500px] flex justify-between">
+    <div className="mx-[180px] mt-[40px] min-h-[800px] flex justify-between">
       {state?.role == "patient" && (
         <PatientSideBar ></PatientSideBar>
       )}

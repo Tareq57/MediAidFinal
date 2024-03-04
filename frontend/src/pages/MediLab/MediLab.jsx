@@ -35,6 +35,7 @@ import { set } from "date-fns";
 import Loader from "@/assets/gifs/page_loader.json";
 import Lottie from "react-lottie";
 import DiseaseIcon from "@/assets/images/diseaseIcon.svg";
+import { Slider } from "@/components/ui/slider";
 
 const MediLab = () => {
   const { state, setState } = useContext(AuthContext);
@@ -57,6 +58,9 @@ const MediLab = () => {
   const [search, setSearch] = useState({
     value: "",
     searchBy: "any",
+    rating: "0",
+    feeLower: 0,
+    feeUpper: 10000,
   });
 
   const handleViewClick = (test) => {
@@ -77,12 +81,13 @@ const MediLab = () => {
     const fetchMedicines = async () => {
       let params = {};
 
-      if (search.searchBy == "category" && search.value != "")
-        params.category = search.value;
+      if (search.searchBy == "location" && search.value != "")
+        params.location = search.value;
       else if (search.searchBy == "name" && search.value != "")
         params.name = search.value;
-      else if (search.searchBy == "disease" && search.value != "")
-        params.disease = search.value;
+      if (search.rating) params.rating = search.rating;
+      if (search.feeLower >= 1) params.feelower = search.feeLower;
+      if (search.feeUpper) params.feeupper = search.feeUpper;
 
       const queryString = new URLSearchParams(params).toString();
 
@@ -150,7 +155,7 @@ const MediLab = () => {
           {tests.map((test, index) => (
             <div
               key={index}
-              className="flex-col m-[5px] w-[270px] my-[10px] h-[250px] rounded-lg border border-slate-400 overflow-hidden"
+              className="flex-col m-[5px] w-[250px] my-[10px] h-[320px] rounded-lg border border-slate-400 overflow-hidden"
             >
               <div className=" h-[120px]">
                 <img
@@ -172,6 +177,22 @@ const MediLab = () => {
                   <p className="font-bold text-sm">
                     {test.patientCount} patients
                   </p>
+                </div>
+                <div className="flex space-x-1">
+                  <img
+                    src={CategoryIcon}
+                    className="w-[20px] h-[20px]"
+                    alt=""
+                  />
+                  <p className="font-bold text-sm">{test.location}</p>
+                </div>
+                <div className="flex space-x-1">
+                  <img
+                    src={CategoryIcon}
+                    className="w-[20px] h-[20px]"
+                    alt=""
+                  />
+                  <p className="font-bold text-sm">{test.price} BDT</p>
                 </div>
                 <div className="flex space-x-1">
                   <img src={ShopIcon} className="w-[20px] h-[20px]" alt="" />
@@ -215,15 +236,68 @@ const MediLab = () => {
             <Label htmlFor="r1">Name</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value={"category"} id="r1" />
-            <Label htmlFor="r1">Category</Label>
+            <RadioGroupItem value={"location"} id="r1" />
+            <Label htmlFor="r1">Location</Label>
+          </div>
+        </RadioGroup>
+
+        <h1 className="font-bold text-lg">Fee</h1>
+
+        <div className="flex flex-col space-y-2">
+          <h1 className="font-bold text-lg">
+            {search.feeLower}-{search.feeUpper}
+          </h1>
+
+          <Slider
+            min={0}
+            max={10000}
+            value={[search.feeUpper]}
+            className="w-[200px]"
+            step={1000}
+            onValueChange={(value) => {
+              setSearch({
+                ...search,
+                feeUpper: value[0],
+              });
+            }}
+          />
+        </div>
+
+        <h1 className="font-bold text-lg">Review</h1>
+
+        <RadioGroup
+          defaultValue="comfortable"
+          value={search.rating.toString()}
+          onValueChange={(value) => handleChange("rating", value)}
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="5" id="r1" />
+            <Label htmlFor="r1">5 star</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value={"disease"} id="r1" />
-            <Label htmlFor="r1">Disease</Label>
+            <RadioGroupItem value="4" id="r2" />
+            <Label htmlFor="r2">4+ star</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="3" id="r3" />
+            <Label htmlFor="r3">3+ star</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="2" id="r3" />
+            <Label htmlFor="r3">2+ star</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="1" id="r3" />
+            <Label htmlFor="r3">1+ star</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="0" id="r3" />
+            <Label htmlFor="r3">None</Label>
           </div>
         </RadioGroup>
       </div>
+
+      <div></div>
     </div>
   );
 };
