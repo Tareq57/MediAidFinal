@@ -89,6 +89,7 @@ const MyAppointments = () => {
                 year: "numeric",
               })}
             </h1>
+            <h1 className="text-md font-bold italic">{slot.location}</h1>
             <h1 className="text-sm font-bold italic">
               From : {slot.starthr}:{slot.startmin} &nbsp;&nbsp; To :{" "}
               {slot.endhr}:{slot.endmin}
@@ -182,9 +183,10 @@ const MyAppointments = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm">
-                    Serial : {app.serial}
-                  </p>
+                  <p className="text-sm">Location : {app.slot.location}</p>
+                </div>
+                <div>
+                  <p className="text-sm">Serial : {app.serial}</p>
                 </div>
                 <div className="flex justify-between">
                   <p className="text-sm">

@@ -33,6 +33,8 @@ const Appointment = ({ apps, doctor }) => {
 
   const [slots, setSlots] = useState([]);
 
+  const [location, setLocation] = useState("");
+
   const [targetApp, setTargetApp] = useState(null);
 
   const { toast } = useToast();
@@ -44,10 +46,11 @@ const Appointment = ({ apps, doctor }) => {
 
   const handleChange = (value) => {
     setTargetApp(value);
+    setLocation(value.location);
   };
 
   const onToken = async (token) => {
-    console.log(token)
+    console.log(token);
     const res = await fetch(`${BASE_URL}/appointment`, {
       method: "PUT",
       headers: {
@@ -112,10 +115,7 @@ const Appointment = ({ apps, doctor }) => {
           </Popover>
         </div>
       </div>
-      <div className="flex-col space-y-2">
-        <h1 className="font-bold text-lg">Location : </h1>
-        <p>Popular Diagnostic Center, Shantinagar Mor, Dhaka</p>
-      </div>
+
       <div className="flex-col space-y-2">
         <h1 className="font-bold text-lg">Select Slot : </h1>
         <div className="SlotSelector">
@@ -136,8 +136,10 @@ const Appointment = ({ apps, doctor }) => {
                     parseInt(app.date.split("-")[1]) == date.getMonth() + 1 &&
                     parseInt(app.date.split("-")[0]) == date.getFullYear() && (
                       <SelectItem key={index} value={app}>
-                        {app.starthr}:{app.startmin} - {app.endhr}:{app.endmin}{" "}
-                        | {app.patientCount - app.occupied} remaining
+                        <p>{app.starthr}:{app.startmin} - {app.endhr}:{app.endmin}{" "}
+                        | {app.patientCount - app.occupied} remaining</p>
+                        <p>{app.location}</p>
+                        
                       </SelectItem>
                     )
                 )}
@@ -145,17 +147,16 @@ const Appointment = ({ apps, doctor }) => {
               </SelectGroup>
             </SelectContent>
           </Select>
+
         </div>
       </div>
-
+      
       <div>
         <StripeCheckout
           stripeKey="pk_test_51OqEoBJp2O3nTHsUqofo4BM2FNMYiT43ZdwhfWC1vkBve5gU5G7hpMUOYsDL8pOP0dGrArWqH5lgm7S4rt3mFiso0007cpU8Hy"
           token={onToken}
         >
-          <Button className="w-[280px]">
-            Take Appointment
-          </Button>
+          <Button className="w-[280px]">Take Appointment</Button>
         </StripeCheckout>
       </div>
     </div>

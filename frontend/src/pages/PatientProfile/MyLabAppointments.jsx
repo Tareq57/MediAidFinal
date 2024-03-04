@@ -116,6 +116,11 @@ const MyLabAppointments = () => {
                   </p>
                 </div>
                 <div>
+                  <p className="text-sm">
+                    Location : {app.test.location}
+                  </p>
+                </div>
+                <div>
                   <p className="text-sm">Serial : {app.serial}</p>
                 </div>
                 <div className="flex justify-between">

@@ -28,26 +28,7 @@ const MediLabSideBar = () => {
           <p className="text-[12px] text-gray-500">Phone: 0{state?.user.phone}</p>
         </div>
       </div>
-      <NavLink
-        to="dashboard"
-        className={(navClass) =>
-          navClass.isActive ? setNavClass("dashboard") : null
-        }
-      >
-        <div
-          className={`flex items-center space-x-2   ${
-            navClass == "dashboard"
-              ? "bg-orange-500 text-white"
-              : "hover:bg-gray-100"
-          } p-2 rounded-full cursor-pointer`}
-        >
-          <RiDashboard3Line className="w-[25px] h-[25px]" />
-          <h1 className="font-semibold">Dashboard</h1>
-        </div>
-      </NavLink>
-
-      <hr className="border border-black" />
-
+      
       <Label className="font-bold text-base text-gray-400 pl-2">Tests</Label>
 
       <NavLink

@@ -135,8 +135,10 @@ const TestAppointment = ({ apps, test }) => {
                     parseInt(app.date.split("-")[1]) == date.getMonth() + 1 &&
                     parseInt(app.date.split("-")[0]) == date.getFullYear() && (
                       <SelectItem key={index} value={app}>
-                        {app.starthr}:{app.startmin} - {app.endhr}:{app.endmin}{" "}
-                        | {app.patientCount - app.occupied} remaining
+                        <p>{app.starthr}:{app.startmin} - {app.endhr}:{app.endmin}{" "}
+                        | {app.patientCount - app.occupied} remaining</p>
+                        <p>{app.location}</p>
+                        
                       </SelectItem>
                     )
                 )}

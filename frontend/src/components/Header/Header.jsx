@@ -110,18 +110,20 @@ const Header = () => {
             {/* <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-[3px] px-4 rounded-full">
               Login/SignUp
             </button> */}
-            <div className="relative cursor-pointer">
-              <Link to="/cart">
-                <img src={CartIcon} className="w-[30px] h-[30px] " alt="" />
-                <span className="absolute -top-2 -right-2 bg-orange-500 text-xs text-white font-bold rounded-full p-1">
-                  {state?.cartSize}
-                </span>
-              </Link>
-            </div>
+            {state.role == "patient" && (
+              <div className="relative cursor-pointer">
+                <Link to="/cart">
+                  <img src={CartIcon} className="w-[30px] h-[30px] " alt="" />
+                  <span className="absolute -top-2 -right-2 bg-orange-500 text-xs text-white font-bold rounded-full p-1">
+                    {state?.cartSize}
+                  </span>
+                </Link>
+              </div>
+            )}
 
             {state.token && state.user ? (
               <div className="flex space-x-2">
-                <Link to="/user/dashboard">
+                <Link to="/user/settings">
                   <Avatar className="w-[40px] h-[40px]">
                     <AvatarImage src={state.user?.photo} />
                     <AvatarFallback>CN</AvatarFallback>

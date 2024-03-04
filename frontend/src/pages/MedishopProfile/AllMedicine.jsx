@@ -10,11 +10,16 @@ import DiseaseIcon from "@/assets/images/disease.svg";
 import AvgStar from "@/assets/images/avgstar.png";
 import { useNavigate } from "react-router-dom";
 
-
 const AllMedicine = () => {
   const [medicines, setMedicines] = useState([]);
 
   const { state } = useContext(AuthContext);
+  
+  const navigate = useNavigate();
+
+  const handleViewClick = (med) => {
+    navigate(`/medicine/${med._id}/overview`);
+  };
 
   useEffect(() => {
     const fetchMedicines = async () => {

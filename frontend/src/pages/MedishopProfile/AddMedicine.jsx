@@ -45,6 +45,8 @@ const AddSlots = () => {
   });
 
   const [pricings, setPricings] = useState([]);
+  const [diseases, setDiseases] = useState([]);
+  const [disease, setDisease] = useState("");
   const [pricing, setPricing] = useState({
     unit: "",
     amount: "",
@@ -62,6 +64,7 @@ const AddSlots = () => {
 
     let putdata = medicine;
     putdata.prices = pricings;
+    putdata.disease = diseases.join(",");
 
     const res = await fetch(`${BASE_URL}/medicine`, {
       method: "PUT",
@@ -163,9 +166,9 @@ const AddSlots = () => {
         ></Textarea>
       </div>
 
-      <Card>
+      <Card className="border border-black">
         <CardHeader>
-          <CardTitle>Pricing Details</CardTitle>
+          <CardTitle className="text-lg">Pricing Details</CardTitle>
           <CardDescription>
             Short detail of the medicine pricing
           </CardDescription>
@@ -216,10 +219,54 @@ const AddSlots = () => {
           <Button
             onClick={(e) => {
               setPricings([...pricings, pricing]);
+              setPricing({ unit: "", amount: "" });
             }}
             className="w-full"
           >
             Add Pricing
+          </Button>
+        </div>
+      </div>
+
+      <Card className="border border-black">
+        <CardHeader>
+          <CardTitle className="text-lg">Diseases</CardTitle>
+          <CardDescription>Short detail of the diseases</CardDescription>
+        </CardHeader>
+        {diseases.map((disease, index) => (
+          <CardContent key={index}>
+            <div className="flex space-x-10">
+              <p>{disease} </p>
+            </div>
+          </CardContent>
+        ))}
+      </Card>
+
+      <div className="flex justify-between">
+        <div className="flex-col space-y-1 w-2/4">
+          <label className="font-medium leading-none" htmlFor="">
+            Disease Name :
+          </label>
+
+          <Input
+            value={disease}
+            onChange={(e) => {
+              setDisease(e.target.value);
+            }}
+            className="w-full"
+            placeholder="Name of the medicine"
+          ></Input>
+        </div>
+
+        <div className="w-1/4 pt-7">
+          <Button
+            onClick={(e) => {
+              setDiseases([...diseases, disease]);
+              setDisease("");
+            }}
+            className="w-full"
+          >
+            Add Disease
           </Button>
         </div>
       </div>
